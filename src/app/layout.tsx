@@ -4,10 +4,10 @@ import type { Metadata } from 'next'
 import PlausibleProvider from 'next-plausible'
 
 export const metadata: Metadata = {
-  title: `Hatecast`,
-  description: 'Hatecast - Reveal your unfollowers on Farcaster',
+  title: `Statcaster`,
+  description: 'Statcaster - Inspect your profile data on Farcaster',
   manifest: '/manifest.json',
-  icons: { apple: '/hatecast_logo.png' },
+  icons: { apple: '/logo.png' },
   themeColor: '#1B1A1F'
 }
 

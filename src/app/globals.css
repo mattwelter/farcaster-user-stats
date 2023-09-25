@@ -54,7 +54,7 @@ main {
 
 .userFeedHeader h1 {
     font-size: 32px;
-    margin: 8px 0px;
+    margin-top: 0px !important;     /* Was margin: 8px 0px; */
     display: flex;
     margin-left: auto;
     margin-right: auto;

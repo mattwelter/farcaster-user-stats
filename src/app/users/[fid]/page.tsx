@@ -1,5 +1,6 @@
 import Casts from '../../components/getTotalLikedCasts'
 import { Suspense } from 'react'
+import Navigation from '../../components/Navigation'
 import Search from '../../components/Search'
 import type { Metadata, ResolvingMetadata } from 'next'
 
@@ -35,6 +36,7 @@ export default async function Page({ params }: {
 
     return (
         <main>
+            <Navigation />
             <Suspense fallback={<p>Loading search...</p>}>
                 <Search />
             </Suspense>

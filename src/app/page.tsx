@@ -5,8 +5,8 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: `Hatecast`,
-  description: 'Hatecast - Reveal your unfollowers on Farcaster',
+  title: `Statscaster`,
+  description: 'Statscaster - Inspect your profile data on Farcaster',
   manifest: '/manifest.json',
   icons: { apple: '/hatecast_logo.png' },
   themeColor: '#1B1A1F'
@@ -18,12 +18,12 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className="header homepageHeader">
+      <div className="header userFeedHeader">
         <section className="header_h1">
-          <Image id="h1_logo" src="/hatecast_logo.png" alt="Hatecast logo" width="42" height="42" />
-          <h1>Hatecast</h1>
+          <Image id="h1_logo" src="/logo.png" alt="Statscaster logo" width="42" height="42" />
+          <h1>Statcaster</h1>
         </section>
-          <p>Reveal your unfollowers on Farcaster.</p>
+          <p>Search for a Farcaster user's profile data.</p>
         <Suspense fallback={<p>Loading search...</p>}>
           <Search />
         </Suspense>

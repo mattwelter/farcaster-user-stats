@@ -21,6 +21,7 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
-    "@types/luxon": "^3.3.2"
+    "@types/luxon": "^3.3.2",
+    "tailwind": "^4.0.0"
   }
 }
