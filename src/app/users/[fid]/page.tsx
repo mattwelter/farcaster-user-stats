@@ -1,5 +1,6 @@
 import Casts from '../../components/getTotalLikedCasts'
 import { Suspense } from 'react'
+import Search from '../../components/Search'
 import type { Metadata, ResolvingMetadata } from 'next'
 
 type Props = {
@@ -34,6 +35,9 @@ export default async function Page({ params }: {
 
     return (
         <main>
+            <Suspense fallback={<p>Loading search...</p>}>
+                <Search />
+            </Suspense>
             <div className="header userFeedHeader">
                 <h1>{ user ? "@" + user.username : params.fid }</h1>
             </div>
