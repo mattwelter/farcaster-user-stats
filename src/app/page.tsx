@@ -18,12 +18,14 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className="header userFeedHeader">
-        <section className="header_h1">
-          <Image id="h1_logo" src="/logo.png" alt="Statscaster logo" width="42" height="42" />
-          <h1>Statcaster</h1>
-        </section>
+      <div className="header homepageHeader">
+        <div>
+          <section className="header_h1">
+              <Image id="h1_logo" src="/logo.png" alt="Statscaster logo" width="42" height="42" />
+              <h1>Statcaster</h1>
+          </section>
           <p>Search for a Farcaster user's profile data.</p>
+        </div>
         <Suspense fallback={<p>Loading search...</p>}>
           <Search />
         </Suspense>

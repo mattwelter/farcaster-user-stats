@@ -15,8 +15,7 @@ export default function Navigation() {
             <div className="navigation">
                 <nav>
                     <ul>
-                        <li><a className={home} href="/">Home</a></li>
-                        <li><a className={trending} href="/trending">Trending</a></li>
+                        <li><a className={home} href="/">Back Home</a></li>
                     </ul>
                 </nav>
             </div>
