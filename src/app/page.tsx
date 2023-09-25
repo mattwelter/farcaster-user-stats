@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div>
-        <a>Test</a>
+        <a>Test TRest</a>
       </div>
     </main>
   )

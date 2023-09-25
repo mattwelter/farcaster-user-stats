@@ -1,4 +1,4 @@
-import UserFeed from '../../components/UserFeed'
+import Casts from '../../components/getTotalLikedCasts'
 import { Suspense } from 'react'
 import type { Metadata, ResolvingMetadata } from 'next'
 
@@ -38,6 +38,9 @@ export default async function Page({ params }: {
                 <h1>{ user ? "@" + user.username : params.fid }</h1>
             </div>
             <div>
+                <Suspense>
+                    <Casts fid={params.fid}/>
+                </Suspense>
             </div>
         </main>
     )
