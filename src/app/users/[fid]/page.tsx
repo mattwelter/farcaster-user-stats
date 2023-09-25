@@ -18,10 +18,10 @@ export async function generateMetadata(
     let user = userResponse.result.user;
    
     return {
-        title: `Hatecast - ${ user ? "@" + user.username : params.fid}`,
-        description: 'Hatecast - Reveal your unfollowers on Farcaster',
+        title: `Statscaster - ${ user ? "@" + user.username : params.fid}`,
+        description: 'Statscaster - Inspect your profile data on Farcaster',
         manifest: '/manifest.json',
-        icons: { apple: '/hatecast_logo.png' },
+        icons: { apple: '/logo.png' },
         themeColor: '#1B1A1F'
     }
 }
@@ -36,7 +36,6 @@ export default async function Page({ params }: {
 
     return (
         <main>
-            <Navigation />
             <Suspense fallback={<p>Loading search...</p>}>
                 <Search />
             </Suspense>

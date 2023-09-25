@@ -242,6 +242,7 @@ main {
 
 .header form button:hover {
     opacity: 0.65;
+    cursor: pointer;
 }
 
 .search a {
@@ -265,6 +266,7 @@ main {
     background: #8e8c91;
     color: #c7c3d0;
     border: 1px solid #8e8c91;
+    cursor: default !important;
 }
 
 ::-webkit-input-placeholder {

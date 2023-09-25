@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: `Statscaster`,
   description: 'Statscaster - Inspect your profile data on Farcaster',
   manifest: '/manifest.json',
-  icons: { apple: '/hatecast_logo.png' },
+  icons: { apple: '/logo.png' },
   themeColor: '#1B1A1F'
 }
 
