@@ -40,11 +40,11 @@ export default async function Page({ params }: {
             <div className="header-padding userFeedHeader">
                 <img className="profile-pic" src={user.pfp.url} height="48px" width="48px" />
                 <h1>{ user ? user.displayName : params.fid }</h1>
-                <h2>{ user ? "@" + user.username : params.fid }</h2>
+                <h2>{ user ? "@" + user.username : params.fid } • #{ params.fid }</h2>
             </div>
             <div>
                 <Suspense>
-                    <h3>Most Liked Casts</h3>
+                    <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
                     <Casts fid={params.fid}/>
                 </Suspense>
             </div>

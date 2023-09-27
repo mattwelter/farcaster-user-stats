@@ -47,6 +47,11 @@ main {
     padding: 50px 0px;
 }
 
+.mostlikedcasts-title {
+    font-size: 24px;
+    font-weight: 500;
+}
+
 .userFeedHeader {
     margin-bottom: 48px;
     margin-top: 40px;
@@ -54,7 +59,9 @@ main {
 
 .userFeedHeader h1 {
     font-size: 24px;
-    margin-top: 0px !important;     /* Was margin: 8px 0px; */
+    font-weight: 500;
+    margin-top: 8px;
+    margin-bottom: 0px;
     width: fit-content;
 }
 
@@ -62,7 +69,9 @@ main {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.4px;
+    margin-top: 4px;
     color: #B7B4BE;
+    display: inline-block;
 }
 
 .userFeedHeader .profile-pic {
