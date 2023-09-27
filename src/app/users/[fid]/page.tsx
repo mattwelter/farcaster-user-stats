@@ -1,4 +1,4 @@
-import Casts from '../../components/getTotalLikedCasts'
+import Casts from '../../components/MostLikedCasts-Total'
 import { Suspense } from 'react'
 import Navigation from '../../components/Navigation'
 import Search from '../../components/Search'
@@ -33,17 +33,18 @@ export default async function Page({ params }: {
     const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}`, { method: "GET" });
     const userResponse = await getUser.json();
     let user = userResponse.result.user;
+    console.log(user)
 
     return (
         <main>
-            <Suspense fallback={<p>Loading search...</p>}>
-                <Search />
-            </Suspense>
-            <div className="header userFeedHeader">
-                <h1>{ user ? "@" + user.username : params.fid }</h1>
+            <div className="header-padding userFeedHeader">
+                <img className="profile-pic" src={user.pfp.url} height="48px" width="48px" />
+                <h1>{ user ? user.displayName : params.fid }</h1>
+                <h2>{ user ? "@" + user.username : params.fid }</h2>
             </div>
             <div>
                 <Suspense>
+                    <h3>Most Liked Casts</h3>
                     <Casts fid={params.fid}/>
                 </Suspense>
             </div>

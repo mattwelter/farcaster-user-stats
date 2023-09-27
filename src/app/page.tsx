@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <div className="header homepageHeader">
+      <div className="header-padding homepageHeader">
         <div>
           <section className="header_h1">
               <Image id="h1_logo" src="/logo.png" alt="Statscaster logo" width="42" height="42" />

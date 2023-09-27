@@ -43,7 +43,7 @@ main {
     transition: 0.125s ease-in;
 }
 
-.header {
+.header-padding {
     padding: 50px 0px;
 }
 
@@ -53,21 +53,20 @@ main {
 }
 
 .userFeedHeader h1 {
-    font-size: 32px;
+    font-size: 24px;
     margin-top: 0px !important;     /* Was margin: 8px 0px; */
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
     width: fit-content;
 }
 
 .userFeedHeader h2 {
-    font-size: 17px;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    width: fit-content;
-    color: #f0f5ff;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    color: #B7B4BE;
+}
+
+.userFeedHeader .profile-pic {
+    border-radius: 500px;
 }
 
 .homepageHeader {
@@ -83,7 +82,7 @@ main {
     margin-bottom: 10px;
 }
 
-.header h1 {
+.homepageHeader h1 {
     font-size: 42px;
     font-weight: 700;
     line-height: 42px;
@@ -93,7 +92,7 @@ main {
     padding: 0px 0px 0px 10px;
 }
 
-.header p {
+.homepageHeader p {
     text-align: center;
     margin-bottom: 24px;
     font-size: 17px;
@@ -212,14 +211,14 @@ main {
     margin-right: -4px;
 }
 
-.header form {
+.homepageHeader form {
     display: flex; /* This bit sets up the horizontal layout */
     flex-direction: row;
     padding: 2px;
     margin-bottom: 48px;
 }
   
-.header form input {
+.homepageHeader form input {
     flex-grow: 2; /* Tell the input to use all the available space */
     border: none; /* And hide the input's outline, so the form looks like the outline */
     background-color: #EDEAFF;
@@ -227,15 +226,15 @@ main {
     font-size: 16px;
 }
   
-.header form input:focus {   /* remove the input focus blue box, it will be in the wrong place. */
+.homepageHeader form input:focus {   /* remove the input focus blue box, it will be in the wrong place. */
     outline: none;
 }
   
-.header form:focus-within { /* Add the focus effect to the form so it contains the button */
+.homepageHeader form:focus-within { /* Add the focus effect to the form so it contains the button */
     display: relative;
 }
   
-.header form button {
+.homepageHeader form button {
     border: 1px solid #A46CEB; /* Just a little styling to make it pretty */
     background: #A46CEB;
     padding: 6px 12px;
@@ -246,7 +245,7 @@ main {
     font-size: 16px;
 }
 
-.header form button:hover {
+.homepageHeader form button:hover {
     opacity: 0.65;
     cursor: pointer;
 }
