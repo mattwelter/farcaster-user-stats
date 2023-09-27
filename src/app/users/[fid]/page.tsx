@@ -1,5 +1,6 @@
 import Casts from '../../components/MostLikedCasts-Total'
 import { Suspense } from 'react'
+import PageStyle from '../../css/UserPage.module.css'
 import Navigation from '../../components/Navigation'
 import Search from '../../components/Search'
 import type { Metadata, ResolvingMetadata } from 'next'
@@ -36,7 +37,8 @@ export default async function Page({ params }: {
     console.log(user)
 
     return (
-        <main>
+        <main className={PageStyle['top-bottom-padding']}>
+            <Search />
             <div className="header-padding userFeedHeader">
                 <img className="profile-pic" src={user.pfp.url} height="48px" width="48px" />
                 <h1>{ user ? user.displayName : params.fid }</h1>

@@ -20,19 +20,19 @@ export default function Page() {
 
   return (
     <div className="search">
-      <form action={handleSearch}>
-        <input
-          id="username"
-          name="username"
-          placeholder="Search by username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
+        <form action={handleSearch}>
+            <input
+            id="username"
+            name="username"
+            placeholder="Search by username"
+            onChange={(e) => setUsername(e.target.value)}
+            />
 
-        <button type="submit" disabled={!username}>
-          Check User
-        </button>
-      </form>
-      <a>Search by fid or ENS is not supported.</a>
+            <button type="submit" disabled={!username}>
+            Search
+            </button>
+        </form>
+        {/* <a>Search by fid or ENS is not supported.</a> */}
     </div>
   )
 }
