@@ -108,44 +108,50 @@ main {
     line-height: normal;
 }
 
-.unfollowCard {
-    background-color: #252432;
-    text-align: center;
-    margin: 12px 0px;
-    padding: 18px 0px 26px 0px;
-    border-radius: 4px;
+.casts {
+    background-color: #77798D;
+    padding: 8px 8px;
+    border-radius: 8px;
 }
 
-.unfollowCard > a {
+.cast {
+    background-color: #333045;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
+.cast:last-child {
+    margin-bottom: 0px !important;
+}
+
+.cast .text {
+    color: #F9F5FD;
+    margin: 0 auto;
+    margin-bottom: 16px;
+}
+
+.cast .likes {
+    color: #F9F5FD;
+}
+
+.cast .link-to-warpcast {
+    float: right;
+}
+
+.cast > a {
     color: #807d95;
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
     font-weight: 500;
     line-height: 100%; /* 12px */
     letter-spacing: 0.48px;
 }
 
-.unfollowCard h3 a:hover {
+.cast h3 a:hover {
     opacity: 0.65 !important;
     padding-bottom: 6px;
-}
-
-.unfollowCard h3 {
-    color: #FFF;
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 150%;
-    letter-spacing: 0.6px;
-    padding-top: 4px;
-}
-
-.unfollowCard h3 a {
-    /* text-decoration-line: underline; */
-    transition: 0.125s ease;
-    padding-bottom: 4px;
-    border-bottom: 1px solid white
 }
 
 .noMoreCaption, .mostRecentCaption {

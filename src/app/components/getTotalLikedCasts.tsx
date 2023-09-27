@@ -23,18 +23,18 @@ export default async function UserFeed(fid: any) {
 
   return (
     <>
-    <ol>
+    <div className="casts">
        {casts.length != 0 ? casts.map((cast: any) => (
-        <li className="cast">
-            <a>{ cast.timestamp_date }</a><br />
-            <a>{ cast.total_likes } likes</a>
-            <h3>{ cast.text }</h3>
-        </li>
-        )) : <li className="cast">
+        <section className="cast">
+          <p className="text">{ cast.text }</p>
+          <a className="likes">{ cast.total_likes } likes</a>
+          <a className="link-to-warpcast">{ cast.timestamp_date }</a>
+        </section>
+        )) : <section className="cast">
             <a>Oops!</a>
             <h3>Looks like this user doesn't cast.</h3>
-        </li>}
-      </ol>
+        </section>}
+      </div>
     </>
     )
 }
