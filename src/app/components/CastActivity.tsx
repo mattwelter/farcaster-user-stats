@@ -2,15 +2,21 @@ import sql from '../db.js'
 import style from '../css/CastActivity.module.css'
 
 export default async function HomeFeed(fid: any) {
-
+  
   const getData = async function(){
     const data = await sql`
-    SELECT DATE(timestamp) AS date,
-    COUNT(*) AS castAmount
-    FROM casts
-    WHERE casts.fid = ${fid.fid}
-    GROUP BY DATE(timestamp)
-    ORDER BY DATE(timestamp) DESC;
+      WITH date_range AS (
+        SELECT NOW() - (n || ' days')::interval AS date
+        FROM generate_series(0, 260) AS n
+      )
+      SELECT DATE(date_range.date) AS date,
+            COUNT(casts.timestamp) AS castamount
+      FROM date_range
+      LEFT JOIN casts
+      ON DATE(date_range.date) = DATE(casts.timestamp)
+      AND casts.fid = ${fid.fid}
+      GROUP BY DATE(date_range.date)
+      ORDER BY DATE(date_range.date);
       `
     return data
   }
@@ -27,7 +33,7 @@ export default async function HomeFeed(fid: any) {
       <div className={style['cast-activity-wrapper']}>
         <div className={style['cast-activity']}>
           {data.length != 0 ? data.map((event: any) => (
-            <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 2 ? style['cast-color-2'] : parseInt(event.castamount) <= 4 ? style['cast-color-4'] : parseInt(event.castamount) <= 6 ? style['cast-color-6'] : style['cast-color-8']) }></a>
+            <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 4 ? style['cast-color-2'] : parseInt(event.castamount) <= 8 ? style['cast-color-4'] : parseInt(event.castamount) <= 12 ? style['cast-color-6'] : style['cast-color-8']) }></a>
           )) : <a>Nothing here...</a>
           }
         </div>
