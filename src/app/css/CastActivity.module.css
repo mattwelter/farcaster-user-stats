@@ -1,11 +1,38 @@
+.cast-activity-wrapper {
+    display: block;
+}
+
 .cast-activity {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2px;
+    height: 100px;
 }
 
 .cast-activity a {
     width: 11px;
     height: 11px;
-    margin: 1px;
-    background-color: red;;
+    border-radius: 2px;
+    background-color: red;
+}
+
+.cast-color-0 {
+    background-color: #2C2930 !important;
+}
+
+.cast-color-2 {
+    background-color: #726686 !important;
+}
+
+.cast-color-4 {
+    background-color: #AA98C8 !important;
+}
+
+.cast-color-6 {
+    background-color: #9974E7 !important;
+}
+
+.cast-color-8 {
+    background-color: #7436DA !important;
 }
