@@ -1,3 +1,40 @@
+![banner-1](https://i.imgur.com/aVOuOmB.png)
+# Statcaster.xyz
+![](https://img.shields.io/github/last-commit/mattwelter/hatecast)
+
+Statcaster is a web app that allows anybody to see basic statistics for a given Farcaster user.
+
+statcaster.com
+statcast.com
+datacast.com
+casterstats.com
+farcasteruserstats.com
+fcusers.com
+statisticaster.com
+fcrecord.com
+farcasterrecord.com
+fc-hub.xyz
+farcasterhub.com
+
+## To-do
+- [x] Home feed of public unfollows
+- [x] User pages
+- - [x] Feed of users who unfollowed the user
+- - [x] Feed of users who user unfollowed
+- - [x] Link to view "User on Warpcast"
+- - [ ] Include % of followers lost relative to total following
+- [ ] Loading progress bar between switching pages, using nprogress
+- [x] Trending page
+- - [x] "Most unfollowed in past 24 hours"
+- - [x] "Most unfollowed in past 7 days"
+- - [x] "Most unfollowed in past 28 days"
+- [ ] Search for unfollows on specific date / date range
+- [x] Search for users by username
+- - [ ] Auto-complete search
+- [ ] Re-do UI
+- [ ] Activity feed like GitHub, showing unfollows on a graph
+- [ ] Unfollow bot that casts whenever a user was unfollowed over 5 times in 24 hours
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" className={inter.className}>
-        <PlausibleProvider domain="hatecast.xyz">
+        <PlausibleProvider domain="statcaster.xyz">
           <body>{children}</body>
         </PlausibleProvider>
       </html>
