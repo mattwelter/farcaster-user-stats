@@ -3,13 +3,14 @@ import style from '../css/CastActivity.module.css'
 
 export default async function HomeFeed(fid: any) {
 
-  // 260 = Sunday
-  // 260 = Monday
-  // 261 = Tuesday
-  // 262 = Wednesday
-  // 263 = Thursday
-  // 264 = Friday
-  // 265 = Saturday
+  // width: 600px;
+  //   260 = Sunday
+  //   260 = Monday
+  //   261 = Tuesday
+  //   262 = Wednesday
+  //   263 = Thursday
+  //   264 = Friday
+  //   265 = Saturday
   
   const getData = async function(){
     const data = await sql`
@@ -31,9 +32,10 @@ export default async function HomeFeed(fid: any) {
 
   const data = await getData()
 
-  data.map((event: any) => (
-    console.log(event.castamount)
-  ))
+  // for(let i=0; i<data.length; i++){
+  //   'https://api.neynar.com/v2/farcaster/cast?type=url&identifier=https%3A%2F%2Fwarpcast.com%2Frish%2F0x9288c1' \
+  //   'api_key: NEYNAR_API_DOCS'
+  // }
 
 
   return (
