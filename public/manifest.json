@@ -4,9 +4,9 @@
     "display": "standalone",
     "scope": "/",
     "start_url": "/",
-    "name": "Statcaster",
-    "description": "1B1A1F",
-    "short_name": "Statcaster",
+    "name": "FarcasterUserStats.com",
+    "description": "Farcaster User Stats",
+    "short_name": "FarcasterUserStats",
     "icons": [
         {
             "src": "/icon-192x192.png",

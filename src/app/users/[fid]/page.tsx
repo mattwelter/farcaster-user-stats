@@ -20,10 +20,10 @@ export async function generateMetadata(
     let user = userResponse.result.user;
    
     return {
-        title: `Statscaster - ${ user ? "@" + user.username : params.fid}`,
-        description: 'Statscaster - Inspect your profile data on Farcaster',
+        title: `Farcaster User Stats - ${ user ? "@" + user.username : params.fid}`,
+        description: 'Farcaster User Stats - Inspect your profile data on Farcaster',
         manifest: '/manifest.json',
-        icons: { apple: '/logo.png' },
+        icons: { apple: '/farcaster-user-stats-logo.png' },
         themeColor: '#1B1A1F'
     }
 }

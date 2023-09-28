@@ -4,10 +4,10 @@ import type { Metadata } from 'next'
 import PlausibleProvider from 'next-plausible'
 
 export const metadata: Metadata = {
-  title: `Statcaster`,
-  description: 'Statcaster - Inspect your profile data on Farcaster',
+  title: `Farcaster User Stats`,
+  description: 'Farcaster User Stats - Inspect your profile data on Farcaster',
   manifest: '/manifest.json',
-  icons: { apple: '/logo.png' },
+  icons: { apple: '/farcaster-user-stats-logo.png' },
   themeColor: '#1B1A1F'
 }
 
@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" className={inter.className}>
-        <PlausibleProvider domain="statcaster.xyz">
+        <PlausibleProvider domain="farcasteruserstats.com">
           <body>{children}</body>
         </PlausibleProvider>
       </html>
