@@ -1,4 +1,5 @@
 import Casts from '../../components/MostLikedCasts-Total'
+import Activity from '../../components/CastActivity'
 import { Suspense } from 'react'
 import PageStyle from '../../css/UserPage.module.css'
 import Navigation from '../../components/Navigation'
@@ -43,6 +44,9 @@ export default async function Page({ params }: {
                 <img className="profile-pic" src={user.pfp.url} height="48px" width="48px" />
                 <h1>{ user ? user.displayName : params.fid }</h1>
                 <h2>{ user ? "@" + user.username : params.fid } • #{ params.fid }</h2>
+            </div>
+            <div>
+                <Activity fid={params.fid} />
             </div>
             <div>
                 <Suspense>

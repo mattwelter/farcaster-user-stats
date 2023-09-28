@@ -1,0 +1,11 @@
+.cast-activity {
+    display: flex;
+    flex-direction: column;
+}
+
+.cast-activity a {
+    width: 11px;
+    height: 11px;
+    margin: 1px;
+    background-color: red;;
+}
