@@ -96,10 +96,8 @@ main {
 .header_h1 {
     display: flex;
     height: 42px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 244px;
-    margin-bottom: 10px;
+    margin-bottom: -8px;
+    margin-left: -24px;
 }
 
 .homepage-hero h1 {
@@ -114,8 +112,9 @@ main {
 
 .homepage-hero p {
     text-align: center;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     font-size: 17px;
+    color: #a3a0a9;
 }
 
 .recentlyUnfollowed {
