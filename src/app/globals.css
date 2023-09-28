@@ -48,14 +48,15 @@ main {
     padding: 50px 0px;
 }
 
-.mostlikedcasts-title {
+.mostlikedcasts-title, .castactivity-title {
     font-size: 24px;
     font-weight: 500;
 }
 
 .userFeedHeader {
-    margin-bottom: 48px;
-    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-top: 90px;
+    padding: 0px 0px 0px 0px !important;
 }
 
 .userFeedHeader h1 {

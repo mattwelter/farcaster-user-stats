@@ -46,6 +46,7 @@ export default async function Page({ params }: {
                 <h2>{ user ? "@" + user.username : params.fid } • #{ params.fid }</h2>
             </div>
             <div>
+            <h3 className="castactivity-title">Cast Activity</h3>
                 <Activity fid={params.fid} />
             </div>
             <div>
