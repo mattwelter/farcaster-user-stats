@@ -2,7 +2,7 @@
 # FarcasterUserStats.com
 ![](https://img.shields.io/github/last-commit/mattwelter/farcaster-user-stats)
 
-Statcaster is a web app that allows anybody to see basic statistics for a given Farcaster user.
+FarcasterUserStats is a website that allows anybody to see basic statistics for a given Farcaster user.
 
 ## To-do
 - [x] Search for users by username
