@@ -1,3 +1,9 @@
+.search {
+    display: inline-block;
+    position: absolute;
+    width: 464px;
+}
+
 .search form {
     display: flex; /* This bit sets up the horizontal layout */
     flex-direction: row;
@@ -61,27 +67,8 @@
     cursor: default !important;
 }
 
-@media only screen and (max-width: 600px) {
-    /* .search {
+@media only screen and (max-width: 516px) {
+    .search {
         width: calc(100% - 56px) !important;
-    } */
-
-    .header_h1 {
-        margin-left: 0px !important;
     }
-
-    .header_h1 img {
-        width: 28px !important;
-        height: 28px !important;
-    }
-
-    .homepage-hero h1 {
-        font-size: 24px !important;
-    }
-
-    .homepage-hero p {
-        font-size: 14px !important;
-        letter-spacing: 0.4px !important;
-    }
-    
 }

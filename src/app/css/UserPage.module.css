@@ -2,3 +2,9 @@
     margin-top: 24px;
     margin-bottom: 48px !important;
 }
+
+@media only screen and (max-width: 600px) {
+    .top-bottom-padding {
+        margin-top: 12px;
+    }
+}

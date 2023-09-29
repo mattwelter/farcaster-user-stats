@@ -19,6 +19,18 @@ main {
     max-width: 500px;
 }
 
+.svg-back-button-wrapper {
+    display: inline-block;
+    position: relative;
+    padding: 10px 16px 10px 10px;
+    transition: 0.125s ease;
+    cursor: pointer;
+}
+
+.svg-back-button-wrapper:hover {
+    opacity: 0.65;
+}
+
 .header-padding {
     padding: 50px 0px;
 }
@@ -99,5 +111,9 @@ main {
 @media only screen and (max-width: 600px) {
     body {
       padding: 0px 8px;
+    }
+    main {
+        width: 100% !important;
+        margin-top: 12px;
     }
 }

@@ -49,3 +49,37 @@
     opacity: 0.65 !important;
     padding-bottom: 6px;
 }
+
+@media only screen and (max-width: 600px) {
+    .casts {
+        background-color: #00000000 !important;
+        padding: 0px;
+        border-radius: 0px;
+        margin: 0px 4px;
+    }
+    
+    .cast {
+        background-color: #4d4866;
+        border-radius: 4px;
+        padding: 16px;
+        margin: 0 auto;
+        margin-bottom: 24px;
+    }
+
+    .cast > a {
+        color: #807d95;
+        font-size: 17px;
+        letter-spacing: 0.3px;
+    }
+
+    .cast .text {
+        font-size: 16px;
+        letter-spacing: 0.1px;
+        margin-bottom: 16px;
+    }
+
+    .cast svg {
+        height: 14px  !important;
+        width: 14px !important;
+    }
+}
