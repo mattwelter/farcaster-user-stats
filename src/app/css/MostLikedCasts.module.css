@@ -3,3 +3,49 @@
     width: -webkit-fill-available;
     border-radius: 8px;
 } 
+
+.casts {
+    background-color: #77798D;
+    padding: 8px 8px;
+    border-radius: 8px;
+}
+
+.cast {
+    background-color: #333045;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
+.cast:last-child {
+    margin-bottom: 0px !important;
+}
+
+.cast .text {
+    color: #F9F5FD;
+    margin: 0 auto;
+    margin-bottom: 16px;
+}
+
+.cast .likes {
+    color: #F9F5FD;
+}
+
+.cast .link-to-warpcast {
+    float: right;
+}
+
+.cast > a {
+    color: #807d95;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 100%; /* 12px */
+    letter-spacing: 0.48px;
+}
+
+.cast h3 a:hover {
+    opacity: 0.65 !important;
+    padding-bottom: 6px;
+}

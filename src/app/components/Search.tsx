@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { redirect } from 'next/navigation'
 import { searchUsername } from '../actions'
+import style from '../css/Search.module.css'
 
 export default function Page() {
   const [username, setUsername] = useState<string>('')
@@ -19,7 +20,7 @@ export default function Page() {
   }
 
   return (
-    <div className="search">
+    <div className={style.search}>
         <form action={handleSearch}>
             <input
             id="username"

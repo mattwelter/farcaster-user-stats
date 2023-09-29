@@ -37,3 +37,7 @@
 .cast-color-8 {
     background-color: #7436DA !important;
 }
+
+@media only screen and (max-width: 600px) {
+
+}
