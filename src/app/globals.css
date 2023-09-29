@@ -118,6 +118,10 @@ main {
         margin-top: 12px;
     }
 
+    .userFeedHeader {
+        margin-top: 72px;
+    }
+
     .header_h1 {
         margin-left: 0px !important;
         justify-content: center;
@@ -142,5 +146,12 @@ main {
     .homepage-hero p {
         font-size: 14px !important;
         letter-spacing: 0.4px !important;
+    }
+
+    .mostlikedcasts-title, .castactivity-title {
+        font-size: 19px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        margin-top: 32px;
     }
 }

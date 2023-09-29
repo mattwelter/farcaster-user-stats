@@ -55,7 +55,6 @@
         background-color: #00000000 !important;
         padding: 0px;
         border-radius: 0px;
-        margin: 0px 4px;
     }
     
     .cast {
@@ -63,13 +62,19 @@
         border-radius: 4px;
         padding: 16px;
         margin: 0 auto;
-        margin-bottom: 24px;
+        margin-bottom: 16px;
     }
 
     .cast > a {
-        color: #807d95;
         font-size: 17px;
         letter-spacing: 0.3px;
+    }
+
+    .cast > .link-to-warpcast {
+        font-size: 15px;
+        border-bottom: 1px solid;
+        padding-bottom: 2px;
+        color: #b6acd9;
     }
 
     .cast .text {
