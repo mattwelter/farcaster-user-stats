@@ -34,6 +34,16 @@
 
 .cast .link-to-warpcast {
     float: right;
+    border-bottom: 1px solid;
+    padding-bottom: 2px;
+    color: #b6acd9;
+    text-decoration: none;
+    transition: 0.125s ease;
+}
+
+.cast .link-to-warpcast:hover {
+    opacity: 0.65;
+    cursor: pointer;
 }
 
 .cast > a {

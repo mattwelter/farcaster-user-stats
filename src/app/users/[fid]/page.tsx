@@ -58,7 +58,7 @@ export default async function Page({ params }: {
             <div>
                 <Suspense>
                     <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                    <Casts fid={params.fid}/>
+                    <Casts fid={params.fid} username={user.username} />
                 </Suspense>
             </div>
         </main>
