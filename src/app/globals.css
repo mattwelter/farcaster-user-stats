@@ -112,8 +112,35 @@ main {
     body {
       padding: 0px 8px;
     }
+
     main {
         width: 100% !important;
         margin-top: 12px;
+    }
+
+    .header_h1 {
+        margin-left: 0px !important;
+        justify-content: center;
+        margin-bottom: -24px;
+    }
+
+    .header_h1 img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+
+    .homepage-hero {
+        width: 100% !important;
+        margin-top: 0px;
+    }
+
+    .homepage-hero h1 {
+        font-size: 24px !important;
+        line-height: 28px;
+    }
+
+    .homepage-hero p {
+        font-size: 14px !important;
+        letter-spacing: 0.4px !important;
     }
 }

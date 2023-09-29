@@ -65,23 +65,4 @@
     /* .search {
         width: calc(100% - 56px) !important;
     } */
-
-    .header_h1 {
-        margin-left: 0px !important;
-    }
-
-    .header_h1 img {
-        width: 28px !important;
-        height: 28px !important;
-    }
-
-    .homepage-hero h1 {
-        font-size: 24px !important;
-    }
-
-    .homepage-hero p {
-        font-size: 14px !important;
-        letter-spacing: 0.4px !important;
-    }
-    
 }
