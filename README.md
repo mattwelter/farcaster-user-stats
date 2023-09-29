@@ -10,6 +10,11 @@ FarcasterUserStats is a website that allows anybody to see basic statistics for 
 - - [x] Cast activity graph
 - - [x] Feed of top liked casts
 - - [x] Link to view cast on Warpcast
+- [x] Mobile friendly CSS styling
+    - [ ] Cast Activity responsiveness, based of viewport
+- [ ] “View in Warpcast” GET url for cast
+- [ ] Suspense pre-loaded skeleton
+- [ ] Cast Activity tooltip (showing date and # of casts)
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
