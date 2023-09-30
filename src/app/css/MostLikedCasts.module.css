@@ -18,6 +18,21 @@
     margin-bottom: 8px;
 }
 
+.castsloading {
+    background-color: #28292f;
+    padding: 8px 8px;
+    border-radius: 8px;
+}
+
+.castloading {
+    background-color: #232228;
+    height: 100px;
+    border-radius: 4px;
+    padding: 16px;
+    margin: 0 auto;
+    margin-bottom: 8px;
+}
+
 .cast:last-child {
     margin-bottom: 0px !important;
 }

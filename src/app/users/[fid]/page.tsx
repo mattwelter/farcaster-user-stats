@@ -1,5 +1,6 @@
 import Casts from '../../components/MostLikedCasts-Total'
 import Activity from '../../components/CastActivity'
+import CastsLoading from '../../components/Casts-Loading'
 import { Suspense } from 'react'
 import PageStyle from '../../css/UserPage.module.css'
 import SearchTopBar from '../../components/Search-TopBar'
@@ -56,9 +57,9 @@ export default async function Page({ params }: {
                 <Activity fid={params.fid} />
             </div>
             <div>
-                <Suspense>
-                    <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                    <Casts fid={params.fid} username={user.username} />
+                <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
+                <Suspense fallback={<CastsLoading />}>
+                    <Casts fid={params.fid} username={user.username}/>
                 </Suspense>
             </div>
         </main>
