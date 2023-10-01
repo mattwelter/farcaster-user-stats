@@ -1,6 +1,27 @@
 .top-bottom-padding {
     margin-top: 24px;
-    margin-bottom: 48px !important;
+    margin-bottom: 32px !important;
+}
+
+.neighbors {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 32px;
+    transition: 0.125s ease;
+}
+
+.neighbors a, .neighbors a:visited {
+    color: #6c6a74;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.neighbors a:nth-child(3) {
+    color: #d0cfd5 !important;
+}
+
+.neighbors a:hover {
+    opacity: 0.65;
 }
 
 @media only screen and (max-width: 600px) {

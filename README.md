@@ -12,7 +12,7 @@ FarcasterUserStats is a website that allows anybody to see basic statistics for 
 - - [x] Feed of top liked casts
 - - - [ ] Filter by 30 days, year, or all time
 - - - [x] Link to view cast on Warpcast
-- - [ ] FID neighbor navigation
+- - [x] FID neighbor navigation
 - [x] Suspense pre-loaded skeleton
 - [ ] Mobile friendly CSS styling
 - - [ ] Cast Activity responsiveness, based of viewport
