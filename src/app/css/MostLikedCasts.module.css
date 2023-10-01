@@ -49,15 +49,13 @@
 
 .cast .link-to-warpcast {
     float: right;
-    border-bottom: 1px solid;
-    padding-bottom: 2px;
     color: #b6acd9;
     text-decoration: none;
     transition: 0.125s ease;
 }
 
 .cast .link-to-warpcast:hover {
-    opacity: 0.65;
+    text-decoration: underline;
     cursor: pointer;
 }
 
@@ -97,9 +95,8 @@
 
     .cast > .link-to-warpcast {
         font-size: 15px;
-        border-bottom: 1px solid;
-        padding-bottom: 2px;
         color: #b6acd9;
+        padding: 0px 0px 8px 8px;
     }
 
     .cast .text {

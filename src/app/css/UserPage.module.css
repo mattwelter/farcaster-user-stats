@@ -14,6 +14,7 @@
     color: #6c6a74;
     text-decoration: none;
     font-weight: 500;
+    transition: 0.125s ease;
 }
 
 .neighbors a:nth-child(3) {
@@ -22,6 +23,7 @@
 
 .neighbors a:hover {
     opacity: 0.65;
+    text-decoration: underline;
 }
 
 @media only screen and (max-width: 600px) {

@@ -27,12 +27,29 @@ const Tooltip = ({ content, children }) => {
           top: 100%;
           left: 50%;
           transform: translateX(-50%);
-          background-color: #333;
-          color: #fff;
+          background-color: #FAFAFA;
+          color: #555;
           padding: 8px;
           border-radius: 4px;
           white-space: nowrap;
           z-index: 9999999;
+          margin-top: 4px;
+          border: 1px solid #FAFAFA;
+        }
+
+        .tooltip:before{
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            position: absolute;
+
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+
+            top: -8px;
+            left: calc(50% - 8px);
         }
       `}</style>
     </div>
