@@ -8,13 +8,13 @@ FarcasterUserStats is a website that allows anybody to see basic statistics for 
 - [x] Search for users by username
 - [x] User pages
 - - [x] Cast activity graph
-- - - [ ] Cast Activity tooltip (showing date and # of casts)
+- - - [x] Cast Activity tooltip (showing date and # of casts)
 - - [x] Feed of top liked casts
 - - - [ ] Filter by 30 days, year, or all time
 - - - [x] Link to view cast on Warpcast
 - - [x] FID neighbor navigation
 - [x] Suspense pre-loaded skeleton
-- [ ] Mobile friendly CSS styling
+- [x] Mobile friendly CSS styling
 - - [ ] Cast Activity responsiveness, based of viewport
 - [ ] Global heat map of user locations
 - [ ] Add "Hatecast.xyz" components to the profile pages
