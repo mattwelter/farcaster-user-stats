@@ -5,17 +5,17 @@
 } 
 
 .casts {
-    background-color: #77798D;
-    padding: 8px 8px;
+    background-color: #e9ebff;
+    padding: 4px 4px;
     border-radius: 8px;
 }
 
 .cast {
-    background-color: #333045;
+    background-color: #564b8f;
     border-radius: 4px;
     padding: 16px;
     margin: 0 auto;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .castsloading {
@@ -81,7 +81,6 @@
     }
     
     .cast {
-        background-color: #4d4866;
         border-radius: 8px;
         padding: 16px;
         margin: 0 auto;

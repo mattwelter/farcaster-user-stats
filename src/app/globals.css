@@ -38,6 +38,7 @@ main {
 .mostlikedcasts-title, .castactivity-title {
     font-size: 24px;
     font-weight: 500;
+    margin-bottom: 16px;
 }
 
 .userFeedHeader {
@@ -149,9 +150,9 @@ main {
     }
 
     .mostlikedcasts-title, .castactivity-title {
-        font-size: 19px;
+        font-size: 20px;
         font-weight: 500;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
         margin-top: 32px;
     }
 }
