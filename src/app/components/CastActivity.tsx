@@ -84,7 +84,8 @@ export default async function HomeFeed(fid: any) {
             <Tooltip content={ event.castamount + " casts - " + (new Date(event.date).getMonth() + 1) + "/" + new Date(event.date).getDate() + "/" + new Date(event.date).getFullYear() }>
               <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 4 ? style['cast-color-2'] : parseInt(event.castamount) <= 8 ? style['cast-color-4'] : parseInt(event.castamount) <= 12 ? style['cast-color-6'] : style['cast-color-8']) }></a>
             </Tooltip>
-          )) : <a>Nothing here...</a>
+          ))
+          : <a>Nothing here...</a>
           }
         </div>
       </div>
