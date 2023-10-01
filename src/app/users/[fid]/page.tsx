@@ -62,10 +62,10 @@ export default async function Page({ params }: {
                 </Suspense>
             </div>
             <div className={style.neighbors}>
-                <a href={ `/users/${(parseInt(params.fid) - 1)}` }>
+                <a href={ params.fid != "1" ? `/users/${(parseInt(params.fid) - 1)}` : "" }>
                     <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.9646 0.303037C15.779 -0.172117 16.8019 0.415357 16.8019 1.35828C16.8019 6.86281 16.8019 12.3686 16.8019 17.8731C16.8019 18.816 15.7791 19.4035 14.9647 18.9284L0.809099 10.672C0.000914627 10.2006 0.000856017 9.0329 0.808991 8.56143L14.9646 0.303037Z" fill="#6C6A74"/></svg>
                 </a>
-                <a href={ `/users/${(parseInt(params.fid) - 1)}` }>{ params.fid != "0" ? (parseInt(params.fid) - 1) : "" }</a>
+                <a href={ params.fid != "1" ? `/users/${(parseInt(params.fid) - 1)}` : "" }>{ params.fid != "1" ? (parseInt(params.fid) - 1) : "" }</a>
                 <a href={ `/users/${(parseInt(params.fid))}` }>{ params.fid }</a>
                 <a href={ `/users/${(parseInt(params.fid) + 1)}` }>{ (parseInt(params.fid) + 1) }</a>
                 <a href={ `/users/${(parseInt(params.fid) + 1)}` }>
