@@ -1,5 +1,6 @@
 import sql from '../db.js'
 import style from '../css/CastActivity.module.css'
+import Tooltip from './Tooltip';
 
 export default async function HomeFeed(fid: any) {
 
@@ -80,7 +81,9 @@ export default async function HomeFeed(fid: any) {
       <div className={style['cast-activity-wrapper']}>
         <div className={style['cast-activity']}>
           {data.length != 0 ? data.map((event: any) => (
-            <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 4 ? style['cast-color-2'] : parseInt(event.castamount) <= 8 ? style['cast-color-4'] : parseInt(event.castamount) <= 12 ? style['cast-color-6'] : style['cast-color-8']) }></a>
+            <Tooltip content={ event.castamount + " " + new Date(event.date).toDateString() }>
+              <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 4 ? style['cast-color-2'] : parseInt(event.castamount) <= 8 ? style['cast-color-4'] : parseInt(event.castamount) <= 12 ? style['cast-color-6'] : style['cast-color-8']) }></a>
+            </Tooltip>
           )) : <a>Nothing here...</a>
           }
         </div>

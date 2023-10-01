@@ -1,11 +1,11 @@
 import Casts from '../../components/MostLikedCasts-Total'
-import Activity from '../../components/CastActivity'
 import CastsLoading from '../../components/Casts-Loading'
-import { Suspense } from 'react'
-import PageStyle from '../../css/UserPage.module.css'
 import SearchTopBar from '../../components/Search-TopBar'
-import type { Metadata, ResolvingMetadata } from 'next'
+import Activity from '../../components/CastActivity'
+import PageStyle from '../../css/UserPage.module.css'
 import style from '../../css/UserPage.module.css'
+import type { Metadata, ResolvingMetadata } from 'next'
+import { Suspense } from 'react'
 
 type Props = {
     params: { fid: string }
