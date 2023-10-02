@@ -1,7 +1,7 @@
 .search {
     display: inline-block;
     position: absolute;
-    width: 464px;
+    width: 456px;
 }
 
 .search form {
@@ -69,6 +69,6 @@
 
 @media only screen and (max-width: 516px) {
     .search {
-        width: calc(100% - 56px) !important;
+        width: calc(100% - 64px) !important;
     }
 }
