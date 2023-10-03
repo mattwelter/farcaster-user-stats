@@ -61,9 +61,9 @@
 
 .search button:disabled,
 .search button[disabled] {
-    background: #8e8c91;
-    color: #c7c3d0;
-    border: 1px solid #8e8c91;
+    background: #b19cd1;
+    color: #cdc2e4;
+    border: 1px solid #b19cd1;
     cursor: default !important;
 }
 
