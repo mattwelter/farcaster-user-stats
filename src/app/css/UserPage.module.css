@@ -4,8 +4,10 @@
 }
 
 .user-page-header {
-    padding-top: 12px;
-    background: #1B1A1F;
+    padding: 12px 16px 0px 16px;
+    background: #5240b5;
+    border-bottom: 1px solid;
+    padding-bottom: 16px;
 }
 
 .neighbors {
@@ -13,10 +15,6 @@
     justify-content: space-around;
     margin-top: 32px;
     transition: 0.125s ease;
-}
-
-.neighbors {
-    display: none !important;
 }
 
 .neighbors a, .neighbors a:visited {
@@ -43,12 +41,7 @@
     .top-bottom-padding {
         /* margin-top: 12px; */
     }
-    .user-page-header {
-        padding: 12px 16px 0px 16px;
-        background: #5240b5;
-        border-bottom: 1px solid;
-        padding-bottom: 16px;
-    }
+
     .section-padding {
         padding: 0px 16px;
     }

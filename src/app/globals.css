@@ -16,7 +16,12 @@ main {
     margin: 0 auto;
     width: 100vw !important;
     height: 100% !important;
+    /* max-width: 500px; */
+}
+
+.width-500 {
     max-width: 500px;
+    margin: 0 auto;
 }
 
 .svg-back-button-wrapper {
@@ -119,8 +124,12 @@ main {
     }
 
     main {
-        width: 100% !important;
+        /* width: 100% !important; */
         /* margin-top: 12px; */
+    }
+
+    .width-500 {
+        max-width: 100%;
     }
 
     .userFeedHeader {
