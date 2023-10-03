@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import Search from './components/Search'
+//import PopularUsers from './components/PopularUsers'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
@@ -23,7 +24,7 @@ export default function Home() {
           <div>
             <section className="header_h1">
                 <Image id="h1_logo" src="/farcaster-user-stats-logo.png" alt="Statscaster logo" width="42" height="42" />
-                <h1>FarcasterUserStats.com</h1>
+                <h1>Farcaster User Stats</h1>
             </section>
             <p>Search for a Farcaster user's profile data.</p>
           </div>
