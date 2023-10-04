@@ -148,13 +148,12 @@ main {
         margin-left: 0px !important;
         justify-content: center;
         margin-bottom: -20px;
-        margin-top: 102px;
+        margin-top: 108px;
     }
 
     .header_h1 img {
         width: 28px !important;
         height: 28px !important;
-        display: none !important;
     }
 
     .homepage-hero {
@@ -162,9 +161,8 @@ main {
     }
 
     .homepage-hero h1 {
-        font-size: 30px !important;
+        font-size: 30px;
         line-height: 28px;
-        padding: 0px !important;
     }
 
     .homepage-hero p {
@@ -177,5 +175,17 @@ main {
         font-weight: 500;
         margin-bottom: 12px;
         margin-top: 32px;
+    }
+}
+
+
+@media only screen and (max-width: 353px) {
+    .header_h1 img {
+        display: none;
+    }
+
+    .homepage-hero h1 {
+        font-size: 28px;
+        padding: 0px;
     }
 }
