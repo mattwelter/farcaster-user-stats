@@ -61,7 +61,7 @@ export default function Page(data: any) {
                 </table>
                 {loadedItems < data.data.length ? (
                     <button onClick={loadMore}>Load more users</button>
-                ) : <a>All 250 users have loaded</a>}
+                ) : <a className={style['all-users-have-been-loaded-text']}>All 100 users have loaded</a>}
             </div>
         </div>
     </>

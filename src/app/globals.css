@@ -37,7 +37,7 @@ main {
 }
 
 .header-padding {
-    padding: 50px 0px;
+    padding: 0px 0px 50px 0px;
 }
 
 .mostlikedcasts-title, .castactivity-title {
@@ -83,7 +83,7 @@ main {
 }
 
 .homepage-hero {
-    margin-top: 32px !important;
+    margin-top: 8px;
     width: 500px;
 }
 
@@ -92,6 +92,7 @@ main {
     height: 42px;
     margin-bottom: -12px;
     margin-left: 12px;
+    margin-top: 112px;
 }
 
 .homepage-hero h1 {
@@ -101,14 +102,15 @@ main {
     margin-top: 0px;
     color: #FFF;
     text-align: center;
-    padding: 0px 0px 0px 16px;
+    padding: 0px 0px 0px 8px;
 }
 
 .homepage-hero p {
     text-align: center;
     margin-bottom: 32px;
     font-size: 17px;
-    color: #a3a0a9;
+    color: #d6cde8;
+    line-height: 20px;
 }
 
 ::-webkit-input-placeholder {
@@ -135,7 +137,7 @@ main {
     }
 
     .header-padding {
-        padding: 50px 8px;
+        padding: 0px 8px 50px 8px;
     }
 
     .userFeedHeader {
@@ -145,26 +147,28 @@ main {
     .header_h1 {
         margin-left: 0px !important;
         justify-content: center;
-        margin-bottom: -24px;
+        margin-bottom: -20px;
+        margin-top: 102px;
     }
 
     .header_h1 img {
         width: 28px !important;
         height: 28px !important;
+        display: none !important;
     }
 
     .homepage-hero {
         width: 100% !important;
-        margin-top: 0px;
     }
 
     .homepage-hero h1 {
-        font-size: 24px !important;
+        font-size: 30px !important;
         line-height: 28px;
+        padding: 0px !important;
     }
 
     .homepage-hero p {
-        font-size: 12px !important;
+        font-size: 14px !important;
         letter-spacing: 0.2px !important;
     }
 

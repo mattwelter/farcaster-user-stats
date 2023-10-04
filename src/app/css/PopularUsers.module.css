@@ -90,6 +90,13 @@
     opacity: 0.65;
 }
 
+.all-users-have-been-loaded-text {
+    text-align: center;
+    color: #7f74a3;
+    display: block;
+    margin-top: 16px;
+}
+
 @media only screen and (max-width: 600px) {
     .popular-users-wrapper {
         width: calc(100vw - 16px);

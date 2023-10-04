@@ -21,16 +21,16 @@ export default function Home() {
     <main className={styles.main}>
       <div className="homepage-hero-wrapper">
         <div className="header-padding homepage-hero">
+          <Suspense fallback={<p>Loading search...</p>}>
+            <Search />
+          </Suspense>
           <div>
             <section className="header_h1">
                 <Image id="h1_logo" src="/farcaster-user-stats-logo.png" alt="Statscaster logo" width="42" height="42" />
                 <h1>Farcaster User Stats</h1>
             </section>
-            <p>Search for a Farcaster user's profile data.</p>
+            <p>The #1 source to get your Farcaster profile stats</p>
           </div>
-          <Suspense fallback={<p>Loading search...</p>}>
-            <Search />
-          </Suspense>
         </div>
       </div>
       <PopularUsers />

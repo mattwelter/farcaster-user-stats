@@ -57,7 +57,7 @@ export default async function HomeFeed(fid: any) {
     ORDER BY
         tr.reactions_received DESC
     LIMIT
-        50;
+        100;
       `
     return data
   }
@@ -73,7 +73,7 @@ export default async function HomeFeed(fid: any) {
     <>
         <div className={style['popular-users-wrapper']}>
             <section>
-                <h2>Most Active Users</h2>
+                <h2>Rankings</h2>
                 <a className={style['header-subtitle']}>Users with the most engagement in the past 7 days. Engagement includes likes, replies, and recasts combined. <i>Updated seconds ago.</i></a>
             </section>
             <PopularUsersClient data={data} />
