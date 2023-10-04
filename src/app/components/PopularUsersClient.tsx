@@ -33,7 +33,7 @@ export default function Page(data: any) {
                                 Casts
                             </th> */}
                             <th>
-                                Avg Likes Per Cast
+                                Likes/Cast ratio
                             </th>
                         </tr>
                     </thead>
