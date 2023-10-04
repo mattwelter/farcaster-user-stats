@@ -1,5 +1,6 @@
 import sql from '../db.js'
 import PopularUsersClient from './PopularUsersClient'
+import style from '../css/PopularUsers.module.css'
 
 export default async function HomeFeed(fid: any) {
   
@@ -63,10 +64,18 @@ export default async function HomeFeed(fid: any) {
 
   const data = await getData()
 
+  for(let i=0; i<data.length; i++){
+
+  }
+
 
   return (
     <>
-        <div>
+        <div className={style['popular-users-wrapper']}>
+            <section>
+                <h2>Most Active Users</h2>
+                <a className={style['header-subtitle']}>Users with the most engagement in the past 7 days. Engagement includes likes, replies, and recasts combined. <i>Updated seconds ago.</i></a>
+            </section>
             <PopularUsersClient data={data} />
         </div>
     </>

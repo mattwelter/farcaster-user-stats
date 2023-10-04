@@ -1,0 +1,113 @@
+.popular-users-wrapper {
+    width: 500px;
+    margin: 0 auto;
+    margin-bottom: 48px;
+}
+
+.popular-users-wrapper > section {
+    margin-bottom: 16px;
+}
+
+.popular-users-wrapper > section > h2 {
+    margin-bottom: 4px !important;
+}
+
+.popular-users-wrapper .header-subtitle {
+    font-weight: 400;
+    color: #d6cde8;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.popular-users-wrapper .header-subtitle i {
+    color: #8e84a3;
+}
+
+.popular-users-wrapper button {
+    border: 1px solid #423c58;
+    background: #423c58;
+    padding: 8px 12px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 4px;
+    border-radius: 4px;
+    color: white;
+    transition: 0.125s ease;
+    font-size: 16px;
+    width: calc(100% - 4px);
+}
+
+.popular-users th {
+    text-align: left;
+    font-weight: 800;
+    padding: 6px 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.popular-users-wrapper tr td:nth-child(1), .popular-users-wrapper tr th:nth-child(1) {
+    padding-left: 8px !important;
+}
+
+.popular-users table thead tr:nth-child(1){
+    background: white;
+    color: #333;
+}
+
+.popular-users-wrapper button:hover {
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+.popular-users table {
+    width: 100%;
+    border-spacing: 0px 2px;
+}
+
+.popular-users-wrapper .table-item {
+    background-color: #7829da;
+}
+
+.popular-users-wrapper .table-item td {
+    padding: 8px 4px;
+}
+
+.popular-users-wrapper .table-item:nth-child(even) {
+    background: #8e3af6;
+}
+
+.table-item tr > th,
+.table-item tr > td {
+    width: calc(500px / 4);
+}
+
+.popular-users-wrapper .table-item a,
+.popular-users-wrapper .table-item a:visited {
+    color: white;
+}
+
+.popular-users-wrapper .table-item a:hover {
+    opacity: 0.65;
+}
+
+@media only screen and (max-width: 600px) {
+    .popular-users-wrapper {
+        width: calc(100vw - 16px);
+        margin: 0 auto;
+    }
+
+    .popular-users table {
+        width: calc(100vw - 16px);
+    }
+
+    .popular-users-wrapper button {
+        width: calc(100vw - 16px);
+    }
+
+    .table-item tr > th,
+    .table-item tr > td {
+        width: calc(100% / 4);
+    }
+
+
+}

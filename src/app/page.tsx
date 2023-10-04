@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import Search from './components/Search'
-//import PopularUsers from './components/PopularUsers'
+import PopularUsers from './components/PopularUsers'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
@@ -33,6 +33,7 @@ export default function Home() {
           </Suspense>
         </div>
       </div>
+      <PopularUsers />
     </main>
   )
 }
