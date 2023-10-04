@@ -1,6 +1,6 @@
 .text_image {
     margin-top: 16px;
-    width: -webkit-fill-available;
+    width: 100%;
     border-radius: 8px;
 } 
 
