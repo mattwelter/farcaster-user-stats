@@ -1,6 +1,7 @@
 import Casts from '../../components/MostLikedCasts-Total'
 import CastsLoading from '../../components/Casts-Loading'
 import SearchTopBar from '../../components/Search-TopBar'
+import GetRanking from '../../components/GetRanking'
 import Activity from '../../components/CastActivity'
 import PageStyle from '../../css/UserPage.module.css'
 import style from '../../css/UserPage.module.css'
@@ -51,25 +52,28 @@ export default async function Page({ params }: {
                     <div className="header-padding userFeedHeader">
                         <img className="profile-pic" src={user.pfp.url} height="48px" width="48px" />
                         <h1>{ user ? user.displayName : params.fid }</h1>
-                        <h2>{ user ? "@" + user.username : params.fid } • #{ params.fid }</h2>
+                        <h2>{ user ? "@" + user.username : params.fid }</h2>
+                        {/* <GetRanking fid={params.fid} /> */}
                     </div>
-                    <div className={style.neighbors}>
-                        <a href={ params.fid != "1" ? `/users/${(parseInt(params.fid) - 1)}` : "" }>
+                    {/* <div className={style.neighbors}>
+                        <Link href={ params.fid != "1" ? `/users/${(parseInt(params.fid) - 1)}` : "" }>
                             <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M14.9646 0.303037C15.779 -0.172117 16.8019 0.415357 16.8019 1.35828C16.8019 6.86281 16.8019 12.3686 16.8019 17.8731C16.8019 18.816 15.7791 19.4035 14.9647 18.9284L0.809099 10.672C0.000914627 10.2006 0.000856017 9.0329 0.808991 8.56143L14.9646 0.303037Z" fill="#957df7"/></svg>
-                        </a>
-                        <a href={ params.fid != "1" ? `/users/${(parseInt(params.fid) - 1)}` : "" }>{ params.fid != "1" ? (parseInt(params.fid) - 1) : "" }</a>
-                        <a href={ `/users/${(parseInt(params.fid))}` }>{ params.fid }</a>
-                        <a href={ `/users/${(parseInt(params.fid) + 1)}` }>{ (parseInt(params.fid) + 1) }</a>
-                        <a href={ `/users/${(parseInt(params.fid) + 1)}` }>
+                        </Link>
+                        <Link href={ params.fid != "1" ? `/users/${(parseInt(params.fid) - 1)}` : "" }>{ params.fid != "1" ? (parseInt(params.fid) - 1) : "" }</Link>
+                        <Link href={ `/users/${(parseInt(params.fid))}` }>{ params.fid }</Link>
+                        <Link href={ `/users/${(parseInt(params.fid) + 1)}` }>{ (parseInt(params.fid) + 1) }</Link>
+                        <Link href={ `/users/${(parseInt(params.fid) + 1)}` }>
                             <svg width="14" height="17" viewBox="0 0 14 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1.73216 16.1092C1.05528 16.504 0.205186 16.0158 0.205186 15.2322C0.205187 10.6575 0.205187 6.08171 0.205187 1.507C0.205187 0.723402 1.05519 0.235156 1.73207 0.629953L13.4965 7.49172C14.1682 7.88348 14.1682 8.85393 13.4966 9.24576L1.73216 16.1092Z" fill="#957df7"/></svg>
-                        </a>
-                    </div>
+                        </Link>
+                    </div> */}
                 </div>
             </div>
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
-                <h3 className="castactivity-title">Cast Activity</h3>
-                    <Activity fid={params.fid} />
+                    <h3 className="castactivity-title">Cast Activity</h3>
+                    <Suspense fallback={<a>Loading activity...</a>}>
+                        <Activity fid={params.fid} />
+                    </Suspense>
                 </div>
             </div>
             <div className={`${style['section-padding']} ${"width-500"}`}>

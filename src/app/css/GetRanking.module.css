@@ -1,0 +1,70 @@
+.ranking th {
+    text-align: left;
+    font-weight: 800;
+    padding: 6px 2px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.ranking-wrapper tr td:nth-child(1), .ranking-wrapper tr th:nth-child(1) {
+    padding-left: 8px !important;
+}
+
+.ranking table thead tr:nth-child(1){
+    background: white;
+    color: #333;
+}
+
+.ranking-wrapper button:hover {
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+.ranking table {
+    width: 100%;
+    border-spacing: 0px 2px;
+}
+
+.ranking-wrapper .table-item {
+    background-color: #7829da;
+}
+
+.ranking-wrapper .table-item td {
+    padding: 8px 4px;
+}
+
+.ranking-wrapper .table-item:nth-child(even) {
+    background: #8e3af6;
+}
+
+.table-item tr > th,
+.table-item tr > td {
+    width: calc(500px / 4);
+}
+
+/* .ranking-wrapper .table-item a,
+.ranking-wrapper .table-item a:visited {
+    color: white;
+}
+
+.ranking-wrapper .table-item a:hover {
+    opacity: 0.65;
+} */
+
+@media only screen and (max-width: 600px) {
+    .ranking-wrapper {
+        width: calc(100vw - 16px);
+        margin: 0 auto;
+    }
+
+    .ranking table {
+        width: calc(100vw - 16px);
+    }
+
+    .table-item tr > th,
+    .table-item tr > td {
+        width: calc(100% / 4);
+    }
+
+
+}

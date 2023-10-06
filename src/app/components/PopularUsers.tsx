@@ -63,12 +63,7 @@ export default async function HomeFeed(fid: any) {
   }
 
   const data = await getData()
-
-  for(let i=0; i<data.length; i++){
-
-  }
-
-
+  
   return (
     <>
         <div className={style['popular-users-wrapper']}>
