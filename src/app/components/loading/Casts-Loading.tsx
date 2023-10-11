@@ -1,6 +1,6 @@
-import style from '../css/MostLikedCasts.module.css'
+import style from '../../css/MostLikedCasts.module.css'
 
-export default async function UserFeed(fid: any, username: any) {
+export default async function UserFeed() {
 
     let casts = [
         0,

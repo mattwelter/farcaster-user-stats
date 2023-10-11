@@ -2,9 +2,10 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import Search from './components/Search'
 import PopularUsers from './components/PopularUsers'
+import PopularUsersLoading from './components/loading/PopularUsers-Loading'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import NewDBTest from './api/db'
+
 
 export const metadata: Metadata = {
   title: `Farcaster User Stats`,
@@ -34,7 +35,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Suspense fallback={<p>Popular users loading...</p>}>
+      <Suspense fallback={<PopularUsersLoading />}>
         <PopularUsers />
       </Suspense>
     </main>

@@ -1,5 +1,5 @@
 import Casts from '../../components/MostLikedCasts-Total'
-import CastsLoading from '../../components/Casts-Loading'
+import CastsLoading from '../../components/loading/Casts-Loading'
 import SearchTopBar from '../../components/Search-TopBar'
 import GetRanking from '../../components/GetRanking'
 import Activity from '../../components/CastActivity'
