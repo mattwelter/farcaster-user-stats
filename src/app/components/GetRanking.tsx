@@ -1,9 +1,11 @@
 import sql from '../db.js'
+import db from '../api/db'
+import style from '../css/GetRanking.module.css'
 
 export default async function HomeFeed(fid: any) {
   
   const getData = async function(){
-    const data = await sql`
+    const data = await db(`
         WITH
         total_casts AS (
             SELECT
@@ -63,18 +65,17 @@ export default async function HomeFeed(fid: any) {
             tr.total_count
         FROM ranked_data rd, total_records tr
         WHERE fid = ${fid.fid};
-      `
+      `)
     return data
   }
 
   const rank_data = await getData()
 
-//   console.log(data)
-
+  console.log(rank_data[0])
 
   return (
     <>
-        <a>Unranked</a>
+        <h2 className={style.rank}>&nbsp;• { rank_data[0] != null ? "Rank #" + rank_data[0].rank + " of " + rank_data[0].total_count : "Unranked" }</h2>
         {/* <a>{ rank_data[0] != null ? rank_data[0].reactions_received : "No data" }</a> */}
         {/* <a>{ rank_data[0] != null ? rank_data[0].total_casts : "No data" }</a> */}
         {/* <a>{ rank_data[0] != null ? rank_data[0].reaction_cast_ratio.toFixed(2) : "No data" }</a> */}

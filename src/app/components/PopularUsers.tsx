@@ -1,11 +1,11 @@
-import sql from '../db.js'
+import db from '../api/db'
 import PopularUsersClient from './PopularUsersClient'
 import style from '../css/PopularUsers.module.css'
 
 export default async function HomeFeed(fid: any) {
   
   const getData = async function(){
-    const data = await sql`
+    const data = await db(`
     WITH
         total_casts AS (
         SELECT
@@ -58,7 +58,7 @@ export default async function HomeFeed(fid: any) {
         tr.reactions_received DESC
     LIMIT
         100;
-      `
+      `)
     return data
   }
 

@@ -1,4 +1,4 @@
-import sql from '../db.js'
+import db from '../api/db'
 import style from '../css/CastActivity.module.css'
 import Tooltip from './Tooltip';
 
@@ -51,7 +51,7 @@ export default async function HomeFeed(fid: any) {
   }
   
   const getData = async function(){
-    const data = await sql`
+    const data = await db(`
       WITH date_range AS (
         SELECT NOW() - (n || ' days')::interval AS date
         FROM generate_series(0, ${day}) AS n
@@ -64,31 +64,25 @@ export default async function HomeFeed(fid: any) {
       AND casts.fid = ${fid.fid}
       GROUP BY DATE(date_range.date)
       ORDER BY DATE(date_range.date);
-      `
-    return data
+      `)
+      return data
   }
 
   const data = await getData()
 
-  // for(let i=0; i<data.length; i++){
-  //   'https://api.neynar.com/v2/farcaster/cast?type=url&identifier=https%3A%2F%2Fwarpcast.com%2Frish%2F0x9288c1' \
-  //   'api_key: NEYNAR_API_DOCS'
-  // }
-
-
   return (
     <>
-      <div className={style['cast-activity-wrapper']}>
-        <div className={style['cast-activity']}>
-          {data.length != 0 ? data.map((event: any) => (
-            <Tooltip content={ event.castamount + " casts - " + (new Date(event.date).getMonth() + 1) + "/" + new Date(event.date).getDate() + "/" + new Date(event.date).getFullYear() }>
-              <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 4 ? style['cast-color-2'] : parseInt(event.castamount) <= 8 ? style['cast-color-4'] : parseInt(event.castamount) <= 12 ? style['cast-color-6'] : style['cast-color-8']) }></a>
-            </Tooltip>
-          ))
-          : <a>Nothing here...</a>
-          }
+        <div className={style['cast-activity-wrapper']}>
+            <div className={style['cast-activity']}>
+                {data.length != 0 ? data.map((event: any) => (
+                    <Tooltip content={ event.castamount + " casts - " + (new Date(event.date).getMonth() + 1) + "/" + new Date(event.date).getDate() + "/" + new Date(event.date).getFullYear() }>
+                        <a className={ parseInt(event.castamount) == 0 ? style['cast-color-0'] : (parseInt(event.castamount) <= 4 ? style['cast-color-2'] : parseInt(event.castamount) <= 8 ? style['cast-color-4'] : parseInt(event.castamount) <= 12 ? style['cast-color-6'] : style['cast-color-8']) }></a>
+                    </Tooltip>
+                ))
+                : <a>Nothing here...</a>
+                }
+            </div>
         </div>
-      </div>
     </>
     )
 }

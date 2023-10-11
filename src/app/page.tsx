@@ -4,6 +4,7 @@ import Search from './components/Search'
 import PopularUsers from './components/PopularUsers'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
+import NewDBTest from './api/db'
 
 export const metadata: Metadata = {
   title: `Farcaster User Stats`,
@@ -33,7 +34,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <PopularUsers />
+      <Suspense fallback={<p>Popular users loading...</p>}>
+        <PopularUsers />
+      </Suspense>
     </main>
   )
 }

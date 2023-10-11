@@ -7,16 +7,18 @@ const Tooltip = ({ content, children }) => {
 
   const handleMouseEnter = () => {
     setShowTooltip(true);
+    console.log("true")
   };
 
   const handleMouseLeave = () => {
     setShowTooltip(false);
+    console.log("false")
   };
 
   return (
     <div className="tooltip-container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {children}
-      {showTooltip && <div onMouseEnter={handleMouseLeave} className="tooltip">{content}</div>}
+      {showTooltip && <div className="tooltip">{content}</div>}
       <style jsx>{`
         .tooltip-container {
           position: relative;
