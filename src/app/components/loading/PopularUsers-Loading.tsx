@@ -42,7 +42,7 @@ export default async function HomeFeed() {
                             ? currentData.map((event: any, index: any) => (
                                 <tr className={style['table-item']}>
                                     <td>
-                                        {index+1}.
+                                        {index+1}. Loading user...
                                     </td>
                                     <td>
                                         &nbsp;
