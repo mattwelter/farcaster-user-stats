@@ -1,4 +1,4 @@
-![banner-1](https://i.imgur.com/UQHNvRg.png)
+![banner-1](https://i.imgur.com/Efvc3cy.png)
 # FarcasterUserStats.com
 ![](https://img.shields.io/github/last-commit/mattwelter/farcaster-user-stats)
 
