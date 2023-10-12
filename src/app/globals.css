@@ -36,10 +36,6 @@ main {
     opacity: 0.65;
 }
 
-.header-padding {
-    padding: 0px 0px 50px 0px;
-}
-
 .mostlikedcasts-title, .castactivity-title {
     font-size: 24px;
     font-weight: 500;
@@ -80,11 +76,15 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #5240b5;
+    border-bottom: 1px solid white;
+    margin-bottom: 48px;
 }
 
 .homepage-hero {
     margin-top: 8px;
     width: 500px;
+    margin-bottom: 36px;
 }
 
 .header_h1 {
@@ -92,7 +92,7 @@ main {
     height: 42px;
     margin-bottom: -12px;
     margin-left: 12px;
-    margin-top: 112px;
+    margin-top: 72px;
 }
 
 .homepage-hero h1 {
@@ -137,7 +137,7 @@ main {
     }
 
     .header-padding {
-        padding: 0px 8px 50px 8px;
+        padding: 0px 8px 0px 8px;
     }
 
     .userFeedHeader {
@@ -148,12 +148,15 @@ main {
         margin-left: 0px !important;
         justify-content: center;
         margin-bottom: -20px;
-        margin-top: 108px;
+        margin-top: 58px;
+        height: auto;
+        display: block;
     }
 
     .header_h1 img {
-        width: 28px !important;
-        height: 28px !important;
+        width: 56px !important;
+        height: 56px !important;
+        margin-bottom: 8px;
     }
 
     .homepage-hero {
@@ -161,13 +164,22 @@ main {
     }
 
     .homepage-hero h1 {
-        font-size: 30px;
-        line-height: 28px;
+        font-size: 52px;
+        line-height: 50px;
+        text-align: left;
+        margin-bottom: 32px;
+        margin-top: 4px;
+        padding: 0px;
     }
 
     .homepage-hero p {
-        font-size: 14px !important;
+        margin: 0 auto;
+        font-size: 15px !important;
+        line-height: 22px;
         letter-spacing: 0.2px !important;
+        text-align: left;
+        width: 200px;
+        margin-left: 0px;
     }
 
     .mostlikedcasts-title, .castactivity-title {
@@ -175,17 +187,5 @@ main {
         font-weight: 500;
         margin-bottom: 12px;
         margin-top: 32px;
-    }
-}
-
-
-@media only screen and (max-width: 353px) {
-    .header_h1 img {
-        display: none;
-    }
-
-    .homepage-hero h1 {
-        font-size: 28px;
-        padding: 0px;
     }
 }
