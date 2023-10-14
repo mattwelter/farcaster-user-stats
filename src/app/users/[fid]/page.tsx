@@ -3,8 +3,7 @@ import CastsLoading from '../../components/loading/Casts-Loading'
 import SearchTopBar from '../../components/Search-TopBar'
 import GetRanking from '../../components/GetRanking'
 import Activity from '../../components/CastActivity'
-import PageStyle from '../../css/UserPage.module.css'
-import style from '../../css/UserPage.module.css'
+import style from './UserPage.module.css'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from 'react'
 import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
@@ -41,7 +40,7 @@ export default async function Page({ params }: {
     console.log(user)
 
     return (
-        <main className={PageStyle['top-bottom-padding']}>
+        <main className={style['top-bottom-padding']}>
             <div className={style['user-page-header']}>
                 <div className="width-500">
                     <section>
@@ -58,7 +57,7 @@ export default async function Page({ params }: {
                     </div>
                 </div>
             </div>
-            {/* <ActiveBadgeCheck userObject={user} /> */}
+            <ActiveBadgeCheck userObject={user} />
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="castactivity-title">Cast Activity</h3>

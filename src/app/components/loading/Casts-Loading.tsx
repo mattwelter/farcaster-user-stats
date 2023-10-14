@@ -1,4 +1,4 @@
-import style from '../../css/MostLikedCasts.module.css'
+import style from '../MostLikedCasts.module.css'
 
 export default async function UserFeed() {
 

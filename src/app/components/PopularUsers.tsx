@@ -1,6 +1,6 @@
 import db from '../api/db'
 import PopularUsersClient from './PopularUsersClient'
-import style from '../css/PopularUsers.module.css'
+import style from './PopularUsers.module.css'
 
 export default async function HomeFeed(fid: any) {
   
