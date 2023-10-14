@@ -7,6 +7,7 @@ import PageStyle from '../../css/UserPage.module.css'
 import style from '../../css/UserPage.module.css'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from 'react'
+import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 
 type Props = {
     params: { fid: string }
@@ -39,14 +40,6 @@ export default async function Page({ params }: {
     let user = userResponse.result.user;
     console.log(user)
 
-    const activeBadge = {
-        active: user.activeBadge,
-        completeProfile: user.displayName && user.profile.bio.text && user.pfp.url ? true : false,
-        followers: user.followerCount >= 100 ? true : false,
-    }
-
-    console.log(activeBadge)
-
     return (
         <main className={PageStyle['top-bottom-padding']}>
             <div className={style['user-page-header']}>
@@ -58,13 +51,14 @@ export default async function Page({ params }: {
                         <SearchTopBar />
                     </section>
                     <div className="header-padding userFeedHeader">
-                        <img className="profile-pic" src={user.pfp.url} height="48px" width="48px" />
+                        <img className="profile-pic" src={user.pfp.url ? user.pfp.url : "/avatar.png"} height="48px" width="48px" />
                         <h1>{ user ? user.displayName : params.fid }</h1>
                         <h2>{ user ? "@" + user.username : params.fid }</h2>
                         <GetRanking fid={params.fid} />
                     </div>
                 </div>
             </div>
+            {/* <ActiveBadgeCheck userObject={user} /> */}
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="castactivity-title">Cast Activity</h3>
