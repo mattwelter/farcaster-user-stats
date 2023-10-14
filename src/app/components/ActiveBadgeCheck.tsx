@@ -93,7 +93,8 @@ export default async function HomeFeed(userObject: any) {
         // reaction_count: checkReaction[0].reaction_count,
         // reply_count: checkReplies[0].reply_count,
         // count: checkTotalCasts[0].count,
-        engagingCasts: ((checkReaction[0].reaction_count + checkReplies[0].reply_count) / checkTotalCasts[0].count) >= 1 ? true : false
+        engagingCasts: ((checkReaction[0].reaction_count + checkReplies[0].reply_count) / checkTotalCasts[0].count) >= 1 ? true : false,
+        engagingCastsNumber: ((checkReaction[0].reaction_count + checkReplies[0].reply_count) / checkTotalCasts[0].count)
     }
 
     console.log({ activeBadge })
@@ -103,9 +104,19 @@ export default async function HomeFeed(userObject: any) {
             <div className={style['badge-check-wrapper']}>
                 <div className={style['badge-check']}>
                     {
-                        activeBadge.active ? <a></a> :
+                        activeBadge.active ?
+                        
+                        <a>Verified active ✅</a>
+                        :
                         <ul>
-                            
+                            { !activeBadge.connectedAddress ? <li><a>❌ &nbsp;User needs to connect an Ethereum address</a></li> : <li><a>✅ &nbsp;User has connected Ethereum address</a></li> }
+                            { !activeBadge.profile.name ? <li><a>❌ &nbsp;User has no display name</a></li> : <li><a>✅ &nbsp;User has display name</a></li> }
+                            { !activeBadge.profile.bio ? <li><a>❌ &nbsp;User has no bio</a></li> : <li><a>✅ &nbsp;User has a bio</a></li> }
+                            { !activeBadge.profile.pfp ? <li><a>❌ &nbsp;User has no profile picture</a></li> : <li><a>✅ &nbsp;User has a profile picture</a></li> }
+                            { !activeBadge.followers ? <li><a>❌ &nbsp;User has less than 100 followers</a></li> : <li><a>✅ &nbsp;User has more than 100 followers</a></li> }
+                            { !activeBadge.inboundReaction ? <li><a>❌ &nbsp;User received 0 likes in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more likes in past 30 days</a></li> }
+                            { !activeBadge.inboundReplies ? <li><a>❌ &nbsp;User received 0 replies in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li> }
+                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days</a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
                         </ul>
                     }
                 </div>

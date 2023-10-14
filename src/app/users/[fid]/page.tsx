@@ -1,4 +1,4 @@
-import Casts from '../../components/MostLikedCasts-Total'
+import Casts from '../../components/MostLikedCasts'
 import CastsLoading from '../../components/loading/Casts-Loading'
 import SearchTopBar from '../../components/Search-TopBar'
 import GetRanking from '../../components/GetRanking'
@@ -57,7 +57,14 @@ export default async function Page({ params }: {
                     </div>
                 </div>
             </div>
-            <ActiveBadgeCheck userObject={user} />
+            <div className={`${style['section-padding']} ${"width-500"}`}>
+                <div>
+                    <h3 className="activestatus-title">Active Status</h3>
+                    <Suspense fallback={<a>Checking active status...</a>}>
+                        <ActiveBadgeCheck userObject={user} />
+                    </Suspense>
+                </div>
+            </div>
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="castactivity-title">Cast Activity</h3>
