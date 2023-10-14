@@ -39,6 +39,14 @@ export default async function Page({ params }: {
     let user = userResponse.result.user;
     console.log(user)
 
+    const activeBadge = {
+        active: user.activeBadge,
+        completeProfile: user.displayName && user.profile.bio.text && user.pfp.url ? true : false,
+        followers: user.followerCount >= 100 ? true : false,
+    }
+
+    console.log(activeBadge)
+
     return (
         <main className={PageStyle['top-bottom-padding']}>
             <div className={style['user-page-header']}>

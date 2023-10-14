@@ -7,12 +7,10 @@ const Tooltip = ({ content, children }) => {
 
   const handleMouseEnter = () => {
     setShowTooltip(true);
-    console.log("true")
   };
 
   const handleMouseLeave = () => {
     setShowTooltip(false);
-    console.log("false")
   };
 
   return (

@@ -6,7 +6,6 @@ import PopularUsersLoading from './components/loading/PopularUsers-Loading'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
-
 export const metadata: Metadata = {
   title: `Farcaster User Stats`,
   description: 'Farcaster User Stats - Inspect your profile data on Farcaster',
