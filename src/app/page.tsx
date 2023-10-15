@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Farcaster User Stats',
     description: 'The #1 source to see your Farcaster profile stats',
-    images: ['./og_image.png']
+    images: ['/og_image.png']
   }
 }
 
