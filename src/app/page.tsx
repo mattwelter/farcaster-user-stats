@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Head from 'next/head'
 import styles from './page.module.css'
 import Search from './components/Search'
 import PopularUsers from './components/PopularUsers'
@@ -8,10 +9,15 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: `Farcaster User Stats`,
-  description: 'Farcaster User Stats - Inspect your profile data on Farcaster',
+  description: 'The #1 source to see your Farcaster profile stats',
   manifest: '/manifest.json',
   icons: { apple: '/farcaster-user-stats-logo.png' },
-  themeColor: '#1B1A1F'
+  themeColor: '#5240b5',
+  openGraph: {
+    title: 'Farcaster User Stats',
+    description: 'The #1 source to see your Farcaster profile stats',
+    images: ['./og_image.png']
+  }
 }
 
 export const dynamic = 'force-dynamic';
