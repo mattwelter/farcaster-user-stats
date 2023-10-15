@@ -10,6 +10,7 @@ export default function Page() {
 
   async function handleSearch(formData: FormData) {
     const res = await searchUsername(formData)
+    console.log({res})
     
     if (!res.result) {
       return alert('No user found')
