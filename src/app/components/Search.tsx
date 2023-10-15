@@ -10,11 +10,12 @@ export default function Page() {
 
   async function handleSearch(formData: FormData) {
     const res = await searchUsername(formData)
-    const user = res.result.user
-
-    if (!user) {
+    
+    if (!res.result) {
       return alert('No user found')
     }
+
+    const user = res.result.user
 
     return redirect(`/users/${res.result.user.fid}`)
   }
