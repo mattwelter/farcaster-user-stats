@@ -13,6 +13,8 @@ export default function Page() {
 
     if (!res.result) {
       return alert('No user found')
+    } else if (res.code == "NotFound") {
+      return alert('No user found')
     }
 
     const user = res.result.user
