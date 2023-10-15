@@ -8,5 +8,6 @@ export async function searchUsername(formData: FormData) {
     { method: 'GET' }
   )
   const userResponse = await getUser.json()
+  console.log(userResponse)
   return userResponse
 }

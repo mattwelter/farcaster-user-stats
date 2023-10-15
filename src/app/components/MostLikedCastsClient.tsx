@@ -13,7 +13,11 @@ export default function Page(casts: any) {
               <span key={index}>{line}{index !== cast.text.split('\n').length - 1 && <br/>}</span>
               )}
               {
-                cast.embeds.length !=0 ? (cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png") ? <img className={style.text_image} src={cast.embeds[0].url} /> : "") : ""
+                cast.embeds.length != 0 ?
+                cast.embeds.length == 2 ?
+                ((cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png")) && (cast.embeds[1].url.includes(".jpeg") || cast.embeds[1].url.includes(".jpg") || cast.embeds[1].url.includes(".png")) ? <div className={style.cast_image_wrapper}><img className={`${style.text_image}`} src={cast.embeds[0].url} /> <img className={style.text_image} src={cast.embeds[1].url} /></div> : "") : 
+                (cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png") ? <img className={style.text_image} src={cast.embeds[0].url} /> : "")
+                : ""
               }
             </p>
             <a className={style.likes}>{ cast.total_likes } <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
