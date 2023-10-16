@@ -7,21 +7,25 @@ export default async function HomeFeed(userObject: any) {
 
     async function getReaction() {
         const data = await db(`
-            SELECT 
-                c.fid,
-                COUNT(DISTINCT r.id) AS reaction_count
-            FROM 
-                casts AS c
-            LEFT JOIN 
-                reactions AS r 
-            ON 
-                c.fid = r.fid
-            WHERE 
-                c.fid = ${user.fid} 
-            AND 
-                c.created_at >= NOW() - INTERVAL '30 days'
-            GROUP BY 
-                c.fid;
+            WITH total_reactions AS (
+                SELECT
+                    c.fid AS fid,
+                    COUNT(*) AS reactions_received
+                FROM
+                    reactions r
+                    INNER JOIN casts c ON c.hash = r.target_hash
+                WHERE
+                    r.timestamp >= current_timestamp - interval '30' day
+                GROUP BY
+                    c.fid
+            )
+            SELECT
+                fid,
+                reactions_received
+            FROM
+                total_reactions
+            WHERE
+                fid = ${user.fid}
         `)
         return data
       }
@@ -90,7 +94,7 @@ export default async function HomeFeed(userObject: any) {
       const registrationDate = new Date(checkRegistration[0].created_at)
       const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) 
 
-      const engagingCastsNumber = ((checkReaction.length != 0 ? checkReaction[0].reaction_count : 0) + parseInt(checkReplies[0].reply_count)) / parseInt(checkTotalCasts[0].count)
+      const engagingCastsNumber = (parseInt(checkReaction[0].reactions_received != null ? checkReaction[0].reactions_received : 0) + parseInt(checkReplies[0].reply_count)) / parseInt(checkTotalCasts[0].count)
 
 
 
@@ -106,7 +110,7 @@ export default async function HomeFeed(userObject: any) {
         },
         followers: user.followerCount >= 100 ? true : false,
         checkRegistration: registrationDate < sevenDaysAgo ? true : false,
-        inboundReaction: checkReaction.length != 0 ? checkReaction[0].reaction_count >= 1 ? true : false : false,
+        inboundReaction: checkReaction.length != 0 ? checkReaction[0].reactions_received >= 1 ? true : false : false,
         inboundReplies: checkReplies[0].reply_count >= 1 ? true : false,
         // reaction_count: checkReaction[0].reaction_count,
         // reply_count: checkReplies[0].reply_count,
@@ -135,7 +139,7 @@ export default async function HomeFeed(userObject: any) {
                             { !activeBadge.checkRegistration ? <li><a>❌ &nbsp;Account was created less than 7 days ago</a></li> : <li><a>✅ &nbsp;Account older than 7 days</a></li> }
                             { !activeBadge.inboundReaction ? <li><a>❌ &nbsp;User received 0 likes in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more likes in past 30 days</a></li> }
                             { !activeBadge.inboundReplies ? <li><a>❌ &nbsp;User received 0 replies in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li> }
-                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days</a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
+                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days – <a className={style['requirement-subtitle']}>{parseInt(checkReaction[0].reactions_received) + parseInt(checkReplies[0].reply_count) + " likes/replies out of " + parseInt(checkTotalCasts[0].count) + " casts"}</a></a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
                         </ul>
                     }
                 </div>
