@@ -28,15 +28,15 @@ export default async function HomeFeed(userObject: any) {
                 fid = ${user.fid}
         `)
         return data
-      }
-      const checkReaction = await getReaction()
-      console.log({ checkReaction })
+    }
+    const checkReaction = await getReaction()
+    //   console.log({ checkReaction })
 
       
 
 
 
-      async function getReplies() {
+    async function getReplies() {
         const data = await db(`
             SELECT 
                 COUNT(distinct reply.id) AS reply_count
@@ -55,14 +55,14 @@ export default async function HomeFeed(userObject: any) {
     
         `)
         return data
-      }
-      const checkReplies = await getReplies()
-      console.log({ checkReplies })
+    }
+    const checkReplies = await getReplies()
+    //   console.log({ checkReplies })
 
 
 
 
-      async function getTotalCasts() {
+    async function getTotalCasts() {
         const data = await db(`
             SELECT 
                 COUNT(*)
@@ -74,27 +74,27 @@ export default async function HomeFeed(userObject: any) {
                 created_at >= CURRENT_DATE - INTERVAL '30 days';
         `)
         return data
-      }
-      const checkTotalCasts = await getTotalCasts()
-      console.log({ checkTotalCasts })
+    }
+    const checkTotalCasts = await getTotalCasts()
+    //   console.log({ checkTotalCasts })
 
 
 
 
-      async function getRegisteredDate() {
+    async function getRegisteredDate() {
         const data = await db(`
             SELECT created_at 
             FROM fids 
             WHERE fid = ${user.fid};
         `)
         return data
-      }
-      const checkRegistration = await getRegisteredDate()
-      console.log({ checkRegistration })
-      const registrationDate = new Date(checkRegistration[0].created_at)
-      const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) 
+    }
+    const checkRegistration = await getRegisteredDate()
+    // console.log({ checkRegistration })
+    const registrationDate = new Date(checkRegistration[0].created_at)
+    const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) 
 
-      const engagingCastsNumber = (parseInt(checkReaction.length != 0 ? checkReaction[0].reactions_received : 0) + parseInt(checkReplies[0].reply_count)) / parseInt(checkTotalCasts[0].count)
+    const engagingCastsNumber = (parseInt(checkReaction.length != 0 ? checkReaction[0].reactions_received : 0) + parseInt(checkReplies[0].reply_count)) / parseInt(checkTotalCasts[0].count)
 
 
 
@@ -119,7 +119,7 @@ export default async function HomeFeed(userObject: any) {
         engagingCastsNumber: engagingCastsNumber
     }
 
-    console.log({ activeBadge })
+    // console.log({ activeBadge })
 
     return (
         <>

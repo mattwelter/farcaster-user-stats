@@ -9,7 +9,7 @@ const pool = new Pool({
     max: 20,
     connectionTimeoutMillis: 5000,
     idleTimeoutMillis: 10000,
-    allowExitOnIdle: true
+    // allowExitOnIdle: true
 })
 
 pool.on('error', (err, client) => {
