@@ -1,4 +1,3 @@
-import sql from '../db.js'
 import db from '../api/db'
 import style from './GetRanking.module.css'
 

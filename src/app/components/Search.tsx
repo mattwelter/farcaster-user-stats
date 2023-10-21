@@ -29,6 +29,7 @@ export default function Page() {
             id="username"
             name="username"
             placeholder="Search by username"
+            autoComplete="off"
             onChange={(e) => setUsername(e.target.value)}
             />
 

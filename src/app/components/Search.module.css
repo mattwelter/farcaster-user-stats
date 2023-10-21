@@ -3,13 +3,16 @@
     flex-direction: row;
     padding: 2px;
     margin-bottom: 48px;
+    border: 1px solid #2F1D5C; /* And hide the input's outline, so the form looks like the outline */
+    background-color: #321C6C;
+    border-radius: 50px;
 }
   
 .search form input {
     flex-grow: 2; /* Tell the input to use all the available space */
-    border: none; /* And hide the input's outline, so the form looks like the outline */
-    background-color: #EDEAFF;
-    color: black;
+    border: 1px solid #321C6C; /* And hide the input's outline, so the form looks like the outline */
+    background-color: #321C6C;
+    color: white;
     font-size: 16px;
 }
   
@@ -22,14 +25,16 @@
 }
   
 .search form button {
-    border: 1px solid #A46CEB; /* Just a little styling to make it pretty */
-    background: #A46CEB;
-    padding: 6px 12px;
+    border: 1px solid #672DFF; /* Just a little styling to make it pretty */
+    background: #672DFF;
+    padding: 6px 14px;
     margin-left: 8px;
     border-radius: 4px;
     color: white;
     transition: 0.125s ease;
     font-size: 16px;
+    border-radius: 50px;
+    margin: 2px;
 }
 
 .search form button:hover {
@@ -49,8 +54,8 @@
 }
 
 .search input {
-    padding: 10px 12px;
-    border-radius: 4px;
+    padding: 10px 12px 10px 20px;
+    border-radius: 50px;
 }
 
 .search button:disabled,

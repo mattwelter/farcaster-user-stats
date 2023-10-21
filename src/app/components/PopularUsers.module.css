@@ -65,15 +65,11 @@
 }
 
 .popular-users-wrapper .table-item {
-    background-color: #7829da;
+
 }
 
 .popular-users-wrapper .table-item td {
     padding: 8px 4px;
-}
-
-.popular-users-wrapper .table-item:nth-child(even) {
-    background: #8e3af6;
 }
 
 .table-item tr > th,
