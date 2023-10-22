@@ -1,20 +1,21 @@
-import db from '../api/db'
+import pool from '../api/db'
 import style from './Followers.module.css'
 import TinyChart from './TinyChart'
 
 export default async function HomeFeed(fid: any) {
 
     const getData = async function(){
-        const data = await db(`
-            SELECT
-            (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at >= NOW() - INTERVAL '7 days') AS one,
-            (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days') AS two,
-            (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '21 days' AND NOW() - INTERVAL '14 days') AS three,
-            (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '28 days' AND NOW() - INTERVAL '21 days') AS four,
-            (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '35 days' AND NOW() - INTERVAL '28 days') AS five,
-          `)
-
-          return data
+        const client = await pool.connect();
+        const data = await client.query(`
+                SELECT
+                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at >= NOW() - INTERVAL '7 days') AS one,
+                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days') AS two,
+                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '21 days' AND NOW() - INTERVAL '14 days') AS three,
+                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '28 days' AND NOW() - INTERVAL '21 days') AS four,
+                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '35 days' AND NOW() - INTERVAL '28 days') AS five,
+            `)
+            client.release();
+            return data.rows
       }
     
       const data = await getData()

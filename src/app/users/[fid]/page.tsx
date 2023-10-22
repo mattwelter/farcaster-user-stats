@@ -1,13 +1,25 @@
-import Casts from '../../components/MostLikedCasts'
-import CastsLoading from '../../components/loading/Casts-Loading'
-import SearchTopBar from '../../components/Search-TopBar'
-import GetRanking from '../../components/GetRanking'
-import Activity from '../../components/CastActivity'
+import { lazy } from 'react';
 import style from './UserPage.module.css'
 import type { Metadata, ResolvingMetadata } from 'next'
 import { Suspense } from 'react'
-import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
-import Followers from '../../components/Followers'
+
+
+const Casts = lazy(() => import('../../components/MostLikedCasts'));
+const CastsLoading = lazy(() => import('../../components/loading/Casts-Loading'));
+const SearchTopBar = lazy(() => import('../../components/Search-TopBar'));
+const GetRanking = lazy(() => import('../../components/GetRanking'));
+const Activity = lazy(() => import('../../components/CastActivity'));
+const ActiveBadgeCheck = lazy(() => import('../../components/ActiveBadgeCheck'));
+const Followers = lazy(() => import('../../components/Followers'));
+
+
+// import Casts from '../../components/MostLikedCasts'
+// import CastsLoading from '../../components/loading/Casts-Loading'
+// import SearchTopBar from '../../components/Search-TopBar'
+// import GetRanking from '../../components/GetRanking'
+// import Activity from '../../components/CastActivity'
+// import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
+// import Followers from '../../components/Followers'
 
 type Props = {
     params: { fid: string }
@@ -43,7 +55,7 @@ export default async function Page({ params }: {
     const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}`, { method: "GET" });
     const userResponse = await getUser.json();
     let user = userResponse.result.user;
-    // console.log(user)
+    console.log(user)
 
     return (
         <main className={style['top-bottom-padding']}>

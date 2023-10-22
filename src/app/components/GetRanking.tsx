@@ -1,10 +1,11 @@
-import db from '../api/db'
+import pool from '../api/db'
 import style from './GetRanking.module.css'
 
 export default async function HomeFeed(fid: any) {
   
     const getData = async function(){
-        const data = await db(`
+        const client = await pool.connect();
+        const data = await client.query(`
             WITH
             total_casts AS (
                 SELECT
@@ -65,7 +66,8 @@ export default async function HomeFeed(fid: any) {
             FROM ranked_data rd, total_records tr
             WHERE fid = ${fid.fid};
         `)
-        return data
+        client.release();
+        return data.rows
     }
 
     const rank_data = await getData()

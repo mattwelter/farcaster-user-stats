@@ -1,11 +1,12 @@
-import db from '../api/db'
+import pool from '../api/db'
 import PopularUsersClient from './PopularUsersClient'
 import style from './PopularUsers.module.css'
 
 export default async function HomeFeed(fid: any) {
   
   const getData = async function(){
-    const data = await db(`
+    const client = await pool.connect();
+    const data = await client.query(`
     WITH
         total_casts AS (
         SELECT
@@ -59,7 +60,8 @@ export default async function HomeFeed(fid: any) {
     LIMIT
         100;
       `)
-    return data
+    client.release();
+    return data.rows
   }
 
   const data = await getData()

@@ -1,4 +1,4 @@
-import db from '../api/db'
+import pool from '../api/db'
 import style from './ActiveBadgeCheck.module.css'
 
 export default async function HomeFeed(userObject: any) {
@@ -6,7 +6,8 @@ export default async function HomeFeed(userObject: any) {
     let user = userObject.userObject
 
     async function getReaction() {
-        const data = await db(`
+        const client = await pool.connect();
+        const data = await client.query(`
             WITH total_reactions AS (
                 SELECT
                     c.fid AS fid,
@@ -27,7 +28,8 @@ export default async function HomeFeed(userObject: any) {
             WHERE
                 fid = ${user.fid}
         `)
-        return data
+        client.release();
+        return data.rows
     }
     const checkReaction = await getReaction()
     //   console.log({ checkReaction })
@@ -37,7 +39,8 @@ export default async function HomeFeed(userObject: any) {
 
 
     async function getReplies() {
-        const data = await db(`
+        const client = await pool.connect();
+        const data = await client.query(`
             SELECT 
                 COUNT(distinct reply.id) AS reply_count
             FROM 
@@ -54,7 +57,8 @@ export default async function HomeFeed(userObject: any) {
                 orig.created_at >= CURRENT_DATE - INTERVAL '30 days';
     
         `)
-        return data
+        client.release();
+        return data.rows
     }
     const checkReplies = await getReplies()
     //   console.log({ checkReplies })
@@ -63,7 +67,8 @@ export default async function HomeFeed(userObject: any) {
 
 
     async function getTotalCasts() {
-        const data = await db(`
+        const client = await pool.connect();
+        const data = await client.query(`
             SELECT 
                 COUNT(*)
             FROM 
@@ -73,7 +78,8 @@ export default async function HomeFeed(userObject: any) {
             AND 
                 created_at >= CURRENT_DATE - INTERVAL '30 days';
         `)
-        return data
+        client.release();
+        return data.rows
     }
     const checkTotalCasts = await getTotalCasts()
     //   console.log({ checkTotalCasts })
@@ -82,12 +88,14 @@ export default async function HomeFeed(userObject: any) {
 
 
     async function getRegisteredDate() {
-        const data = await db(`
+        const client = await pool.connect();
+        const data = await client.query(`
             SELECT created_at 
             FROM fids 
             WHERE fid = ${user.fid};
         `)
-        return data
+        client.release();
+        return data.rows
     }
     const checkRegistration = await getRegisteredDate()
     // console.log({ checkRegistration })
