@@ -67,16 +67,11 @@ export default async function HomeFeed(fid: any) {
         `)
         return data
     }
-
     const rank_data = await getData()
-    // console.log(rank_data[0])
 
     return (
         <>
             <h2 className={style.rank}>&nbsp;• { rank_data[0] != null ? "Rank #" + rank_data[0].rank + " of " + rank_data[0].total_count : "Unranked" }</h2>
-            {/* <a>{ rank_data[0] != null ? rank_data[0].reactions_received : "No data" }</a> */}
-            {/* <a>{ rank_data[0] != null ? rank_data[0].total_casts : "No data" }</a> */}
-            {/* <a>{ rank_data[0] != null ? rank_data[0].reaction_cast_ratio.toFixed(2) : "No data" }</a> */}
         </>
     )
 }
