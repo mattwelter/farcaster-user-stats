@@ -1,4 +1,4 @@
-import pool from '../api/db'
+import db from '../api/db'
 import style from './CastActivity.module.css'
 import Tooltip from './Tooltip';
 
@@ -51,8 +51,7 @@ export default async function HomeFeed(fid: any) {
   }
   
   const getData = async function(){
-    const client = await pool.connect();
-    const data = await client.query(`
+    const data = await db(`
       WITH date_range AS (
         SELECT NOW() - (n || ' days')::interval AS date
         FROM generate_series(0, ${day}) AS n
@@ -66,8 +65,7 @@ export default async function HomeFeed(fid: any) {
       GROUP BY DATE(date_range.date)
       ORDER BY DATE(date_range.date);
       `)
-      client.release();
-      return data.rows
+      return data
   }
 
   const data = await getData()

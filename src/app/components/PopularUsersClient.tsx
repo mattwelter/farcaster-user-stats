@@ -40,7 +40,7 @@ export default function Page(data: any) {
                     <tbody>
                         {currentData.length !== 0
                         ? currentData.map((event: any, index: any) => (
-                            <tr className={style['table-item']}>
+                            <tr key={event.fid} className={style['table-item']}>
                                 <td>
                                     {index+1}. @<a href={`/users/${event.fid}`}>{ event.username }</a>
                                 </td>

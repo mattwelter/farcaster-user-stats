@@ -1,11 +1,10 @@
-import pool from '../api/db'
+import db from '../api/db'
 import MostLikedCasts from './MostLikedCastsClient'
 
 export default async function UserFeed(fid: any, username: any) {
 
   async function getTotalLikedCasts() {
-    const client = await pool.connect();
-    const data = await client.query(`
+    const data = await db(`
       SELECT c.hash, c.text, c.embeds, 
       COUNT(r.id) AS total_likes
       FROM casts AS c
@@ -16,8 +15,7 @@ export default async function UserFeed(fid: any, username: any) {
       ORDER BY total_likes DESC
       LIMIT 10;
     `)
-    client.release();
-    return data.rows
+    return data
   }
   const casts = await getTotalLikedCasts()
 

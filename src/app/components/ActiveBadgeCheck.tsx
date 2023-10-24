@@ -1,14 +1,14 @@
-import pool from '../api/db'
+import db from '../api/db'
 import style from './ActiveBadgeCheck.module.css'
 
 export default async function HomeFeed(userObject: any) {
 
     let user = userObject.userObject
 
-    async function getReaction() {
-        const client = await pool.connect();
-        const data = await client.query(`
-            WITH total_reactions AS (
+    async function checkActiveBadge() {
+        const data = await db(`
+            WITH 
+                total_reactions AS (
                 SELECT
                     c.fid AS fid,
                     COUNT(*) AS reactions_received
@@ -19,90 +19,62 @@ export default async function HomeFeed(userObject: any) {
                     r.timestamp >= current_timestamp - interval '30' day
                 GROUP BY
                     c.fid
-            )
-            SELECT
-                fid,
-                reactions_received
-            FROM
-                total_reactions
-            WHERE
-                fid = ${user.fid}
-        `)
-        client.release();
-        return data.rows
-    }
-    const checkReaction = await getReaction()
-    //   console.log({ checkReaction })
-
-      
-
-
-
-    async function getReplies() {
-        const client = await pool.connect();
-        const data = await client.query(`
+                ),
+                replies AS (
+                SELECT 
+                    orig.fid,
+                    COUNT(distinct reply.id) AS reply_count
+                FROM 
+                    casts AS orig
+                JOIN 
+                    casts AS reply 
+                ON 
+                    orig.hash = reply.parent_hash
+                WHERE 
+                    orig.fid = ${user.fid}
+                AND 
+                    reply.fid <> orig.fid
+                AND 
+                    orig.created_at >= CURRENT_DATE - INTERVAL '30 days'
+                GROUP BY
+                    orig.fid
+                ),
+                total_casts AS (
+                SELECT 
+                    fid,
+                    COUNT(*) as count
+                FROM 
+                    casts
+                WHERE 
+                    fid = ${user.fid}
+                AND 
+                    created_at >= CURRENT_DATE - INTERVAL '30 days'
+                GROUP BY
+                    fid
+                )
+                
             SELECT 
-                COUNT(distinct reply.id) AS reply_count
-            FROM 
-                casts AS orig
-            JOIN 
-                casts AS reply 
-            ON 
-                orig.hash = reply.parent_hash
+                tr.fid, 
+                tr.reactions_received,
+                r.reply_count,
+                tc.count,
+                f.created_at as registration_date
+            FROM total_reactions tr
+            LEFT JOIN replies r ON tr.fid = r.fid
+            LEFT JOIN total_casts tc ON tr.fid = tc.fid
+            LEFT JOIN fids f ON tr.fid = f.fid
             WHERE 
-                orig.fid = ${user.fid}
-            AND 
-                reply.fid <> orig.fid
-            AND 
-                orig.created_at >= CURRENT_DATE - INTERVAL '30 days';
-    
+                tr.fid = ${user.fid}
         `)
-        client.release();
-        return data.rows
+        return data
     }
-    const checkReplies = await getReplies()
-    //   console.log({ checkReplies })
+    const activeBadgeRes = await checkActiveBadge()
+    console.log({ activeBadgeRes })
 
-
-
-
-    async function getTotalCasts() {
-        const client = await pool.connect();
-        const data = await client.query(`
-            SELECT 
-                COUNT(*)
-            FROM 
-                casts
-            WHERE 
-                fid = ${user.fid}
-            AND 
-                created_at >= CURRENT_DATE - INTERVAL '30 days';
-        `)
-        client.release();
-        return data.rows
-    }
-    const checkTotalCasts = await getTotalCasts()
-    //   console.log({ checkTotalCasts })
-
-
-
-
-    async function getRegisteredDate() {
-        const client = await pool.connect();
-        const data = await client.query(`
-            SELECT created_at 
-            FROM fids 
-            WHERE fid = ${user.fid};
-        `)
-        client.release();
-        return data.rows
-    }
-    const checkRegistration = await getRegisteredDate()
-    // console.log({ checkRegistration })
-    const registrationDate = new Date(checkRegistration[0].created_at)
+    const registrationDate = new Date(activeBadgeRes[0].registration_date)
     const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) 
 
-    const engagingCastsNumber = (parseInt(checkReaction.length != 0 ? checkReaction[0].reactions_received : 0) + parseInt(checkReplies[0].reply_count)) / parseInt(checkTotalCasts[0].count)
+    const engagingCastsNumber = (parseInt(activeBadgeRes[0].reactions_received != 0 ? activeBadgeRes[0].reactions_received : 0) + parseInt(activeBadgeRes[0].reply_count)) / parseInt(activeBadgeRes[0].count)
 
 
 
@@ -118,8 +90,8 @@ export default async function HomeFeed(userObject: any) {
         },
         followers: user.followerCount >= 100 ? true : false,
         checkRegistration: registrationDate < sevenDaysAgo ? true : false,
-        inboundReaction: checkReaction.length != 0 ? checkReaction[0].reactions_received >= 1 ? true : false : false,
-        inboundReplies: checkReplies[0].reply_count >= 1 ? true : false,
+        inboundReaction: parseInt(activeBadgeRes[0].reactions_received) != 0 ? parseInt(activeBadgeRes[0].reactions_received) >= 1 ? true : false : false,
+        inboundReplies: parseInt(activeBadgeRes[0].reply_count) >= 1 ? true : false,
         // reaction_count: checkReaction[0].reaction_count,
         // reply_count: checkReplies[0].reply_count,
         // count: checkTotalCasts[0].count,
@@ -147,7 +119,7 @@ export default async function HomeFeed(userObject: any) {
                             { !activeBadge.checkRegistration ? <li><a>❌ &nbsp;Account was created less than 7 days ago</a></li> : <li><a>✅ &nbsp;Account older than 7 days</a></li> }
                             { !activeBadge.inboundReaction ? <li><a>❌ &nbsp;User received 0 likes in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more likes in past 30 days</a></li> }
                             { !activeBadge.inboundReplies ? <li><a>❌ &nbsp;User received 0 replies in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li> }
-                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days <a className={style['requirement-subtitle']}>(User has {parseInt(checkReaction.length != 0 ? checkReaction[0].reactions_received : 0) + parseInt(checkReplies[0].reply_count) + " likes/replies out of " + parseInt(checkTotalCasts[0].count) + " casts"})</a></a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
+                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days <a className={style['requirement-subtitle']}>(User has {parseInt(activeBadgeRes[0].reactions_received != 0 ? activeBadgeRes[0].reactions_received : 0) + parseInt(activeBadgeRes[0].reply_count) + " likes/replies out of " + parseInt(activeBadgeRes[0].count) + " casts"})</a></a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
                         </ul>
                     }
                 </div>
