@@ -19,7 +19,7 @@ export default async function App(fid: any) {
 
         data.push({
             name: month + "/" + day,
-            followers: parseInt(value),
+            followers: parseInt(value as string),
         })
       }
 
