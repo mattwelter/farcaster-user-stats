@@ -27,7 +27,7 @@ export async function generateMetadata(
         description: 'The #1 source to see your Farcaster profile stats',
         manifest: '/manifest.json',
         icons: { apple: '/farcaster-user-stats-logo.png' },
-        themeColor: '#5240b5',
+        themeColor: '#3F1E94',
         openGraph: {
           title: 'Farcaster User Stats',
           description: 'The #1 source to see your Farcaster profile stats',
@@ -60,34 +60,26 @@ export default async function Page({ params }: {
                         <h1>{ user ? user.displayName : params.fid }</h1>
                         <h2>{ user ? "@" + user.username : params.fid }</h2>
                         <GetRanking fid={params.fid} />
-                        {/* <Suspense fallback={<a>Loading...</a>}>
-                            <Followers fid={params.fid}/>
-                        </Suspense> */}
+                        {/* <Followers fid={params.fid}/> */}
                     </div>
                 </div>
             </div>
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="activestatus-title">Active Status</h3>
-                    <Suspense fallback={<a>Checking active status...</a>}>
-                        <ActiveBadgeCheck userObject={user} />
-                    </Suspense>
+                    <ActiveBadgeCheck userObject={user} />
                 </div>
             </div>
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="castactivity-title">Cast Activity</h3>
-                    <Suspense fallback={<a>Loading activity...</a>}>
-                        <Activity fid={params.fid} />
-                    </Suspense>
+                    <Activity fid={params.fid} />
                 </div>
             </div>
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                    <Suspense fallback={<CastsLoading />}>
-                        <Casts fid={params.fid} username={user.username}/>
-                    </Suspense>
+                    <Casts fid={params.fid} username={user.username}/>
                 </div>
             </div>
         </main>

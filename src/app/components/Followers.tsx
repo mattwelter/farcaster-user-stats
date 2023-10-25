@@ -6,12 +6,23 @@ export default async function HomeFeed(fid: any) {
 
     const getData = async function(){
         const data = await db(`
-                SELECT
-                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at >= NOW() - INTERVAL '7 days') AS one,
-                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days') AS two,
-                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '21 days' AND NOW() - INTERVAL '14 days') AS three,
-                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '28 days' AND NOW() - INTERVAL '21 days') AS four,
-                (SELECT COUNT(*) FROM links WHERE target_fid = ${fid.fid} AND created_at BETWEEN NOW() - INTERVAL '35 days' AND NOW() - INTERVAL '28 days') AS five,
+            SELECT
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '1 day' AND NOW() THEN 1 ELSE 0 END) AS day14,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '2 days' AND NOW() - INTERVAL '1 day' THEN 1 ELSE 0 END) AS day13,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '3 days' AND NOW() - INTERVAL '2 days' THEN 1 ELSE 0 END) AS day12,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '4 days' AND NOW() - INTERVAL '3 days' THEN 1 ELSE 0 END) AS day11,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '5 days' AND NOW() - INTERVAL '4 days' THEN 1 ELSE 0 END) AS day10,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '6 days' AND NOW() - INTERVAL '5 days' THEN 1 ELSE 0 END) AS day9,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '7 days' AND NOW() - INTERVAL '6 days' THEN 1 ELSE 0 END) AS day8,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '8 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END) AS day7,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '9 days' AND NOW() - INTERVAL '8 days' THEN 1 ELSE 0 END) AS day6,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '10 days' AND NOW() - INTERVAL '9 days' THEN 1 ELSE 0 END) AS day5,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '11 days' AND NOW() - INTERVAL '10 days' THEN 1 ELSE 0 END) AS day4,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '12 days' AND NOW() - INTERVAL '11 days' THEN 1 ELSE 0 END) AS day3,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '13 days' AND NOW() - INTERVAL '12 days' THEN 1 ELSE 0 END) AS day2,
+                SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '13 days' THEN 1 ELSE 0 END) AS day1
+            FROM links
+            WHERE target_fid = ${fid.fid}
             `)
             return data
       }
@@ -19,16 +30,9 @@ export default async function HomeFeed(fid: any) {
       const data = await getData()
       console.log({ data })
 
-  //let percent = `${((res[0].one / res[0].two) * 100)}`.split(".")[0] // Multiply by 100 to get % and not decimal
-
   return (
     <>
         <TinyChart fid={data} />
-        {/* <div className={style['followers-wrapper']}>
-            <div className={style['followers-wrapper']}>
-                <a>{ res[0].last_7_days } followers &nbsp; { percent }% since last week</a>
-            </div>
-        </div> */}
     </>
     )
 }

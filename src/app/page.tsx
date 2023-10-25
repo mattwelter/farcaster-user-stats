@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   description: 'The #1 source to see your Farcaster profile stats',
   manifest: '/manifest.json',
   icons: { apple: '/farcaster-user-stats-logo.png' },
-  themeColor: '#5240b5',
+  themeColor: '#3F1E94',
   openGraph: {
     title: 'Farcaster User Stats',
     description: 'The #1 source to see your Farcaster profile stats',

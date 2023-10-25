@@ -39,10 +39,9 @@
 
 .popular-users th {
     text-align: left;
-    font-weight: 800;
-    padding: 6px 2px;
+    font-weight: 600;
+    padding: 10px 2px;
     font-size: 12px;
-    text-transform: uppercase;
 }
 
 .popular-users-wrapper tr td:nth-child(1), .popular-users-wrapper tr th:nth-child(1) {
@@ -50,8 +49,9 @@
 }
 
 .popular-users table thead tr:nth-child(1){
-    background: white;
-    color: #333;
+    background: #3F1E93;
+    color: white;
+    border-radius: 4px;
 }
 
 .popular-users-wrapper button:hover {
@@ -62,10 +62,16 @@
 .popular-users table {
     width: 100%;
     border-spacing: 0px 2px;
+    background: #6E3DEC;
+    padding: 8px 8px;
 }
 
 .popular-users-wrapper .table-item td {
     padding: 8px 4px;
+}
+
+.popular-users-wrapper tr:nth-child(even) {
+    background: #7B48FE;
 }
 
 .table-item tr > th,
