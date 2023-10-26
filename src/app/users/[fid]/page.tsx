@@ -40,7 +40,7 @@ export default async function Page({ params }: {
     params: { fid: string }
 }) {
 
-    const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}`, { method: "GET" });
+    const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}&viewerFid=3`, { method: "GET" });
     const userResponse = await getUser.json();
     let user = userResponse.result.user;
     console.log({ user })
@@ -81,7 +81,7 @@ export default async function Page({ params }: {
                     <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
                     <Casts fid={params.fid} username={user.username}/>
                 </div>
-                <a>{user.followerCount}</a>
+                {user.followerCount}
             </div>
         </main>
     )
