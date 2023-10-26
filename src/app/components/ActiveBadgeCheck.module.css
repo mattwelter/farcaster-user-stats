@@ -1,3 +1,23 @@
+.badge-check-wrapper {
+    background: #a990e1;
+    padding: 2px;
+    border-radius: 4px;
+}
+
+.badge-check {
+    padding: 8px;
+    border-radius: 4px;
+    background: #423a6d;;
+}
+
+.badge-check a {
+    color: white;
+}
+
+.verified-active {
+
+}
+
 .badge-check ul {
     list-style-type: none;
     padding-left: 0;

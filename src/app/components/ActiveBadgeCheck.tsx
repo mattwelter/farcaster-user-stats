@@ -7,8 +7,14 @@ export default async function HomeFeed(userObject: any) {
 
     async function checkActiveBadge() {
         const data = await db(`
-            WITH 
-                total_reactions AS (
+            WITH user_base AS (
+                SELECT 
+                    ${user.fid} AS fid,
+                    COALESCE(f.created_at, CURRENT_DATE) as registration_date
+                FROM fids f
+                WHERE f.fid = ${user.fid}
+            ),
+            total_reactions AS (
                 SELECT
                     c.fid AS fid,
                     COUNT(*) AS reactions_received
@@ -19,8 +25,8 @@ export default async function HomeFeed(userObject: any) {
                     r.timestamp >= current_timestamp - interval '30' day
                 GROUP BY
                     c.fid
-                ),
-                replies AS (
+            ),
+            replies AS (
                 SELECT 
                     orig.fid,
                     COUNT(distinct reply.id) AS reply_count
@@ -38,8 +44,8 @@ export default async function HomeFeed(userObject: any) {
                     orig.created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
                     orig.fid
-                ),
-                total_casts AS (
+            ),
+            total_casts AS (
                 SELECT 
                     fid,
                     COUNT(*) as count
@@ -51,30 +57,36 @@ export default async function HomeFeed(userObject: any) {
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
                     fid
-                )
-                
+            )
+            
             SELECT 
-                tr.fid, 
-                tr.reactions_received,
-                r.reply_count,
-                tc.count,
-                f.created_at as registration_date
-            FROM total_reactions tr
-            LEFT JOIN replies r ON tr.fid = r.fid
-            LEFT JOIN total_casts tc ON tr.fid = tc.fid
-            LEFT JOIN fids f ON tr.fid = f.fid
-            WHERE 
-                tr.fid = ${user.fid}
+                ub.fid, 
+                COALESCE(tr.reactions_received, 0) AS reactions_received,
+                COALESCE(r.reply_count, 0) AS reply_count,
+                COALESCE(tc.count, 0) AS count,
+                ub.registration_date
+            FROM 
+                user_base ub
+            LEFT JOIN 
+                total_reactions tr ON ub.fid = tr.fid
+            LEFT JOIN 
+                replies r ON ub.fid = r.fid
+            LEFT JOIN 
+                total_casts tc ON ub.fid = tc.fid
         `)
         return data
     }
     const activeBadgeRes = await checkActiveBadge()
     console.log({ activeBadgeRes })
 
-    const registrationDate = new Date(activeBadgeRes[0].registration_date)
+    const defaultDate = new Date().toJSON()
+    const registrationDate = new Date(activeBadgeRes[0].registration_date || defaultDate)
     const sevenDaysAgo: Date = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) 
+    const reactions = parseInt(activeBadgeRes[0].reactions_received)
+    const replyCount = parseInt(activeBadgeRes[0].reply_count)
+    const castCount = parseInt(activeBadgeRes[0].count)
 
-    const engagingCastsNumber = (parseInt(activeBadgeRes[0].reactions_received != 0 ? activeBadgeRes[0].reactions_received : 0) + parseInt(activeBadgeRes[0].reply_count)) / parseInt(activeBadgeRes[0].count)
+    const engagingCastsNumber = ((reactions != 0 ? reactions : 0) + replyCount) / parseInt(activeBadgeRes[0].count)
 
 
 
@@ -108,7 +120,7 @@ export default async function HomeFeed(userObject: any) {
                     {
                         activeBadge.active ?
                         
-                        <a>Verified active ✅</a>
+                        <a className={style['verified-active']}>Verified active ✅</a>
                         :
                         <ul>
                             { !activeBadge.connectedAddress ? <li><a>❌ &nbsp;User needs to connect an Ethereum address</a></li> : <li><a>✅ &nbsp;User has connected Ethereum address</a></li> }
