@@ -81,7 +81,6 @@ export default async function Page({ params }: {
                     <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
                     <Casts fid={params.fid} username={user.username}/>
                 </div>
-                {user.followerCount}
             </div>
         </main>
     )
