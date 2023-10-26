@@ -43,7 +43,7 @@ export default async function Page({ params }: {
     const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}`, { method: "GET" });
     const userResponse = await getUser.json();
     let user = userResponse.result.user;
-    console.log(user)
+    console.log({ user })
 
     return (
         <main className={style['top-bottom-padding']}>
