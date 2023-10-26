@@ -115,8 +115,8 @@ export default async function HomeFeed(userObject: any) {
 
     return (
         <>
-            <div className={style['badge-check-wrapper']}>
-                <div className={style['badge-check']}>
+            <div className={`${style['badge-check-wrapper']} ${ activeBadge.active ? style['active-bg-wrapper'] : style['not-active-bg-wrapper']}`}>
+                <div className={`${style['badge-check']} ${ activeBadge.active ? style['active-bg'] : style['not-active-bg']}`}>
                     {
                         activeBadge.active ?
                         

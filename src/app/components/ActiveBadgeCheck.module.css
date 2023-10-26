@@ -5,7 +5,7 @@
 }
 
 .badge-check {
-    padding: 8px;
+    padding: 16px;
     border-radius: 4px;
     background: #423a6d;;
 }
@@ -21,8 +21,27 @@
 .badge-check ul {
     list-style-type: none;
     padding-left: 0;
+    margin: 0;
 }
 
 .requirement-subtitle {
     color: #b6b6b6;
+}
+
+/*  */
+
+.active-bg {
+    background: #005c34;
+}
+
+.active-bg-wrapper {
+    background: #11c918;
+}
+
+.not-active-bg {
+    background: #591524;
+}
+
+.not-active-bg-wrapper {
+    background: #f05555;
 }
