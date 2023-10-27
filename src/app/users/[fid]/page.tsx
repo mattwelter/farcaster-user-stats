@@ -61,7 +61,7 @@ export default async function Page({ params }: {
                         <img className="profile-pic" src={user.pfp.url ? user.pfp.url : "/avatar.png"} height="48px" width="48px" />
                         <h1>{ user ? user.displayName : params.fid }</h1>
                         <h2>{ user ? "@" + user.username : params.fid }</h2>
-                        <Suspense fallback={<a>Rank #_ of _____</a>}>
+                        <Suspense fallback={<a className={`${style['rank-loading']}`}>&nbsp;• Loading...</a>}>
                             <GetRanking fid={params.fid} />
                         </Suspense>
                     </div>
@@ -70,7 +70,7 @@ export default async function Page({ params }: {
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="activestatus-title">Active Status</h3>
-                    <Suspense fallback={<a>Loading...</a>}>
+                    <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                         <ActiveBadgeCheck userObject={user} />
                     </Suspense>
                 </div>
@@ -78,7 +78,7 @@ export default async function Page({ params }: {
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="week-summary-title">7 day summary</h3>
-                    <Suspense fallback={<a>Loading...</a>}>
+                    <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                         <Followers fid={params.fid}/>
                     </Suspense>
                 </div>
@@ -86,7 +86,7 @@ export default async function Page({ params }: {
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="castactivity-title">Cast Activity</h3>
-                    <Suspense fallback={<a>Loading...</a>}>
+                    <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                         <Activity fid={params.fid} />
                     </Suspense>
                 </div>

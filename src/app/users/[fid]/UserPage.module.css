@@ -39,6 +39,16 @@
     color: #EAEAEA;
 }
 
+/* Loading Styles */
+
+.rank-loading {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.4px;
+    color: #B7B4BE;
+}
+
+/* Responsive */
 
 @media only screen and (max-width: 600px) {
     .neighbors {
