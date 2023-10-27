@@ -5,30 +5,20 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 export default async function App(fid: any) {
 
-    const rawData = fid.fid[0]
+    const rawData = fid.fid
     const data = []
 
-    for (const [key, value] of Object.entries(rawData)) {
-        var daysAgo = key.replace("day", "")
-        var x = new Date().getDate()
-        var date = new Date().setDate(x - parseInt(daysAgo))
-        console.log({ date })
-
-        var day = new Date(date).getDate()
-        var month = new Date(date).getMonth() + 1
-
+    for (let i=0; i<rawData.length; i++) {
         data.push({
-            name: month + "/" + day,
-            followers: parseInt(value as string),
+            followers: parseInt(fid.fid[i] as string),
         })
       }
 
     console.log(data)
 
     return (
-            <LineChart width={500} height={100} data={data}>
-                <Line type="monotone" dataKey="followers" stroke="#8884d8" strokeWidth={1} />
-                {/* <XAxis dataKey="name" angle={90}/> */}
+            <LineChart width={250} height={50} data={data}>
+                <Line type="monotone" dataKey="followers" stroke="#8884d8" strokeWidth={1} dot={false}/>
             </LineChart>
     );
   }

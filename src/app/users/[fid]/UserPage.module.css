@@ -33,6 +33,12 @@
     text-decoration: underline;
 }
 
+.week-summary-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: #EAEAEA;
+}
+
 
 @media only screen and (max-width: 600px) {
     .neighbors {

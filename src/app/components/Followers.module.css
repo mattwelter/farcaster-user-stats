@@ -1,0 +1,16 @@
+.sub-heading {
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.sub-heading-percentage {
+    font-size: 14px;
+}
+
+.negative-change {
+    color: rgb(255, 71, 71);
+}
+
+.positive-change {
+    color: rgb(124 242 92);
+}
