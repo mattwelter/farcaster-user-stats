@@ -24,7 +24,11 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, get access to [Neynar](https://neynar.xyz/) API and request access to their DB.  
+
+Create a `.env` file and copy the content from `example.env.local` into your new `.env` file. Fill out all fields in your `.env` file with the API and DB information from your Neynar account.
+
+Now, run the development server:
 
 ```bash
 npm run dev
