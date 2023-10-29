@@ -5,7 +5,7 @@ import Search from './components/Search'
 import PopularUsers from './components/PopularUsers'
 import PopularUsersLoading from './components/loading/PopularUsers-Loading'
 import { Suspense } from 'react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
   title: `Farcaster User Stats`,
@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     description: 'The #1 source to see your Farcaster profile stats',
     images: ['/og_image.png']
   }
+}
+
+export const viewport: Viewport = {
+  themeColor: '#3F1E94'
 }
 
 export const dynamic = 'force-dynamic';

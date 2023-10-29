@@ -1,5 +1,5 @@
 import style from './UserPage.module.css'
-import type { Metadata, ResolvingMetadata } from 'next'
+import type { Metadata, ResolvingMetadata, Viewport } from 'next'
 import { Suspense } from 'react'
 import Casts from '../../components/MostLikedCasts'
 import CastsLoading from '../../components/loading/Casts-Loading'
@@ -36,6 +36,10 @@ export async function generateMetadata(
         }
     }
 }
+
+export const viewport: Viewport = {
+    themeColor: '#3F1E94'
+  }
 
 export default async function Page({ params }: {
     params: { fid: string }
