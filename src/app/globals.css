@@ -110,7 +110,10 @@ main {
     margin-bottom: 32px;
     font-size: 17px;
     color: #d6cde8;
-    line-height: 20px;
+    line-height: 24px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ::-webkit-input-placeholder {
@@ -184,6 +187,9 @@ main {
         margin-left: 0px;
         font-weight: 400;
         margin-bottom: 24px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .mostlikedcasts-title, .castactivity-title, .activestatus-title, .week-summary-title {
