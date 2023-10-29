@@ -1,4 +1,4 @@
-import style from './trending.module.css'
+import style from './Trending.module.css'
 import { Suspense } from 'react'
 import PopularUsers from '../components/PopularUsers'
 import PopularUsersLoading from '../components/loading/PopularUsers-Loading'
@@ -31,7 +31,7 @@ export default async function Page() {
 
                 </div>
             </div>
-            
+
             <Suspense fallback={<PopularUsersLoading />}>
                 <PopularUsers />
             </Suspense>
