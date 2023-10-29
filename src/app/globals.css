@@ -137,7 +137,7 @@ main {
     }
 
     .header-padding {
-        padding: 0px 8px 0px 8px;
+        padding: 0px 16px 0px 16px;
     }
 
     .userFeedHeader {
@@ -148,7 +148,7 @@ main {
         margin-left: 0px !important;
         justify-content: center;
         margin-bottom: -20px;
-        margin-top: 58px;
+        margin-top: 0px;
         height: auto;
         display: block;
     }
@@ -156,7 +156,8 @@ main {
     .header_h1 img {
         width: 56px !important;
         height: 56px !important;
-        margin-bottom: 8px;
+        margin-bottom: 2px;
+        margin-left: -6px;
     }
 
     .homepage-hero {
@@ -165,6 +166,7 @@ main {
 
     .homepage-hero h1 {
         font-size: 52px;
+        font-weight: 800;
         line-height: 50px;
         text-align: left;
         margin-bottom: 32px;
@@ -175,11 +177,13 @@ main {
 
     .homepage-hero p {
         margin: 0 auto;
-        font-size: 15px !important;
-        line-height: 22px;
+        font-size: 17px !important;
+        line-height: 24px;
         letter-spacing: 0.2px !important;
         text-align: left;
         margin-left: 0px;
+        font-weight: 400;
+        margin-bottom: 24px;
     }
 
     .mostlikedcasts-title, .castactivity-title, .activestatus-title, .week-summary-title {

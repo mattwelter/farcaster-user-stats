@@ -1,0 +1,29 @@
+.navigation nav {
+    overflow: scroll;
+    padding: 32px 0px;
+}
+
+.navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.navigation li {
+    display: inline;
+}
+
+.navigation li a {
+    text-align: center;
+    margin-right: 24px;
+    text-decoration: none;
+    transition: 0.125s ease;
+    cursor: pointer;
+    padding-bottom: 4px;
+    border-bottom: 1px solid white;
+}
+
+.navigation li a:hover {
+    opacity: 0.65;
+}

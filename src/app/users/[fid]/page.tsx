@@ -8,6 +8,7 @@ import GetRanking from '../../components/GetRanking'
 import Activity from '../../components/CastActivity'
 import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 import Followers from '../../components/Followers'
+import Navigation from '../../components/UserPageComponentNavigation'
 
 type Props = {
     params: { fid: string }
@@ -67,6 +68,11 @@ export default async function Page({ params }: {
                     </div>
                 </div>
             </div>
+            
+            {/* <div className={`${style['section-padding']} ${"width-500"}`}>
+                <Navigation />
+            </div> */}
+
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 <div>
                     <h3 className="activestatus-title">Active Status</h3>
