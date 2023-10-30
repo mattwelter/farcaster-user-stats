@@ -42,13 +42,13 @@ export default function Home() {
           <Suspense fallback={<p>Loading search...</p>}>
             <Search />
           </Suspense>
-          <div className={style['navigation']}>
+          {/* <div className={style['navigation']}>
             <nav>
               <ul>
                 <li><a href="/trending">Trending</a></li>
               </ul>
             </nav>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>
