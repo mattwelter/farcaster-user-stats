@@ -1,14 +1,15 @@
 import style from './UserPage.module.css'
 import type { Metadata, ResolvingMetadata, Viewport } from 'next'
 import { Suspense } from 'react'
-import Casts from '../../components/MostLikedCasts'
-import CastsLoading from '../../components/loading/Casts-Loading'
+import Body from './body'
 import SearchTopBar from '../../components/Search-TopBar'
 import GetRanking from '../../components/GetRanking'
+import Casts from '../../components/MostLikedCasts'
+import CastsLoading from '../../components/loading/Casts-Loading'
 import Activity from '../../components/CastActivity'
 import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 import Followers from '../../components/Followers'
-import Navigation from '../../components/UserPageComponentNavigation'
+import Unfollowers from '../../components/Unfollowers'
 
 type Props = {
     params: { fid: string }
@@ -73,42 +74,48 @@ export default async function Page({ params }: {
                 </div>
             </div>
             
-            {/* <div className={`${style['section-padding']} ${"width-500"}`}>
-                <Navigation />
-            </div> */}
-
-            <div className={`${style['section-padding']} ${"width-500"}`}>
-                <div>
-                    <h3 className="activestatus-title">Active Status</h3>
-                    <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                        <ActiveBadgeCheck userObject={user} />
-                    </Suspense>
+            <Body>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
+                    <div>
+                        <h3 className="week-summary-title">7 day summary</h3>
+                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                            <Followers fid={params.fid}/>
+                        </Suspense>
+                    </div>
                 </div>
-            </div>
-            <div className={`${style['section-padding']} ${"width-500"}`}>
-                <div>
-                    <h3 className="week-summary-title">7 day summary</h3>
-                    <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                        <Followers fid={params.fid}/>
-                    </Suspense>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
+                    <div>
+                        <h3 className="castactivity-title">Cast Activity</h3>
+                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                            <Activity fid={params.fid} />
+                        </Suspense>
+                    </div>
                 </div>
-            </div>
-            <div className={`${style['section-padding']} ${"width-500"}`}>
-                <div>
-                    <h3 className="castactivity-title">Cast Activity</h3>
-                    <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                        <Activity fid={params.fid} />
-                    </Suspense>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
+                    <div>
+                        <h3 className="activestatus-title">Active Status</h3>
+                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                            <ActiveBadgeCheck userObject={user} />
+                        </Suspense>
+                    </div>
                 </div>
-            </div>
-            <div className={`${style['section-padding']} ${"width-500"}`}>
-                <div>
-                    <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                    <Suspense fallback={<CastsLoading />}>
-                        <Casts fid={params.fid} username={user.username}/>
-                    </Suspense>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
+                    <div>
+                        <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
+                        <Suspense fallback={<CastsLoading />}>
+                            <Casts fid={params.fid} username={user.username}/>
+                        </Suspense>
+                    </div>
                 </div>
-            </div>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
+                    <div>
+                        <h3 className="mostlikedcasts-title">Recently Unfollowed By</h3>
+                        <Suspense fallback={<CastsLoading />}>
+                            <Unfollowers fid={params.fid}/>
+                        </Suspense>
+                    </div>
+                </div>
+            </Body>
         </main>
     )
 }

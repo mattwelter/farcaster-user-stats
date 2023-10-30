@@ -7,6 +7,8 @@ FarcasterUserStats is a website that allows anybody to see basic statistics for 
 ## To-do
 - [x] Search for users by username
 - [x] User pages
+- - [x] Tabs switching between components
+- - [x] 7 day follower summary
 - - [x] Cast activity graph
 - - - [x] Cast Activity tooltip (showing date and # of casts)
 - - [x] Feed of top liked casts
@@ -17,7 +19,7 @@ FarcasterUserStats is a website that allows anybody to see basic statistics for 
 - [x] Mobile friendly CSS styling
 - - [ ] Cast Activity responsiveness, based of viewport
 - [ ] Global heat map of user locations
-- [ ] Add "Hatecast.xyz" components to the profile pages
+- [x] Add "Hatecast.xyz" components to the profile pages
 
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).

@@ -1,0 +1,50 @@
+/* .unfollows-wrapper div:nth-child(even) {
+    background-color: #4d4385;
+} */
+
+.unfollowCard {
+    background-color: #3a2e7b;
+    border: 2px solid #49399f;
+    text-align: center;
+    margin: 0px 0px 12px 0px;
+    padding: 18px 0px 26px 0px;
+    border-radius: 8px;
+}
+
+.unfollowCard > a, .unfollowCard > a:visited {
+    color: #a49ed2;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 12px */
+    letter-spacing: 0.48px;
+}
+
+.unfollowCard h3 a:hover {
+    opacity: 0.65 !important;
+    padding-bottom: 6px;
+}
+
+.unfollowCard h3 {
+    color: #FFF;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0.6px;
+    padding-top: 4px;
+    margin: 0;
+}
+
+.unfollowCard h3 a {
+    transition: 0.125s ease;
+    padding-bottom: 4px;
+    border-bottom: 1px solid white;
+    text-decoration-line: none !important;
+    color: white !important;
+}
+
+@media only screen and (max-width: 600px) {
+
+}
