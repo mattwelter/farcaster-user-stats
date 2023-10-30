@@ -20,10 +20,54 @@
     text-decoration: none;
     transition: 0.125s ease;
     cursor: pointer;
-    padding-bottom: 4px;
-    border-bottom: 1px solid white;
+    color: #a6a4ab;
 }
 
 .navigation li a:hover {
     opacity: 0.65;
+}
+
+.navigation li a svg {
+    vertical-align: text-top;
+    margin-right: 2px;
+}
+
+.navigation .selected-tab {
+    font-weight: 600;
+    color: white;
+    padding-bottom: 8px;
+    border-bottom: 2px solid white;
+}
+
+.navigation .selected-tab svg path {
+    fill: white;
+}
+
+.navigation::after {
+    content: " ";
+    position: absolute;
+    display: block;
+    width: 40px;
+    height: 85px;
+    margin-top: -85px;
+    margin-left: 460px;
+    background: rgb(27,26,31);
+    background: linear-gradient(90deg, rgba(27,26,31,0) 0%, rgba(27,26,31,0.6685267857142857) 53%, rgba(27,26,31,1) 100%);  
+}
+
+@media only screen and (max-width: 600px) {
+    .navigation {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+
+    .navigation::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }
+    
+    .navigation::after {
+        margin-left: calc(100vw - 72px);
+        background: rgb(27,26,31);
+        background: linear-gradient(90deg, rgba(27,26,31,0) 0%, rgba(37,34,52,0.6601234243697479) 53%, rgba(37,34,52,1) 100%);
+    }
 }
