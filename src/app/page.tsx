@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Head from 'next/head'
-import styles from './page.module.css'
+import style from './page.module.css'
 import Search from './components/Search'
 import PopularUsers from './components/PopularUsers'
 import PopularUsersLoading from './components/loading/PopularUsers-Loading'
@@ -29,7 +29,7 @@ export const dynamic = 'force-dynamic';
 export default function Home() {
 
   return (
-    <main className={styles.main}>
+    <main className={style.main}>
       <div className="homepage-hero-wrapper">
         <div className="header-padding homepage-hero">
           <div>
@@ -42,6 +42,13 @@ export default function Home() {
           <Suspense fallback={<p>Loading search...</p>}>
             <Search />
           </Suspense>
+          <div className={style['navigation']}>
+            <nav>
+              <ul>
+                <li><a href="/trending">Trending</a></li>
+              </ul>
+            </nav>
+          </div>
         </div>
       </div>
     </main>

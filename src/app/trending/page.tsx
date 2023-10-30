@@ -3,7 +3,24 @@ import { Suspense } from 'react'
 import PopularUsers from '../components/PopularUsers'
 import PopularUsersLoading from '../components/loading/PopularUsers-Loading'
 import SearchTopBar from '../components/Search-TopBar'
-import GetRanking from '../components/GetRanking'
+import type { Metadata, Viewport } from 'next'
+
+export const metadata: Metadata = {
+    title: `Farcaster User Stats - Trending`,
+    description: 'The #1 source to see your Farcaster profile stats',
+    manifest: '/manifest.json',
+    icons: { apple: '/farcaster-user-stats-logo.png' },
+    themeColor: '#3F1E94',
+    openGraph: {
+      title: 'Farcaster User Stats - Trending',
+      description: 'The #1 source to see your Farcaster profile stats',
+      images: ['/og_image.png']
+    }
+}
+
+export const viewport: Viewport = {
+    themeColor: '#3F1E94'
+}
 
 export default async function Page() {
 

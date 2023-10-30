@@ -40,7 +40,7 @@ export async function generateMetadata(
 
 export const viewport: Viewport = {
     themeColor: '#3F1E94'
-  }
+}
 
 export default async function Page({ params }: {
     params: { fid: string }
