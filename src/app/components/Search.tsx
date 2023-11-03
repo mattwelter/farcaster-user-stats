@@ -21,10 +21,11 @@ async function handleSearch(formData: FormData) {
 }
 
 // Debounce, search for likely users
-function useDebounce(callback, delay) {
+function useDebounce(callback: any, delay: any) {
   const timer = useRef();
 
-  const debouncedCallback = (...args) => {
+  const debouncedCallback = (...args: any[]) => {
+    const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
     if (timer.current) {
       clearTimeout(timer.current);
     }
