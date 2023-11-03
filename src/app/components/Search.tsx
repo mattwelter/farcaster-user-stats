@@ -20,29 +20,30 @@ async function handleSearch(formData: FormData) {
   return redirect(`/users/${res.result.user.fid}`)
 }
 
-// Debounce, search for likely users
+// Custom hook for debouncing
 function useDebounce(callback: any, delay: any) {
-  const timer = useRef();
+  // Using a closure to hold the timer id across renders
+  let timer: any;
 
-  const debouncedCallback = (...args: any[]) => {
-    const timer = useRef<ReturnType<typeof setTimeout> | null>(null); // <-- This should not be here
-    if (timer.current) {
-      clearTimeout(timer.current);
+  useEffect(() => {
+    // Clean up the timer on unmount
+    return () => {
+      if (timer) {
+        clearTimeout(timer);
+      }
+    };
+  }, [delay]); // Only recreate the cleanup if 'delay' changes
+
+  return (...args: any[]) => {
+    // Clear the timer if it exists
+    if (timer) {
+      clearTimeout(timer);
     }
-    timer.current = setTimeout(() => {
+    // Set a new timer
+    timer = setTimeout(() => {
       callback(...args);
     }, delay);
   };
-
-  useEffect(() => {
-    return () => {
-      if (timer.current) {
-        clearTimeout(timer.current);
-      }
-    };
-  }, []);
-
-  return debouncedCallback;
 }
 
 export default function Page() {
