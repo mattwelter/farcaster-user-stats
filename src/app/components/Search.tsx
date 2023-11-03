@@ -66,7 +66,7 @@ export default function Page() {
       setSearchResults([]);
     }
     setIsLoading(false);
-  }, 650);
+  }, 850);
 
   useEffect(() => {
     handleDebouncedSearch(username);
