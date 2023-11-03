@@ -66,6 +66,86 @@
     cursor: default !important;
 }
 
+
+/* <div className={style.results}>
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : searchResults.length === 0 && username ? (
+          <p>No results found for '{username}'</p>
+        ) : (
+          searchResults.map((user) => (
+            <div key={user.fid} className={style.resultItem}>
+              <div>
+                <strong>{user.display_name}</strong>
+                <p>@{user.username}</p>
+                <small>Followers: {user.follower_count}</small>
+              </div>
+            </div>
+          ))
+        )}
+      </div> */
+
+.results {
+    border-radius: 8px;
+    display: block;
+}
+
+.results .resultItem {
+    background: rgb(111 66 230);
+    /* border-bottom: 2px solid #ffffff78; */
+    margin-bottom: 8px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50px;
+}
+
+.results .resultItem:hover {
+    opacity: 0.65;
+}
+
+.results .resultItem p {
+    font-size: 14px;
+    text-align: left;
+    color: white;
+    width: 100%;
+    margin: 0 auto;
+    letter-spacing: 0.4px;
+}
+
+.results .resultItem svg {
+    width: 24px;
+    height: 24px;
+    float: right;
+    display: block;
+    margin-top: -36px;
+    margin-right: 10px;
+}
+
+.results .link-wrapper {
+    margin: 0 auto;
+    text-decoration: none;
+    opacity: 1;
+}
+
+.results .resultItem .name {
+    font-weight: 600;
+}
+
+.results .resultItem .username {
+
+}
+
+.results .resultItem img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    float: left;
+    border-radius: 50px;
+    margin-right: 4px;
+}
+
+
+
 @media only screen and (max-width: 600px) {
     /* .search {
         width: calc(100% - 56px) !important;
