@@ -25,6 +25,7 @@ function useDebounce(callback: any, delay: any) {
   const timer = useRef();
 
   const debouncedCallback = (...args: any[]) => {
+    const timer = useRef<ReturnType<typeof setTimeout> | null>(null); // <-- This should not be here
     if (timer.current) {
       clearTimeout(timer.current);
     }
