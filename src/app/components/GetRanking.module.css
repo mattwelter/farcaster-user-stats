@@ -51,6 +51,11 @@
     opacity: 0.65;
 } */
 
+.rank a {
+    color: inherit;
+    text-decoration: none;
+}
+
 @media only screen and (max-width: 600px) {
     .ranking-wrapper {
         width: calc(100vw - 16px);
