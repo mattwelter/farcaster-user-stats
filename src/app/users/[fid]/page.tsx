@@ -10,6 +10,7 @@ import Activity from '../../components/CastActivity'
 import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 import Followers from '../../components/Followers'
 import Unfollowers from '../../components/Unfollowers'
+import db from '../../api/db'
 
 type Props = {
     params: { fid: string }
@@ -41,6 +42,8 @@ export async function generateMetadata(
 export const viewport: Viewport = {
     themeColor: '#3F1E94'
 }
+
+export const dynamic = 'force-dynamic';
 
 export default async function Page({ params }: {
     params: { fid: string }
