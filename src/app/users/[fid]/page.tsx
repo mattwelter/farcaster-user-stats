@@ -9,6 +9,7 @@ import CastsLoading from '../../components/loading/Casts-Loading'
 import Activity from '../../components/CastActivity'
 import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 import Followers from '../../components/Followers'
+import Cast from '../../components/Casts'
 import Unfollowers from '../../components/Unfollowers'
 import db from '../../api/db'
 
@@ -76,6 +77,10 @@ export default async function Page({ params }: {
                     </div>
                 </div>
             </div>
+
+            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                <Cast fid={params.fid}/>
+            </Suspense>
             
             <Body>
                 <div className={`${style['section-padding']} ${"width-500"}`}>

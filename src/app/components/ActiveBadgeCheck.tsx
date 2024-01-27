@@ -100,7 +100,7 @@ export default async function HomeFeed(userObject: any) {
             bio: user.profile.bio.text ? true : false,
             pfp: user.pfp.url ? true : false,
         },
-        followers: user.followerCount >= 100 ? true : false,
+        followers: user.followerCount >= 200 ? true : false,
         checkRegistration: registrationDate < sevenDaysAgo ? true : false,
         inboundReaction: parseInt(activeBadgeRes[0].reactions_received) != 0 ? parseInt(activeBadgeRes[0].reactions_received) >= 1 ? true : false : false,
         inboundReplies: parseInt(activeBadgeRes[0].reply_count) >= 1 ? true : false,
