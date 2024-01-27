@@ -18,8 +18,8 @@ export default async function HomeFeed() {
     <>
         <div className={style['popular-users-wrapper']}>
             <section>
-                <h2>Trending Users</h2>
-                <a className={style['header-subtitle']}>Users with the most engagement in the past 7 days. Engagement includes likes, replies, and recasts combined. <i>Updated seconds ago.</i></a>
+                <h2>Most Followed</h2>
+                <a className={style['header-subtitle']}>Top 100 users with the most followers. <i>Updated seconds ago.</i></a>
             </section>
             <div className={style['popular-users']}>
                 <div className={style['table-wrapper']}>

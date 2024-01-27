@@ -1,18 +1,18 @@
-import style from './Trending.module.css'
+import style from '../Trending.module.css'
 import { Suspense } from 'react'
-import PopularUsers from '../components/PopularUsers'
-import PopularUsersLoading from '../components/loading/PopularUsers-Loading'
-import SearchTopBar from '../components/Search-TopBar'
+import PopularUsers from '../../components/MostFollowedUsers'
+import MostFollowedUsersLoading from '../../components/loading/MostFollowedUsers-loading'
+import SearchTopBar from '../../components/Search-TopBar'
 import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
-    title: `Farcaster User Stats - Trending`,
+    title: `Farcaster User Stats - Most Followers`,
     description: 'The #1 source to see your Farcaster profile stats',
     manifest: '/manifest.json',
     icons: { apple: '/farcaster-user-stats-logo.png' },
     themeColor: '#3F1E94',
     openGraph: {
-      title: 'Farcaster User Stats - Trending',
+      title: 'Farcaster User Stats - Most Followers',
       description: 'The #1 source to see your Farcaster profile stats',
       images: ['/og_image.png']
     }
@@ -36,15 +36,19 @@ export default async function Page() {
                             <SearchTopBar />
                         </Suspense>
                     </section>
-
-                    {/* <div className="header-padding userFeedHeader">
-                        <h1>Trending</h1>
-                    </div> */}
-
                 </div>
             </div>
+            <div className={`${'navigation'} ${style['push-navigation-down']}`}>
+                <nav>
+                    <ul>
+                        <li><a href="/trending/ratio">Trending</a></li>
+                        <li><a href="/trending/followers">Most Followed</a></li>
+                        <li><a target="_blank" href="https://hatecast.xyz">Most Hated</a></li>
+                    </ul>
+                </nav>
+            </div>
 
-            <Suspense fallback={<PopularUsersLoading />}>
+            <Suspense fallback={<MostFollowedUsersLoading />}>
                 <PopularUsers />
             </Suspense>
         </main>

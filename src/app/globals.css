@@ -120,6 +120,43 @@ main {
    color: rgb(174, 170, 199) !important;
 }
 
+.navigation {
+    text-align: center;
+    margin-top: -32px;
+}
+
+.navigation nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+.navigation nav li {
+    display: inline;
+}
+
+.navigation nav li a {
+    text-align: center;
+    margin-right: 24px;
+    text-decoration: none;
+    cursor: pointer;
+    color: #cfcfd4;
+    font-weight: 400;
+    padding-bottom: 3px;
+    /* border-bottom: 2px solid #cfcfd4; */
+}
+
+.navigation nav li a:hover {
+    opacity: 0.65;
+}
+
+@media only screen and (max-width: 600px) {
+    .navigation {
+        text-align: left;
+    }
+}
+
 @media only screen and (max-width: 600px) {
     html {
         background-color: #252234;
