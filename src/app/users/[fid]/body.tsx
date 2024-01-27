@@ -29,10 +29,15 @@ export default function Body({
             </div>
 
             {/* @ts-ignore */}
-            { tab == 1 ? children[0] : tab == 2 ? children[2] : tab == 3 ? children[3] : tab == 4 ? children[4] : "" }
-
+            { tab == 1 ? children[0] : <></> }
             {/* @ts-ignore */}
-            { tab == 1 ? children[1] : tab == 2 ? "" : tab == 3 ? "" : "" }
+            { tab == 1 ? children[1] : <></> }
+            {/* @ts-ignore */}
+            { tab == 2 ? children[2] : <></> }
+            {/* @ts-ignore */}
+            { tab == 3 ? children[3] : <></> }
+            {/* @ts-ignore */}
+            { tab == 4 ? children[4] : <></> }
         </>
     )
 }

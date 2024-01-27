@@ -78,9 +78,9 @@ export default async function Page({ params }: {
                 </div>
             </div>
 
-            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+            {/* <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                 <Cast fid={params.fid}/>
-            </Suspense>
+            </Suspense> */}
             
             <Body>
                 <div className={`${style['section-padding']} ${"width-500"}`}>
