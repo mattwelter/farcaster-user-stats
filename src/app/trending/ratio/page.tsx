@@ -48,7 +48,7 @@ export default async function Page() {
                 <ul>
                     <li><a href="/trending/ratio">Trending</a></li>
                     <li><a href="/trending/followers">Most Followed</a></li>
-                    <li><a target="_blanl" href="https://hatecast.xyz">Most Hated</a></li>
+                    <li><a target="_blank" href="https://hatecast.xyz">Most Hated</a></li>
                 </ul>
                 </nav>
             </div>
