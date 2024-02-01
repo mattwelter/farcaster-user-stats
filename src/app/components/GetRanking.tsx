@@ -1,5 +1,5 @@
 import db from '../api/db'
-import style from './GetRanking.module.css'
+import style from './styles/GetRanking.module.css'
 
 export default async function HomeFeed(fid: any) {
 

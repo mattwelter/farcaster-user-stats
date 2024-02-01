@@ -1,5 +1,5 @@
 import db from '../api/db'
-import style from './CastActivity.module.css'
+import style from './styles/CastActivity.module.css'
 import Tooltip from './Tooltip';
 
 export default async function HomeFeed(fid: any) {

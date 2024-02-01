@@ -1,5 +1,5 @@
 import { DateTime } from "luxon";
-import style from './Unfollowers.module.css'
+import style from './styles/Unfollowers.module.css'
 import db from '../api/db'
 
 export default async function Unfollowers(fid: any) {

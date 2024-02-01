@@ -1,5 +1,5 @@
 import db from '../api/db'
-import style from './ActiveBadgeCheck.module.css'
+import style from './styles/ActiveBadgeCheck.module.css'
 
 export default async function HomeFeed(userObject: any) {
 

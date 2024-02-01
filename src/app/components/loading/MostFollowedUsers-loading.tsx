@@ -1,4 +1,4 @@
-import style from '../PopularUsers.module.css'
+import style from '../styles/PopularUsers.module.css'
 
 export default async function HomeFeed() {
   

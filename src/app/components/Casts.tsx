@@ -1,5 +1,5 @@
 import db from '../api/db'
-import style from './Followers.module.css'
+import style from './styles/Followers.module.css'
 import TinyChart from './TinyChart'
 
 export default async function HomeFeed(fid: any) {

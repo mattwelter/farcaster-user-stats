@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react'
-import style from './PopularUsers.module.css'
+import style from './styles/PopularUsers.module.css'
 
 export default function Page(data: any) {
 

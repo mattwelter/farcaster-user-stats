@@ -1,6 +1,6 @@
 'use client';
 
-import style from './MostLikedCasts.module.css'
+import style from './styles/MostLikedCasts.module.css'
 
 export default function Page(casts: any) {
 
