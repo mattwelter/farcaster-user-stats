@@ -42,7 +42,7 @@ export default function Page(data: any) {
                                     { event.rank }
                                 </td>
                                 <td>
-                                    { event.username }
+                                    <a href={`/users/${event.fid}`}>@{ event.username }</a>
                                 </td>
                                 <td>
                                     { event.follower_count }

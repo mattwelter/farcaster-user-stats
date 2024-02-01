@@ -10,6 +10,7 @@ export default async function HomeFeed(fid: any) {
             ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS rank,
             pwa.fname AS username,
             pwa.display_name,
+            pwa.fid,
             COUNT(*) AS follower_count
         FROM
             links l
@@ -19,7 +20,7 @@ export default async function HomeFeed(fid: any) {
             l.type = 'follow'
             AND l.deleted_at IS NULL
         GROUP BY
-            pwa.fname, pwa.display_name
+            pwa.fname, pwa.display_name, pwa.fid
         ORDER BY
             follower_count DESC
         LIMIT 100;

@@ -38,7 +38,7 @@ export default async function Page() {
                     </section>
                 </div>
             </div>
-            <div className={`${'navigation'} ${style['push-navigation-down']}`}>
+            <div className={`${'navigation'} ${style['on-leaderboard-page']}`}>
                 <nav>
                     <ul>
                         <li><a href="/trending/ratio">Trending</a></li>

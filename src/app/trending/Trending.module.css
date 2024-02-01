@@ -48,9 +48,14 @@
     color: #B7B4BE;
 }
 
-.push-navigation-down {
+.on-leaderboard-page {
     margin-top: 16px !important;
     margin-bottom: 48px !important;
+}
+
+.on-leaderboard-page nav ul li a {
+    color: white;
+    padding: 4px;
 }
 
 /* Responsive */
