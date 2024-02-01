@@ -77,10 +77,6 @@ export default async function Page({ params }: {
                     </div>
                 </div>
             </div>
-
-            {/* <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                <Cast fid={params.fid}/>
-            </Suspense> */}
             
             <Body>
                 <div className={`${style['section-padding']} ${"width-500"}`}>
@@ -88,6 +84,9 @@ export default async function Page({ params }: {
                         <h3 className="week-summary-title">7 day summary</h3>
                         <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                             <Followers fid={params.fid}/>
+                        </Suspense>
+                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                            <Cast fid={params.fid}/>
                         </Suspense>
                     </div>
                 </div>

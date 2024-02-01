@@ -58,7 +58,7 @@ export default async function HomeFeed(fid: any) {
                     ELSE (SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '7 days' AND NOW() THEN 1 ELSE 0 END) - SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END))::float / SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END) * 100
                 END AS percent_change
             FROM casts
-            WHERE target_fid = ${fid.fid}
+            WHERE fid = ${fid.fid}
     
             `)
             return data
@@ -69,7 +69,7 @@ export default async function HomeFeed(fid: any) {
 
   return (
     <>
-        <h3 className={style['sub-heading']}>{data[0].total_this_week} new casts <a className={`${style['sub-heading-percentage']} ${data[0].percent_change < 0 ? style['negative-change'] : style['positive-change']}`}>{data[0].percent_change ? data[0].percent_change.toFixed(2) : 100}%</a></h3>
+        <h3 className={style['sub-heading']}>{data[0].total_this_week} new casts <a className={`${style['sub-heading-percentage']} ${data[0].percent_change < 0 ? style['negative-change'] : style['positive-change']}`}>{data[0].percent_change ? data[0].percent_change.toFixed(2) : 100}% since last week</a></h3>
         <TinyChart fid={data[0].daily_counts} />
     </>
     )

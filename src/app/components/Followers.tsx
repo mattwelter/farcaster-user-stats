@@ -69,7 +69,7 @@ export default async function HomeFeed(fid: any) {
 
   return (
     <>
-        <h3 className={style['sub-heading']}>{data[0].total_this_week} new followers <a className={`${style['sub-heading-percentage']} ${data[0].percent_change < 0 ? style['negative-change'] : style['positive-change']}`}>{data[0].percent_change ? data[0].percent_change.toFixed(2) : 100}%</a></h3>
+        <h3 className={style['sub-heading']}>{data[0].total_this_week} new followers <a className={`${style['sub-heading-percentage']} ${data[0].percent_change < 0 ? style['negative-change'] : style['positive-change']}`}>{data[0].percent_change ? data[0].percent_change.toFixed(2) : 100}% since last week</a></h3>
         <TinyChart fid={data[0].daily_counts} />
     </>
     )
