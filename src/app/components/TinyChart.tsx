@@ -17,9 +17,11 @@ export default async function App(fid: any) {
     console.log(data)
 
     return (
-            <LineChart width={250} height={50} data={data}>
+          <ResponsiveContainer width="100%" height={50}>
+            <LineChart data={data}>
                 <Line type="monotone" dataKey="followers" stroke="#8884d8" strokeWidth={1} dot={false}/>
             </LineChart>
+          </ResponsiveContainer>
     );
   }
   
