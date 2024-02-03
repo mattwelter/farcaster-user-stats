@@ -118,10 +118,6 @@ export default async function HomeFeed(userObject: any) {
             <div className={`${style['badge-check-wrapper']} ${ activeBadge.active ? style['active-bg-wrapper'] : style['not-active-bg-wrapper']}`}>
                 <div className={`${style['badge-check']} ${ activeBadge.active ? style['active-bg'] : style['not-active-bg']}`}>
                     {
-{/*                         activeBadge.active ?
-                        
-                        <a className={style['verified-active']}>Verified active ✅</a>
-                        : */}
                         <ul>
                             { !activeBadge.connectedAddress ? <li><a>❌ &nbsp;User needs to connect an Ethereum address</a></li> : <li><a>✅ &nbsp;User has connected Ethereum address</a></li> }
                             { !activeBadge.profile.name ? <li><a>❌ &nbsp;User has no display name</a></li> : <li><a>✅ &nbsp;User has display name</a></li> }
@@ -133,7 +129,7 @@ export default async function HomeFeed(userObject: any) {
                             { !activeBadge.inboundReplies ? <li><a>❌ &nbsp;User received 0 replies in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li> }
                             { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days <a className={style['requirement-subtitle']}>(User has {parseInt(activeBadgeRes[0].reactions_received != 0 ? activeBadgeRes[0].reactions_received : 0) + parseInt(activeBadgeRes[0].reply_count) + " likes/replies out of " + parseInt(activeBadgeRes[0].count) + " casts"})</a></a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
                         </ul>
-{/*                     } */}
+                    }
                 </div>
             </div>
         </>
