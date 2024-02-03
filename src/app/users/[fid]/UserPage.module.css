@@ -39,6 +39,20 @@
     color: #EAEAEA;
 }
 
+.follow_counts ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.follow_counts ul li {
+    display: inline;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
 /* Loading Styles */
 
 .rank-loading {

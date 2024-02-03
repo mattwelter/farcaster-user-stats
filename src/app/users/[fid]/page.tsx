@@ -75,6 +75,12 @@ export default async function Page({ params }: {
                             <GetRanking fid={params.fid} />
                         </Suspense>
                     </div>
+                    {/* <div className={`${style['follow_counts']}`}>
+                        <ul>
+                            <li>{user.followerCount} followers</li>
+                            <li>{user.followingCount} following</li>
+                        </ul>
+                    </div> */}
                 </div>
             </div>
             
