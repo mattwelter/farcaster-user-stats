@@ -11,6 +11,7 @@ import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 import Followers from '../../components/Followers'
 import Cast from '../../components/Casts'
 import Unfollowers from '../../components/Unfollowers'
+import Chart from '../../components/Chart'
 import db from '../../api/db'
 
 type Props = {
@@ -125,6 +126,14 @@ export default async function Page({ params }: {
                         <h3 className="mostlikedcasts-title">Recently Unfollowed By</h3>
                         <Suspense fallback={<CastsLoading />}>
                             <Unfollowers fid={params.fid}/>
+                        </Suspense>
+                    </div>
+                </div>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
+                    <div>
+                        <h3 className="mostlikedcasts-title">Daily Followers</h3>
+                        <Suspense>
+                            <Chart fid={params.fid}/>
                         </Suspense>
                     </div>
                 </div>
