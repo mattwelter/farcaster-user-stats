@@ -152,6 +152,35 @@ main {
     opacity: 0.65;
 }
 
+
+
+
+
+
+
+/* ADDED maintenance WARNING */
+.warning {
+    width: 100%;
+    display: block;
+    text-align: center;
+    background: red;
+    color: white;
+    z-index: 9999;
+    position: fixed;
+    margin-top: -22px;
+}
+
+main {
+    margin-top: 24px;
+}
+/* ADDED maintenance WARNING */
+
+
+
+
+
+
+
 @media only screen and (max-width: 600px) {
     html {
         background-color: #252234;
