@@ -100,14 +100,14 @@ export default async function HomeFeed(userObject: any) {
             bio: user.profile.bio.text ? true : false,
             pfp: user.pfp.url ? true : false,
         },
-        followers: user.followerCount >= 200 ? true : false,
+        followers: user.followerCount >= 400 ? true : false,
         checkRegistration: registrationDate < sevenDaysAgo ? true : false,
         inboundReaction: parseInt(activeBadgeRes[0].reactions_received) != 0 ? parseInt(activeBadgeRes[0].reactions_received) >= 1 ? true : false : false,
         inboundReplies: parseInt(activeBadgeRes[0].reply_count) >= 1 ? true : false,
         // reaction_count: checkReaction[0].reaction_count,
         // reply_count: checkReplies[0].reply_count,
         // count: checkTotalCasts[0].count,
-        engagingCasts: engagingCastsNumber >= 1 ? true : false,
+        engagingCasts: engagingCastsNumber >= 1.2 ? true : false,
         engagingCastsNumber: engagingCastsNumber
     }
 
@@ -123,11 +123,15 @@ export default async function HomeFeed(userObject: any) {
                             { !activeBadge.profile.name ? <li><a>❌ &nbsp;User has no display name</a></li> : <li><a>✅ &nbsp;User has display name</a></li> }
                             { !activeBadge.profile.bio ? <li><a>❌ &nbsp;User has no bio</a></li> : <li><a>✅ &nbsp;User has a bio</a></li> }
                             { !activeBadge.profile.pfp ? <li><a>❌ &nbsp;User has no profile picture</a></li> : <li><a>✅ &nbsp;User has a profile picture</a></li> }
+<<<<<<< HEAD
                             { !activeBadge.followers ? <li><a>❌ &nbsp;User has less than 200 followers ({user.followerCount} total)</a></li> : <li><a>✅ &nbsp;User has more than 200 followers</a></li> }
+=======
+                            { !activeBadge.followers ? <li><a>❌ &nbsp;User has less than 400 followers ({user.followerCount} total)</a></li> : <li><a>✅ &nbsp;User has more than 400 followers</a></li> }
+>>>>>>> 355aac7b0528323e254b8412d291dc9c3c0e0050
                             { !activeBadge.checkRegistration ? <li><a>❌ &nbsp;Account was created less than 7 days ago</a></li> : <li><a>✅ &nbsp;Account older than 7 days</a></li> }
                             { !activeBadge.inboundReaction ? <li><a>❌ &nbsp;User received 0 likes in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more likes in past 30 days</a></li> }
                             { !activeBadge.inboundReplies ? <li><a>❌ &nbsp;User received 0 replies in past 30 days</a></li> : <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li> }
-                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days <a className={style['requirement-subtitle']}>(User has {parseInt(activeBadgeRes[0].reactions_received != 0 ? activeBadgeRes[0].reactions_received : 0) + parseInt(activeBadgeRes[0].reply_count) + " likes/replies out of " + parseInt(activeBadgeRes[0].count) + " casts"})</a></a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
+                            { !activeBadge.engagingCasts ? <li><a>❌ &nbsp;User has less engagement than total casts in past 30 days <a className={style['requirement-subtitle']}>(User has {parseFloat(activeBadgeRes[0].reactions_received != 0 ? activeBadgeRes[0].reactions_received : 0) + parseInt(activeBadgeRes[0].reply_count) + " likes/replies out of " + parseInt(activeBadgeRes[0].count) + " casts"})</a></a></li> : <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li> }
                         </ul>
                     }
                 </div>
