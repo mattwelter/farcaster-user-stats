@@ -15,8 +15,8 @@ export default function Page(casts: any) {
               {
                 cast.embeds.length != 0 ?
                 cast.embeds.length == 2 ?
-                ((cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png")) && (cast.embeds[1].url.includes(".jpeg") || cast.embeds[1].url.includes(".jpg") || cast.embeds[1].url.includes(".png")) ? <div className={style.cast_image_wrapper}><img className={`${style.text_image}`} src={cast.embeds[0].url} /> <img className={style.text_image} src={cast.embeds[1].url} /></div> : "") : 
-                (cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png") ? <img className={style.text_image} src={cast.embeds[0].url} /> : "")
+                ((cast.embeds[0].url ? (cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png")) : false) && (cast.embeds[1].url ? (cast.embeds[1].url.includes(".jpeg") || cast.embeds[1].url.includes(".jpg") || cast.embeds[1].url.includes(".png")) : false) ? <div className={style.cast_image_wrapper}><img className={`${style.text_image}`} src={cast.embeds[0].url} /> <img className={style.text_image} src={cast.embeds[1].url} /></div> : "") : 
+                ((cast.embeds[0].url ? (cast.embeds[0].url.includes(".jpeg") || cast.embeds[0].url.includes(".jpg") || cast.embeds[0].url.includes(".png")) : false) ? <img className={style.text_image} src={cast.embeds[0].url} /> : "")
                 : ""
               }
             </div>

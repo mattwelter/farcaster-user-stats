@@ -71,7 +71,7 @@ export default async function HomeFeed(fid: any) {
 
     return (
         <>
-            <h2 className={style.rank}>&nbsp;• <a href={'/trending/ratio'}>{ rank_data.length != 0 ? "Rank #" + rank_data[0].rank + " of " + rank_data[0].total_count : "Unranked" }</a></h2>
+            <h2 className={style.rank}>&nbsp;• <a href={'/trending/ratio'}>{ rank_data ? (rank_data.length != 0 ? "Rank #" + rank_data[0].rank + " of " + rank_data[0].total_count : "Unranked") : "Unranked." }</a></h2>
         </>
     )
 }
