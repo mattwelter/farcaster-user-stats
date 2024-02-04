@@ -31,7 +31,10 @@ export default function RootLayout({
     <>
       <html lang="en" className={inter.className}>
         <PlausibleProvider domain="farcasteruserstats.com">
-          <body><a className={'warning'}>Going under 1 hour maintenance today (Feb 4) at 10:30 AM PST</a>{children}</body>
+          <body>
+            {/* <a className={'warning'}>Going under 1 hour maintenance today (Feb 4) at 10:30 AM PST</a> */}
+            {children}
+          </body>
         </PlausibleProvider>
       </html>
     </>
