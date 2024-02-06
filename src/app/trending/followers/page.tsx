@@ -22,6 +22,8 @@ export const viewport: Viewport = {
     themeColor: '#3F1E94'
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function Page() {
 
     return (
