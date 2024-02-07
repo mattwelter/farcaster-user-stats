@@ -2,6 +2,8 @@ import db from '../api/db'
 import MostFollowedUsersClient from './MostFollowedUsersClient'
 import style from './styles/PopularUsers.module.css'
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomeFeed(fid: any) {
   
   const getData = async function(){
@@ -14,8 +16,11 @@ export default async function HomeFeed(fid: any) {
             COUNT(*) AS follower_count
         FROM
             links l
-        JOIN
-            profile_with_addresses pwa ON l.target_fid = pwa.fid
+        INNER JOIN (
+            SELECT fid, MAX(fname) AS fname, MAX(display_name) AS display_name
+            FROM profile_with_addresses
+            GROUP BY fid
+        ) pwa ON l.target_fid = pwa.fid
         WHERE
             l.type = 'follow'
             AND l.deleted_at IS NULL
