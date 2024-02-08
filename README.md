@@ -4,6 +4,17 @@
 
 FarcasterUserStats is a website that allows anybody to see basic statistics for a given Farcaster user.
 
+## .env.local file
+PostgreSQL DB access to a Farcaster hub. Retrieve a Neynar API key and hub DB access [here](https://neynar.com/)
+```
+DB_HOST=''
+DB_PORT=''
+DB_DATABASE=''
+DB_USER=''
+DB_PASS=''
+NEYNAR_API_KEY=''
+```
+
 ## To-do
 - [x] Search for users by username
 - [x] User pages
