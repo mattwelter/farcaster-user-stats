@@ -1,0 +1,35 @@
+.table {
+    width: 100%;
+    border: 1px solid white;
+    background-color: #502ea8;
+    padding: 4px;
+}
+
+.thead {
+    text-align: left;
+}
+
+.thead tr td {
+    padding: 0px 4px;
+}
+
+.tbody tr td {
+    /* border-bottom: 1px solid white; */
+    padding: 8px 4px;
+}
+
+.tbody tr:nth-child(odd) td {
+    background: #3f1e94;
+}
+
+.increase {
+    color: rgb(124 242 92);
+}
+
+.neutral {
+    color: #777;
+}
+
+.decrease {
+    color: red;
+}
