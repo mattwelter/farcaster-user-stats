@@ -41,7 +41,7 @@ export default function Body({
             {/* @ts-ignore */}
             { tab == 1 ? children[5] : <></> }
             {/* @ts-ignore */}
-            { tab == 1 ? children[6] : <></> }
+            {/* { tab == 1 ? children[6] : <></> } */}
         </>
     )
 }
