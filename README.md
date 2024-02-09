@@ -13,6 +13,7 @@ DB_DATABASE=''
 DB_USER=''
 DB_PASS=''
 NEYNAR_API_KEY=''
+REDIS_URL=''
 ```
 
 ## To-do
