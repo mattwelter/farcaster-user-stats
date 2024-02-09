@@ -130,14 +130,14 @@ export default async function Page({ params }: {
                         </Suspense>
                     </div>
                 </div>
-                {/* <div className={`${style['section-padding']} ${"width-500"}`}>
+                <div className={`${style['section-padding']} ${"width-500"}`}>
                     <div>
                         <h3 className="mostlikedcasts-title">Daily Followers</h3>
                         <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                             <DailyStats fid={params.fid}/>
                         </Suspense>
                     </div>
-                </div> */}
+                </div>
             </Body>
         </main>
     )
