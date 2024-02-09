@@ -176,7 +176,9 @@ main {
 /* ADDED maintenance WARNING */
 
 
-
+.white {
+    color:turquoise !important;
+}
 
 
 
