@@ -7,7 +7,7 @@ export default async function HomeFeed(userObject: any) {
     let user = userObject.userObject
 
     async function checkActiveBadge() {
-        const cacheKey = `dailystats:${user.fid}`;
+        const cacheKey = `activebadge:${user.fid}`;
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {

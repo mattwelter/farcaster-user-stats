@@ -21,22 +21,26 @@ export default async function UserFeed(fid: any, username: any) {
         ORDER BY total_likes DESC
         LIMIT 10;
       `)
+      for(let i=0; i<data.length; i++){
+        const buffer: Buffer = data[i].hash;
+        const hash: string = buffer.toString('hex');
+        const getCast = await fetch(`https://api.neynar.com/v2/farcaster/cast?type=hash&identifier=0x${hash}`, { method: "GET",
+        headers: {
+          'api_key': `${process.env.NEYNAR_API_KEY}`
+        }, });
+        const castResponse = await getCast.json();
+        console.log({castResponse})
+        if(castResponse.code && castResponse.code == "NotFound"){
+          data[i].link = 'https://warpcast.com/'
+        } else {
+          data[i].link = `https://warpcast.com/${castResponse.cast.author.username}/${castResponse.cast.hash}`;
+        }
+      }
       redis.set(cacheKey, JSON.stringify(data), 'EX', 180); // 3 minutes
       return data
     }
   }
   const casts = await getTotalLikedCasts()
-
-  for(let i=0; i<casts.length; i++){
-    const buffer: Buffer = casts[i].hash;
-    const hash: string = buffer.toString('hex');
-    const getCast = await fetch(`https://api.neynar.com/v2/farcaster/cast?type=hash&identifier=0x${hash}`, { method: "GET",
-		headers: {
-			'api_key': `${process.env.NEYNAR_API_KEY}`
-		}, });
-    const castResponse = await getCast.json();
-    casts[i].link = `https://warpcast.com/${castResponse.cast.author.username}/${castResponse.cast.hash}`;
-  }
 
   return (
     <>
