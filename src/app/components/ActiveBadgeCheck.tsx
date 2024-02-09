@@ -81,7 +81,7 @@ export default async function HomeFeed(userObject: any) {
                 LEFT JOIN 
                     total_casts tc ON ub.fid = tc.fid
             `)
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 180); // 3 minutes
+            redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
             return data
         }
     }

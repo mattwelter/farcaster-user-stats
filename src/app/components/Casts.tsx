@@ -67,7 +67,7 @@ export default async function HomeFeed(fid: any) {
                 WHERE fid = ${fid.fid}
         
                 `)
-                redis.set(cacheKey, JSON.stringify(data), 'EX', 180); // 3 minutes
+                redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
                 return data
             }
       }

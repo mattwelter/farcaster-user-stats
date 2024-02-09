@@ -72,7 +72,7 @@ export default async function HomeFeed(fid: any) {
           GROUP BY DATE(date_range.date)
           ORDER BY DATE(date_range.date);
           `)
-          redis.set(cacheKey, JSON.stringify(data), 'EX', 600); // 10 minutes
+          redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
           return data
     }
   }

@@ -36,7 +36,7 @@ export default async function UserFeed(fid: any, username: any) {
           data[i].link = `https://warpcast.com/${castResponse.cast.author.username}/${castResponse.cast.hash}`;
         }
       }
-      redis.set(cacheKey, JSON.stringify(data), 'EX', 600); // 10 minutes
+      redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
       return data
     }
   }

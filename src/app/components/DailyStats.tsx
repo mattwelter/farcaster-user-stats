@@ -69,7 +69,7 @@ export default async function HomeFeed(fid: any) {
                 date: formatDate(item.date), // Convert date to string
             }));
 
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 120); // 2 minutes
+            redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
 
             return data;
         }
