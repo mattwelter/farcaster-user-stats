@@ -58,7 +58,7 @@ export default async function Page({ params }: {
 
     return (
         <main className={style['top-bottom-padding']}>
-            <p>Sorry, you guys are still breaking my site lol. Gimme a few hours to fix this</p>
+            <p>You guys broke my site. Site down for now</p>
             
         </main>
     )
