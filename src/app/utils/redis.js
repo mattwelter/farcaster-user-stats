@@ -1,5 +1,9 @@
 import Redis from 'ioredis';
 
-const redis = new Redis(process.env.REDIS_URL); // Connects to 127.0.0.1:6379 by default, configure as needed
+const redis = new Redis({
+  host: process.env.REDIS_HOST, // Hostname of the Redis server
+  port: process.env.REDIS_PORT, // Port, typically 6379
+  password: process.env.REDIS_PASSWORD, // Redis password
+});
 
 export default redis;
