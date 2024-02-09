@@ -1,19 +1,28 @@
 import { DateTime } from "luxon";
 import style from './styles/Unfollowers.module.css'
 import db from '../api/db'
+import redis from '../utils/redis';
 
 export default async function Unfollowers(fid: any) {
 
   async function getUnfollows() {
-    const data = await db(`
-        SELECT *
-        FROM links
-        WHERE target_fid = ${fid.fid}
-        AND deleted_at IS NOT null
-        ORDER BY deleted_at DESC
-        LIMIT 20;
-      `)
-    return data
+    const cacheKey = `unfollowers:${fid.fid}`;
+      let cachedData = await redis.get(cacheKey);
+  
+      if (cachedData) {
+        return JSON.parse(cachedData); // Parse the stringified data back into JSON
+      } else {
+        const data = await db(`
+          SELECT *
+          FROM links
+          WHERE target_fid = ${fid.fid}
+          AND deleted_at IS NOT null
+          ORDER BY deleted_at DESC
+          LIMIT 20;
+        `)
+        redis.set(cacheKey, JSON.stringify(data), 'EX', 120); // 2 minutes
+        return data
+    }
   }
   const unfollows = await getUnfollows()
 

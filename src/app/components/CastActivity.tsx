@@ -1,6 +1,7 @@
 import db from '../api/db'
 import style from './styles/CastActivity.module.css'
 import Tooltip from './Tooltip';
+import redis from '../utils/redis';
 
 export default async function HomeFeed(fid: any) {
 
@@ -51,21 +52,29 @@ export default async function HomeFeed(fid: any) {
   }
   
   const getData = async function(){
-    const data = await db(`
-      WITH date_range AS (
-        SELECT NOW() - (n || ' days')::interval AS date
-        FROM generate_series(0, ${day}) AS n
-      )
-      SELECT DATE(date_range.date) AS date,
-            COUNT(casts.timestamp) AS castamount
-      FROM date_range
-      LEFT JOIN casts
-      ON DATE(date_range.date) = DATE(casts.timestamp)
-      AND casts.fid = ${fid.fid}
-      GROUP BY DATE(date_range.date)
-      ORDER BY DATE(date_range.date);
-      `)
-      return data
+    const cacheKey = `castactivity:${fid.fid}`;
+      let cachedData = await redis.get(cacheKey);
+  
+      if (cachedData) {
+          return JSON.parse(cachedData); // Parse the stringified data back into JSON
+      } else {
+        const data = await db(`
+          WITH date_range AS (
+            SELECT NOW() - (n || ' days')::interval AS date
+            FROM generate_series(0, ${day}) AS n
+          )
+          SELECT DATE(date_range.date) AS date,
+                COUNT(casts.timestamp) AS castamount
+          FROM date_range
+          LEFT JOIN casts
+          ON DATE(date_range.date) = DATE(casts.timestamp)
+          AND casts.fid = ${fid.fid}
+          GROUP BY DATE(date_range.date)
+          ORDER BY DATE(date_range.date);
+          `)
+          redis.set(cacheKey, JSON.stringify(data), 'EX', 600); // 10 minutes
+          return data
+    }
   }
 
   const data = await getData()

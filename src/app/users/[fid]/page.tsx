@@ -11,7 +11,7 @@ import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
 import Followers from '../../components/Followers'
 import Cast from '../../components/Casts'
 import Unfollowers from '../../components/Unfollowers'
-import EverydayFollows from '../../components/EverydayFollows'
+// import DailyStats from '../../components/DailyStats'
 import db from '../../api/db'
 
 type Props = {
@@ -129,14 +129,14 @@ export default async function Page({ params }: {
                         </Suspense>
                     </div>
                 </div>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
+                {/* <div className={`${style['section-padding']} ${"width-500"}`}>
                     <div>
                         <h3 className="mostlikedcasts-title">Daily Followers</h3>
                         <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                            <EverydayFollows fid={params.fid}/>
+                            <DailyStats fid={params.fid}/>
                         </Suspense>
                     </div>
-                </div>
+                </div> */}
             </Body>
         </main>
     )
