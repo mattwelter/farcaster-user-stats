@@ -21,7 +21,7 @@ export default async function UserFeed(fid: any, username: any) {
         ORDER BY total_likes DESC
         LIMIT 10;
       `)
-      redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 1 hour
+      redis.set(cacheKey, JSON.stringify(data), 'EX', 180); // 3 minutes
       return data
     }
   }
