@@ -1,4 +1,4 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import style from './styles/ActiveBadgeCheck.module.css'
 import redis from '../utils/redis';
 
@@ -13,7 +13,7 @@ export default async function HomeFeed(userObject: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
-            const data = await db(`
+            const response = await pool.query(`
                 WITH user_base AS (
                     SELECT 
                         ${user.fid} AS fid,
@@ -81,6 +81,7 @@ export default async function HomeFeed(userObject: any) {
                 LEFT JOIN 
                     total_casts tc ON ub.fid = tc.fid
             `)
+            const data = response.rows
             redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
             return data
         }

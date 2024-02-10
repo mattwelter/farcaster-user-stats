@@ -1,4 +1,4 @@
-import db from '../api/db';
+import { pool } from '../api/db'
 import style from './styles/EverydayFollows.module.css'
 import redis from '../utils/redis';
 
@@ -8,6 +8,7 @@ const formatDate = (date: any) => {
 };
 
 export default async function HomeFeed(fid: any) {
+
     const getData = async function() {
         const cacheKey = `dailystats:${fid.fid}`;
         let cachedData = await redis.get(cacheKey);
@@ -15,7 +16,7 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
-            let data = await db(`
+            let response = await pool.query(`
                 WITH Following AS (
                     SELECT 
                         DATE(timestamp) AS date,
@@ -60,8 +61,8 @@ export default async function HomeFeed(fid: any) {
                 FULL OUTER JOIN Casts ON COALESCE(Following.date, Followers.date) = Casts.date
                 ORDER BY date DESC
                 LIMIT 28;
-            
             `);
+            let data = response.rows;
             
             // Formatting the date of each item in the data
             data = data.map((item: any) => ({

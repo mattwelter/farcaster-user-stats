@@ -1,4 +1,4 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import style from './styles/Followers.module.css'
 import TinyChart from './TinyChart'
 import redis from '../utils/redis';
@@ -11,7 +11,7 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
-            const data = await db(`
+            const response = await pool.query(`
                 SELECT
                     ARRAY[
                         SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '4 hours' AND NOW() THEN 1 ELSE 0 END),
@@ -65,8 +65,8 @@ export default async function HomeFeed(fid: any) {
                     END AS percent_change
                 FROM casts
                 WHERE fid = ${fid.fid}
-        
                 `)
+                const data = response.rows;
                 redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
                 return data
             }

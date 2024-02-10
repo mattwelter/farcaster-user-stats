@@ -1,4 +1,4 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import style from './styles/Followers.module.css'
 import TinyChart from './TinyChart'
 import redis from '../utils/redis';
@@ -11,7 +11,7 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
-            const data = await db(`
+            const response = await pool.query(`
                 SELECT
                     ARRAY[
                         SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '4 hours' AND NOW() THEN 1 ELSE 0 END),
@@ -63,9 +63,10 @@ export default async function HomeFeed(fid: any) {
                         WHEN SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END) = 0 THEN NULL
                         ELSE (SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '7 days' AND NOW() THEN 1 ELSE 0 END) - SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END))::float / SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END) * 100
                     END AS percent_change
-                FROM links
-                WHERE target_fid = ${fid.fid}
+                    FROM links
+                    WHERE target_fid = ${fid.fid}
                 `)
+                const data = response.rows;
                 redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
                 return data
             }

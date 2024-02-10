@@ -1,4 +1,4 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import style from './styles/CastActivity.module.css'
 import Tooltip from './Tooltip';
 import redis from '../utils/redis';
@@ -58,7 +58,7 @@ export default async function HomeFeed(fid: any) {
       if (cachedData) {
           return JSON.parse(cachedData); // Parse the stringified data back into JSON
       } else {
-        const data = await db(`
+        const response = await pool.query(`
           WITH date_range AS (
             SELECT NOW() - (n || ' days')::interval AS date
             FROM generate_series(0, ${day}) AS n
@@ -72,6 +72,7 @@ export default async function HomeFeed(fid: any) {
           GROUP BY DATE(date_range.date)
           ORDER BY DATE(date_range.date);
           `)
+          const data = response.rows
           redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
           return data
     }

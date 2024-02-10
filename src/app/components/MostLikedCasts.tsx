@@ -1,4 +1,4 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import MostLikedCasts from './MostLikedCastsClient'
 import redis from '../utils/redis';
 
@@ -10,7 +10,7 @@ export default async function UserFeed(fid: any, username: any) {
     if (cachedData) {
         return JSON.parse(cachedData); // Parse the stringified data back into JSON
     } else {
-      const data = await db(`
+      const response = await pool.query(`
         SELECT c.hash, c.text, c.embeds, 
         COUNT(r.id) AS total_likes
         FROM casts AS c
@@ -21,6 +21,7 @@ export default async function UserFeed(fid: any, username: any) {
         ORDER BY total_likes DESC
         LIMIT 10;
       `)
+      const data = response.rows;
       for(let i=0; i<data.length; i++){
         const buffer: Buffer = data[i].hash;
         const hash: string = buffer.toString('hex');

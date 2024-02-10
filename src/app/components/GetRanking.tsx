@@ -1,4 +1,4 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import style from './styles/GetRanking.module.css'
 import redis from '../utils/redis';
 
@@ -10,7 +10,7 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
-            const data = await db(`
+            const response = await pool.query(`
                 WITH
                 total_casts AS (
                     SELECT
@@ -71,6 +71,7 @@ export default async function HomeFeed(fid: any) {
                 FROM ranked_data rd, total_records tr
                 WHERE fid = ${fid.fid};
             `)
+            const data = response.rows;
             redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
             return data
         }

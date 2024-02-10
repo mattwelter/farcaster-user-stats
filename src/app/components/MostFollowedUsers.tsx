@@ -1,9 +1,9 @@
-import db from '../api/db'
+import { pool } from '../api/db'
 import MostFollowedUsersClient from './MostFollowedUsersClient'
 import style from './styles/PopularUsers.module.css'
 import redis from '../utils/redis';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 export default async function HomeFeed(fid: any) {
     const getData = async function(){
@@ -13,7 +13,7 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
-            const data = await db(`
+            const response = await pool.query(`
                 SELECT
                     ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS rank,
                     pwa.fname AS username,
@@ -35,8 +35,8 @@ export default async function HomeFeed(fid: any) {
                 ORDER BY
                     follower_count DESC
                 LIMIT 100;
-
             `)
+            const data = response.rows;
             redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
             return data
         }

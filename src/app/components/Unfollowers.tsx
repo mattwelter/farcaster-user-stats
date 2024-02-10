@@ -1,6 +1,6 @@
 import { DateTime } from "luxon";
 import style from './styles/Unfollowers.module.css'
-import db from '../api/db'
+import { pool } from '../api/db'
 import redis from '../utils/redis';
 
 export default async function Unfollowers(fid: any, username: any) {
@@ -12,7 +12,7 @@ export default async function Unfollowers(fid: any, username: any) {
     if (cachedData) {
       return JSON.parse(cachedData); // Parse the stringified data back into JSON
     } else {
-      const data = await db(`
+      const response = await pool.query(`
         SELECT *
         FROM links
         WHERE target_fid = ${fid.fid}
@@ -20,6 +20,7 @@ export default async function Unfollowers(fid: any, username: any) {
         ORDER BY deleted_at DESC
         LIMIT 20;
       `)
+      const data = response.rows;
       // Sort unfollows by "Most recent" first
       data.sort(function(a: any, b: any){
         return new Date(b.deleted_at).valueOf() - new Date(a.deleted_at).valueOf();
