@@ -10,6 +10,9 @@ export default async function UserFeed(fid: any, username: any) {
     if (cachedData) {
         return JSON.parse(cachedData); // Parse the stringified data back into JSON
     } else {
+
+      const startTime = Date.now();
+
       const response = await pool.query(`
         SELECT c.hash, c.text, c.embeds, 
         COUNT(r.id) AS total_likes
@@ -21,6 +24,12 @@ export default async function UserFeed(fid: any, username: any) {
         ORDER BY total_likes DESC
         LIMIT 10;
       `)
+
+      const endTime = Date.now();
+      const timeDiff = endTime - startTime;
+      const timeInSeconds = timeDiff / 1000;
+      console.log("MostLikedCasts.tsx took", timeInSeconds, "milliseconds")
+
       const data = response.rows;
       for(let i=0; i<data.length; i++){
         const buffer: Buffer = data[i].hash;

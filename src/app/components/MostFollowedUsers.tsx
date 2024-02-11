@@ -13,6 +13,9 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
+
+            const startTime = Date.now();
+
             const response = await pool.query(`
                 SELECT
                     ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS rank,
@@ -36,6 +39,12 @@ export default async function HomeFeed(fid: any) {
                     follower_count DESC
                 LIMIT 100;
             `)
+
+            const endTime = Date.now();
+            const timeDiff = endTime - startTime;
+            const timeInSeconds = timeDiff / 1000;
+            console.log("MostFollowedUsers.tsx took", timeInSeconds, "milliseconds")
+
             const data = response.rows;
             redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
             return data

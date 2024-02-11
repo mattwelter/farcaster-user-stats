@@ -12,6 +12,9 @@ export default async function Unfollowers(fid: any, username: any) {
     if (cachedData) {
       return JSON.parse(cachedData); // Parse the stringified data back into JSON
     } else {
+
+      const startTime = Date.now();
+
       const response = await pool.query(`
         SELECT *
         FROM links
@@ -21,6 +24,12 @@ export default async function Unfollowers(fid: any, username: any) {
         LIMIT 20;
       `)
       const data = response.rows;
+
+      const endTime = Date.now();
+      const timeDiff = endTime - startTime;
+      const timeInSeconds = timeDiff / 1000;
+      console.log("Unfollowers.tsx took", timeInSeconds, "milliseconds")
+
       // Sort unfollows by "Most recent" first
       data.sort(function(a: any, b: any){
         return new Date(b.deleted_at).valueOf() - new Date(a.deleted_at).valueOf();
