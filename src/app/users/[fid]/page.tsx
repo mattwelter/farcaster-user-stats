@@ -50,15 +50,15 @@ export default async function Page({ params }: {
     params: { fid: string }
 }) {
 
-    // const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}&viewerFid=3`, { method: "GET" });
-    // const userResponse = await getUser.json();
-    // let user = userResponse.result.user;
-    // console.log({ user })
+    const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}&viewerFid=3`, { method: "GET" });
+    const userResponse = await getUser.json();
+    let user = userResponse.result.user;
+    console.log({ user })
 
     return (
         <main className={style['top-bottom-padding']}>
-            <p>Site is broken, too much traffic. I need time to fix this, please <a className={'white'} href="https://warpcast.com/stats">follow on Farcaster</a> for updates.</p>
-            {/* <div className={style['user-page-header']}>
+            {/* <p>Site is broken, too much traffic. I need time to fix this, please <a className={'white'} href="https://warpcast.com/stats">follow on Farcaster</a> for updates.</p> */}
+            <div className={style['user-page-header']}>
                 <div className="width-500">
                     <section>
                         <a className="svg-back-button-wrapper" href="/">
@@ -131,7 +131,7 @@ export default async function Page({ params }: {
                         </Suspense>
                     </div>
                 </div>
-            </Body> */}
+            </Body>
         </main>
     )
 }
