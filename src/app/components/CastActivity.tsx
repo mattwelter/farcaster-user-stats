@@ -79,7 +79,7 @@ export default async function HomeFeed(fid: any) {
           const endTime = Date.now();
           const timeDiff = endTime - startTime;
           const timeInSeconds = timeDiff / 1000;
-          console.log("CastActivity.tsx took", timeInSeconds, "milliseconds")
+          console.log("CastActivity.tsx took", timeInSeconds, "seconds")
 
           const data = response.rows
           redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes

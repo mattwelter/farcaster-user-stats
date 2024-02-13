@@ -28,7 +28,7 @@ export default async function Unfollowers(fid: any, username: any) {
       const endTime = Date.now();
       const timeDiff = endTime - startTime;
       const timeInSeconds = timeDiff / 1000;
-      console.log("Unfollowers.tsx took", timeInSeconds, "milliseconds")
+      console.log("Unfollowers.tsx took", timeInSeconds, "seconds")
 
       // Sort unfollows by "Most recent" first
       data.sort(function(a: any, b: any){

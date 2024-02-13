@@ -16,6 +16,8 @@ export default async function HomeFeed(fid: any) {
         if (cachedData) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
+            const startTime = Date.now();
+
             let response = await pool.query(`
                 WITH Following AS (
                     SELECT 
@@ -62,6 +64,12 @@ export default async function HomeFeed(fid: any) {
                 ORDER BY date DESC
                 LIMIT 28;
             `);
+
+            const endTime = Date.now();
+            const timeDiff = endTime - startTime;
+            const timeInSeconds = timeDiff / 1000;
+            console.log("DailyStats.tsx took", timeInSeconds, "seconds")
+            
             let data = response.rows;
             
             // Formatting the date of each item in the data

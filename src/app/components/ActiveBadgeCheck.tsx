@@ -89,7 +89,7 @@ export default async function HomeFeed(userObject: any) {
             const endTime = Date.now();
             const timeDiff = endTime - startTime;
             const timeInSeconds = timeDiff / 1000;
-            console.log("ActiveBadgeCheck.tsx took", timeInSeconds, "milliseconds")
+            console.log("ActiveBadgeCheck.tsx took", timeInSeconds, "seconds")
 
             const data = response.rows
             redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
