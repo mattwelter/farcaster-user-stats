@@ -168,11 +168,17 @@ main {
     z-index: 9999;
     position: fixed;
     margin-top: -22px;
+    font-size: 14px;
+    padding: 4px 0px;
 }
 
-/* main {
+.warning a {
+    color: inherit;
+}
+
+main {
     margin-top: 24px;
-} */
+}
 /* ADDED maintenance WARNING */
 
 
