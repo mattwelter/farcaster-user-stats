@@ -10,7 +10,7 @@ export async function GET(request) {
     }
 
     try {
-        const cacheKey = `dailystats:${fid.fid}`;
+        const cacheKey = `dailystats:${fid}`;
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
