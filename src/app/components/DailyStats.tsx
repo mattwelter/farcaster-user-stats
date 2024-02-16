@@ -16,7 +16,7 @@ export default async function HomeFeed(fid: any) {
             return JSON.parse(cachedData);
         } else {
 
-            const response = await fetch(`/api/daily-stats?fid=${fid.fid}`);
+            const response = await fetch(`https://farcasteruserstats.com/api/daily-stats?fid=${fid.fid}`);
             if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
 
             let data = await response.json()
