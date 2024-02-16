@@ -24,3 +24,7 @@ export async function debounceSearch(username: string) {
   console.log(userResponse);
   return userResponse;
 }
+
+export async function formatDate(date: Date) {
+  return new Date(date).toLocaleDateString();
+};

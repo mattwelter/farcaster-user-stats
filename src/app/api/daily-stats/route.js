@@ -1,7 +1,8 @@
 import { pool } from '../db'; // Adjust the import path as needed
 import redis from '../../utils/redis';
+import { formatDate } from '../../actions';
 
-export async function GET(request) {
+export default async function GET(request) {
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
 
@@ -69,7 +70,7 @@ export async function GET(request) {
 
             data = data.map((item) => ({
                 ...item,
-                date: new Date(item.date).toLocaleDateString(), 
+                date: formatDate(item.date), 
             }));
 
             redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
