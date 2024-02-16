@@ -1,9 +1,10 @@
+import { pool } from '../api/db'
 import style from './styles/EverydayFollows.module.css'
 import redis from '../utils/redis';
 
 // Function to format date objects to strings
 const formatDate = (date: any) => {
-    return new Date(date).toLocaleDateString();
+    return new Date(date).toLocaleDateString(); // Adjust the format as needed
 };
 
 export default async function HomeFeed(fid: any) {
@@ -13,17 +14,68 @@ export default async function HomeFeed(fid: any) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
-            return JSON.parse(cachedData);
+            return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
+            const startTime = Date.now();
 
-            const response = await fetch(`https://farcasteruserstats.com/api/daily-stats?fid=${fid.fid}`);
-            if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
+            let response = await pool.query(`
+                WITH Following AS (
+                    SELECT 
+                        DATE(timestamp) AS date,
+                        COUNT(DISTINCT target_fid) AS following_count,
+                        SUM(COUNT(DISTINCT target_fid)) OVER (ORDER BY DATE(timestamp) ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS following_running_total
+                    FROM links
+                    WHERE fid = ${fid.fid}
+                    AND deleted_at IS NULL
+                    GROUP BY DATE(timestamp)
+                ),
+                Followers AS (
+                    SELECT 
+                        DATE(timestamp) AS date,
+                        COUNT(DISTINCT fid) AS followers_count,
+                        SUM(COUNT(DISTINCT fid)) OVER (ORDER BY DATE(timestamp) ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS followers_running_total
+                    FROM links
+                    WHERE target_fid = ${fid.fid}
+                    AND deleted_at IS NULL
+                    GROUP BY DATE(timestamp)
+                    HAVING COUNT(DISTINCT fid) > 0
+                ),
+                Casts AS (
+                    SELECT 
+                        DATE(timestamp) AS date,
+                        COUNT(DISTINCT id) AS cast_count,
+                        SUM(COUNT(DISTINCT id)) OVER (ORDER BY DATE(timestamp) ASC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS casts_running_total
+                    FROM casts
+                    WHERE fid = ${fid.fid}
+                    AND deleted_at IS NULL
+                    GROUP BY DATE(timestamp)
+                )
+                SELECT 
+                    COALESCE(Following.date, Followers.date, Casts.date) AS date,
+                    Following.following_count,
+                    Following.following_running_total,
+                    Followers.followers_count,
+                    Followers.followers_running_total,
+                    Casts.cast_count,
+                    Casts.casts_running_total
+                FROM Following
+                FULL OUTER JOIN Followers ON Following.date = Followers.date
+                FULL OUTER JOIN Casts ON COALESCE(Following.date, Followers.date) = Casts.date
+                ORDER BY date DESC
+                LIMIT 28;
+            `);
 
-            let data = await response.json()
-        
+            const endTime = Date.now();
+            const timeDiff = endTime - startTime;
+            const timeInSeconds = timeDiff / 1000;
+            console.log("DailyStats.tsx took", timeInSeconds, "seconds")
+            
+            let data = response.rows;
+            
+            // Formatting the date of each item in the data
             data = data.map((item: any) => ({
                 ...item,
-                date: formatDate(item.date), 
+                date: formatDate(item.date), // Convert date to string
             }));
 
             redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
