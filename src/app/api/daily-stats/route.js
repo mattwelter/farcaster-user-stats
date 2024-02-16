@@ -67,14 +67,14 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("DailyStats took", timeInSeconds, "seconds")
 
-            data = data.map((item) => ({
+            let newData = data.map((item) => ({
                 ...item,
                 date: new Date(item.date).toLocaleDateString(), 
             }));
 
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
+            redis.set(cacheKey, JSON.stringify(newData), 'EX', 1800); // 30 minutes
 
-            return Response.json(data);
+            return Response.json(newData);
         }
     } catch (error) {
         console.error('Error fetching daily stats:', error);
