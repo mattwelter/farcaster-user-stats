@@ -1,35 +1,12 @@
 import style from './styles/EverydayFollows.module.css'
-import redis from '../utils/redis';
-
-// Function to format date objects to strings
-const formatDate = (date: any) => {
-    return new Date(date).toLocaleDateString();
-};
 
 export default async function HomeFeed(fid: any) {
 
     const getData = async function() {
-        const cacheKey = `dailystats:${fid.fid}`;
-        let cachedData = await redis.get(cacheKey);
-    
-        if (cachedData) {
-            return JSON.parse(cachedData);
-        } else {
-
-            const response = await fetch(`https://farcasteruserstats.com/api/daily-stats?fid=${fid.fid}`);
-            if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
-
-            let data = await response.json()
-        
-            data = data.map((item: any) => ({
-                ...item,
-                date: formatDate(item.date), 
-            }));
-
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
-
-            return data;
-        }
+        const response = await fetch(`https://farcasteruserstats.com/api/daily-stats?fid=${fid.fid}`);
+        if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
+        let data = await response.json()
+        return data
     };
     
     const data = await getData();
