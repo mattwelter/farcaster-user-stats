@@ -1,12 +1,11 @@
 import { pool } from '../db'; // Adjust the import path as needed
 import redis from '../../utils/redis';
 
-// Function to format date objects to strings
 const formatDate = (date) => {
     return new Date(date).toLocaleDateString();
 };
 
-export async function GET(request) {
+export default async function GET(request) {
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
 
