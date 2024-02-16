@@ -62,7 +62,7 @@ export async function GET(request) {
                 FROM 
                     casts
                 WHERE 
-                    fid = $1
+                    fid = $2
                 AND 
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
@@ -82,7 +82,7 @@ export async function GET(request) {
             LEFT JOIN 
                 replies r ON ub.fid = r.fid
             LEFT JOIN 
-                total_casts tc ON ub.fid = tc.fid`, [fid]); 
+                total_casts tc ON ub.fid = tc.fid`, [fid, `${fid}`]); 
             const data = response.rows;
             redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
 
