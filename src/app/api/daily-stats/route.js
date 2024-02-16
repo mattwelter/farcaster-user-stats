@@ -63,16 +63,16 @@ export async function GET(request) {
             LIMIT 28;`, [fid]); 
             const data = response.rows;
 
-            const endTime = Date.now();
-            const timeInSeconds = (endTime - startTime) / 1000;
-            console.log("DailyStats took", timeInSeconds, "seconds")
-
             let newData = data.map((item) => ({
                 ...item,
                 date: new Date(item.date).toLocaleDateString(), 
             }));
 
             redis.set(cacheKey, JSON.stringify(newData), 'EX', 1800); // 30 minutes
+
+            const endTime = Date.now();
+            const timeInSeconds = (endTime - startTime) / 1000;
+            console.log("DailyStats took", timeInSeconds, "seconds")
 
             return Response.json(newData);
         }
