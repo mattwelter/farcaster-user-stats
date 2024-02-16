@@ -94,6 +94,6 @@ export async function GET(request) {
         }
     } catch (error) {
         console.error('Error fetching active badge:', error);
-        return Response.json({ error: 'Internal server error' });
+        return Response.json({ message: 'Internal server error', error: error });
     }
 };

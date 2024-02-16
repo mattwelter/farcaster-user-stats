@@ -1,18 +1,16 @@
-import { pool } from '../api/db'
 import style from './styles/ActiveBadgeCheck.module.css'
-import redis from '../utils/redis';
 
 export default async function HomeFeed(userObject: any) {
 
     let user = userObject.userObject
 
-    async function checkActiveBadge() {
+    const getData = async function() {
         const response = await fetch(`https://farcasteruserstats.com/api/active-badge-check?fid=${user.fid}`);
-        if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
+        if (!response.ok) { throw new Error('Failed to fetch active badge'); }
         let data = await response.json()
         return data
     }
-    const activeBadgeRes = await checkActiveBadge()
+    const activeBadgeRes = await getData()
     console.log({ activeBadgeRes })
 
     const defaultDate = new Date().toJSON()
