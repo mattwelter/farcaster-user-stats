@@ -57,8 +57,8 @@ export default async function Page({ params }: {
 
     return (
         <main className={style['top-bottom-padding']}>
-            {/* <p>Site is under maintenance, please <a className={'white'} href="https://warpcast.com/fun">follow on Farcaster</a> for updates.</p> */}
-            <div className={style['user-page-header']}>
+            <p>Site is under maintenance, please <a className={'white'} href="https://warpcast.com/fun">follow @fun on Farcaster</a> for updates.</p>
+            {/* <div className={style['user-page-header']}>
                 <div className="width-500">
                     <section>
                         <a className="svg-back-button-wrapper" href="/">
@@ -72,9 +72,6 @@ export default async function Page({ params }: {
                         <img className="profile-pic" src={user.pfp.url ? user.pfp.url : "/avatar.png"} height="48px" width="48px" />
                         <h1>{ user ? user.displayName : params.fid }</h1>
                         <h2>{ user ? "@" + user.username : params.fid }</h2>
-                        {/* <Suspense fallback={<a className={`${style['rank-loading']}`}>&nbsp;• Loading...</a>}>
-                            <GetRanking fid={params.fid} />
-                        </Suspense> */}
                     </div>
                 </div>
             </div>
@@ -131,7 +128,7 @@ export default async function Page({ params }: {
                         </Suspense>
                     </div>
                 </div>
-            </Body>
+            </Body> */}
         </main>
     )
 }

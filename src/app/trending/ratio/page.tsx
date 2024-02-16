@@ -45,7 +45,7 @@ export default async function Page() {
 
                 </div>
             </div>
-            <p>Trending page is under maintenance</p>
+            <p>Trending page is under maintenance for the weekend</p>
             {/* <div className={`${'navigation'} ${style['on-leaderboard-page']}`}>
                 <nav>
                     <ul>

@@ -40,8 +40,8 @@ export default async function Page() {
                     </section>
                 </div>
             </div>
-            {/* <p>Trending page is under maintenance</p> */}
-            <div className={`${'navigation'} ${style['on-leaderboard-page']}`}>
+            <p>Trending page is under maintenance for the weekend</p>
+            {/* <div className={`${'navigation'} ${style['on-leaderboard-page']}`}>
                 <nav>
                     <ul>
                         <li><a href="/trending/ratio">Trending</a></li>
@@ -53,7 +53,7 @@ export default async function Page() {
 
             <Suspense fallback={<MostFollowedUsersLoading />}>
                 <PopularUsers />
-            </Suspense>
+            </Suspense> */}
         </main>
     )
 }
