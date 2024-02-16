@@ -1,7 +1,7 @@
 import { pool } from '../db'; // Adjust the import path as needed
 import redis from '../../utils/redis';
 
-export default async function GET(request) {
+export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
 
