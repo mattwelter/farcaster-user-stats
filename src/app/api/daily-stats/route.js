@@ -17,6 +17,7 @@ export async function GET(request) {
             return Response.json(JSON.parse(cachedData));
         } else {
             const startTime = Date.now();
+            const client = await pool.connect();
             const response = await pool.query(`WITH Following AS (
                 SELECT 
                     DATE(timestamp) AS date,
@@ -60,7 +61,8 @@ export async function GET(request) {
             FULL OUTER JOIN Followers ON Following.date = Followers.date
             FULL OUTER JOIN Casts ON COALESCE(Following.date, Followers.date) = Casts.date
             ORDER BY date DESC
-            LIMIT 28;`, [fid]); 
+            LIMIT 28;`, [fid]);
+            client.release()
             const data = response.rows;
 
             let newData = data.map((item) => ({

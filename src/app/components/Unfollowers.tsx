@@ -14,7 +14,7 @@ export default async function Unfollowers(fid: any, username: any) {
     } else {
 
       const startTime = Date.now();
-
+      const client = await pool.connect();
       const response = await pool.query(`
         SELECT *
         FROM links
@@ -23,6 +23,7 @@ export default async function Unfollowers(fid: any, username: any) {
         ORDER BY deleted_at DESC
         LIMIT 20;
       `)
+      client.release()
       const data = response.rows;
 
       const endTime = Date.now();

@@ -13,7 +13,7 @@ export default async function HomeFeed(fid: any) {
         } else {
 
             const startTime = Date.now();
-
+            const client = await pool.connect();
             const response = await pool.query(`
                 WITH time_boundaries AS (
                     SELECT generate_series(
@@ -53,6 +53,7 @@ export default async function HomeFeed(fid: any) {
                 FROM
                     totals;
             `)
+            client.release()
 
             const endTime = Date.now();
             const timeDiff = endTime - startTime;

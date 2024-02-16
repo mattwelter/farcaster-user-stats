@@ -15,7 +15,7 @@ export default async function HomeFeed(fid: any) {
         } else {
 
             const startTime = Date.now();
-
+            const client = await pool.connect();
             const response = await pool.query(`
                 SELECT
                     ROW_NUMBER() OVER (ORDER BY COUNT(*) DESC) AS rank,
@@ -39,6 +39,7 @@ export default async function HomeFeed(fid: any) {
                     follower_count DESC
                 LIMIT 100;
             `)
+            client.release()
 
             const endTime = Date.now();
             const timeDiff = endTime - startTime;

@@ -60,7 +60,7 @@ export default async function HomeFeed(fid: any) {
       } else {
 
         const startTime = Date.now();
-            
+        const client = await pool.connect();
         const response = await pool.query(`
           WITH date_range AS (
             SELECT NOW() - (n || ' days')::interval AS date
@@ -74,16 +74,17 @@ export default async function HomeFeed(fid: any) {
           AND casts.fid = ${fid.fid}
           GROUP BY DATE(date_range.date)
           ORDER BY DATE(date_range.date);
-          `)
+        `)
+        client.release()
 
-          const endTime = Date.now();
-          const timeDiff = endTime - startTime;
-          const timeInSeconds = timeDiff / 1000;
-          console.log("CastActivity.tsx took", timeInSeconds, "seconds")
+        const endTime = Date.now();
+        const timeDiff = endTime - startTime;
+        const timeInSeconds = timeDiff / 1000;
+        console.log("CastActivity.tsx took", timeInSeconds, "seconds")
 
-          const data = response.rows
-          redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
-          return data
+        const data = response.rows
+        redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
+        return data
     }
   }
 

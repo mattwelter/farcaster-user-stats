@@ -23,6 +23,7 @@ export async function GET(request) {
             }
 
             const startTime = Date.now();
+            const client = await pool.connect();
             const response = await pool.query(`WITH user_base AS (
                 SELECT 
                     $1 AS fid,
@@ -88,7 +89,8 @@ export async function GET(request) {
             LEFT JOIN 
                 replies r ON ub.fid = r.fid
             LEFT JOIN 
-                total_casts tc ON ub.fid = tc.fid`, [fidBigInt]); 
+                total_casts tc ON ub.fid = tc.fid`, [fidBigInt]);
+            client.release();
             const data = response.rows;
             redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
 

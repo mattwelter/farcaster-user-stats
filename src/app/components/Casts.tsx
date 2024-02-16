@@ -13,7 +13,7 @@ export default async function HomeFeed(fid: any) {
         } else {
 
             const startTime = Date.now();
-
+            const client = await pool.connect();
             const response = await pool.query(`
                 SELECT
                     ARRAY[
@@ -69,6 +69,7 @@ export default async function HomeFeed(fid: any) {
                 FROM casts
                 WHERE fid = ${fid.fid}
                 `)
+                client.release()
 
                 const endTime = Date.now();
                 const timeDiff = endTime - startTime;

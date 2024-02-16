@@ -12,7 +12,7 @@ export default async function HomeFeed(fid: any) {
             return JSON.parse(cachedData); // Parse the stringified data back into JSON
         } else {
             const startTime = Date.now();
-            
+            const client = await pool.connect();
             const response = await pool.query(`
                 WITH
                     total_casts AS (
@@ -67,6 +67,7 @@ export default async function HomeFeed(fid: any) {
                 LIMIT
                     100;
             `)
+            client.release()
 
             const endTime = Date.now();
             const timeDiff = endTime - startTime;
