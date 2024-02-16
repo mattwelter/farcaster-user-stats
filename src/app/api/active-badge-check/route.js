@@ -16,6 +16,12 @@ export async function GET(request) {
         if (cachedData) {
             return Response.json(JSON.parse(cachedData));
         } else {
+
+            const fidBigInt = parseInt(fid, 10);
+            if (isNaN(fidBigInt)) {
+                return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
+            }
+
             const startTime = Date.now();
             const response = await pool.query(`WITH user_base AS (
                 SELECT 
@@ -62,7 +68,7 @@ export async function GET(request) {
                 FROM 
                     casts
                 WHERE 
-                    fid = $2
+                    fid = $1
                 AND 
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
@@ -82,7 +88,7 @@ export async function GET(request) {
             LEFT JOIN 
                 replies r ON ub.fid = r.fid
             LEFT JOIN 
-                total_casts tc ON ub.fid = tc.fid`, [fid, `${fid}`]); 
+                total_casts tc ON ub.fid = tc.fid`, [fidBigInt]); 
             const data = response.rows;
             redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
 
