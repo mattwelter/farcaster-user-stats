@@ -9,6 +9,11 @@ export async function GET(request) {
         return Response.json({ error: 'Missing fid parameter' });
     }
 
+    const fidBigInt = parseInt(fid, 10);
+    if (isNaN(fidBigInt)) {
+        return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
+    }
+
     try {
         const cacheKey = `activebadge:${fid}`;
         let cachedData = await redis.get(cacheKey);
@@ -16,12 +21,6 @@ export async function GET(request) {
         if (cachedData) {
             return Response.json(JSON.parse(cachedData));
         } else {
-
-            const fidBigInt = parseInt(fid, 10);
-            if (isNaN(fidBigInt)) {
-                return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
-            }
-
             const startTime = Date.now();
             const client = await pool.connect();
             const response = await pool.query(`WITH user_base AS (
@@ -92,6 +91,7 @@ export async function GET(request) {
                 total_casts tc ON ub.fid = tc.fid`, [fidBigInt]);
             client.release();
             const data = response.rows;
+            console.log("HERE MATT HERE RIGHT HERE ->", data)
             redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
 
             const endTime = Date.now();
