@@ -52,7 +52,7 @@ export default async function HomeFeed(fid: any) {
   }
   
   const getData = async function(){
-    const response = await fetch(`https://farcasteruserstats.com/api/active-badge-check?fid=${fid.fid}&day=${day}`);
+    const response = await fetch(`https://farcasteruserstats.com/api/cast-activity?fid=${fid.fid}&day=${day}`);
     if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
     let data = await response.json()
     return data
