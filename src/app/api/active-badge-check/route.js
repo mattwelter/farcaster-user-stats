@@ -56,7 +56,7 @@ export async function GET(request) {
                 ON 
                     orig.hash = reply.parent_hash
                 WHERE 
-                    orig.fid = $1::integer
+                    orig.fid = $1
                 AND 
                     reply.fid <> orig.fid
                 AND 
@@ -91,7 +91,7 @@ export async function GET(request) {
             LEFT JOIN 
                 replies r ON ub.fid = r.fid
             LEFT JOIN 
-                total_casts tc ON ub.fid = tc.fid`, [fid]);
+                total_casts tc ON ub.fid = tc.fid`, [fidBigInt]);
             client.release();
             const data = response.rows;
 
