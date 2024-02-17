@@ -56,7 +56,7 @@ export async function GET(request) {
                 ON 
                     orig.hash = reply.parent_hash
                 WHERE 
-                    orig.fid = $1
+                    orig.fid = $1::integer
                 AND 
                     reply.fid <> orig.fid
                 AND 
@@ -71,7 +71,7 @@ export async function GET(request) {
                 FROM 
                     casts
                 WHERE 
-                    fid = $1::integer
+                    fid = $1
                 AND 
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
