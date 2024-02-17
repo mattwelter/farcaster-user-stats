@@ -2,15 +2,18 @@ import { pool } from '../db'; // Adjust the import path as needed
 import redis from '../../utils/redis';
 
 export async function GET(request) {
+    console.log("I AM IN I AM HERE HERE HERE")
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
 
     if (!fid) {
+        console.log({ error: 'Missing fid parameter' })
         return Response.json({ error: 'Missing fid parameter' });
     }
 
-    const fidBigInt = BigInt(fid);
+    const fidBigInt = parseInt(fid, 10);
     if (isNaN(fidBigInt)) {
+        console.log({ error: 'Invalid fid parameter. Must be an integer.' })
         return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
     }
 
@@ -101,7 +104,7 @@ export async function GET(request) {
             return Response.json(data);
         }
     } catch (error) {
-        console.error('Error fetching active badge:', error);
+        console.log('Error fetching active badge:', error);
         return Response.json({ message: 'Internal server error', error: error });
     }
 };
