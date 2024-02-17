@@ -52,40 +52,10 @@ export default async function HomeFeed(fid: any) {
   }
   
   const getData = async function(){
-    const cacheKey = `castactivity:${fid.fid}`;
-      let cachedData = await redis.get(cacheKey);
-  
-      if (cachedData) {
-          return JSON.parse(cachedData); // Parse the stringified data back into JSON
-      } else {
-
-        const startTime = Date.now();
-        const client = await pool.connect();
-        const response = await pool.query(`
-          WITH date_range AS (
-            SELECT NOW() - (n || ' days')::interval AS date
-            FROM generate_series(0, ${day}) AS n
-          )
-          SELECT DATE(date_range.date) AS date,
-                COUNT(casts.timestamp) AS castamount
-          FROM date_range
-          LEFT JOIN casts
-          ON DATE(date_range.date) = DATE(casts.timestamp)
-          AND casts.fid = ${fid.fid}
-          GROUP BY DATE(date_range.date)
-          ORDER BY DATE(date_range.date);
-        `)
-        client.release()
-
-        const endTime = Date.now();
-        const timeDiff = endTime - startTime;
-        const timeInSeconds = timeDiff / 1000;
-        console.log("CastActivity.tsx took", timeInSeconds, "seconds")
-
-        const data = response.rows
-        redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
-        return data
-    }
+    const response = await fetch(`https://farcasteruserstats.com/api/active-badge-check?fid=${fid.fid}&day=${day}`);
+    if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
+    let data = await response.json()
+    return data
   }
 
   const data = await getData()
