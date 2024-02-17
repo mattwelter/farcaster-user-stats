@@ -68,7 +68,7 @@ export async function GET(request) {
                 FROM 
                     casts
                 WHERE 
-                    fid = $1
+                    fid = ${fidBigInt}
                 AND 
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
@@ -88,7 +88,7 @@ export async function GET(request) {
             LEFT JOIN 
                 replies r ON ub.fid = r.fid
             LEFT JOIN 
-                total_casts tc ON ub.fid = tc.fid`, [fidBigInt]);
+                total_casts tc ON ub.fid = tc.fid`, [fid]);
             client.release();
             const data = response.rows;
 
