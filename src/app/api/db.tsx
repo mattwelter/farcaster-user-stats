@@ -6,7 +6,7 @@ export const pool = new Pool({
     password: process.env.DB_PASS,
     database: process.env.DB_DATABASE,
     port: 36327,
-    max: 15, // Adjust based on your database's max_connections setting and application needs
+    max: 300, // Adjust based on your database's max_connections setting and application needs
     // idleTimeoutMillis: 30000, // close idle clients after 30 seconds
     // connectionTimeoutMillis: 2000, // return an error after 2 seconds if connection could not be established
 })
