@@ -7,10 +7,94 @@ export default async function HomeFeed(userObject: any) {
     let user = userObject.userObject
 
     async function checkActiveBadge() {
-        const response = await fetch(`https://farcasteruserstats.com/api/daily-stats?fid=${user.fid}`);
-        if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
-        let data = await response.json()
-        return data
+        const cacheKey = `activebadge:${user.fid}`;
+        let cachedData = await redis.get(cacheKey);
+    
+        if (cachedData) {
+            return JSON.parse(cachedData); // Parse the stringified data back into JSON
+        } else {
+            
+            const startTime = Date.now();
+         
+
+            const response = await pool.query(`
+                WITH user_base AS (
+                    SELECT 
+                        ${user.fid} AS fid,
+                        COALESCE(f.created_at, CURRENT_DATE) as registration_date
+                    FROM fids f
+                    WHERE f.fid = ${user.fid}
+                ),
+                total_reactions AS (
+                    SELECT
+                        c.fid AS fid,
+                        COUNT(*) AS reactions_received
+                    FROM
+                        reactions r
+                        INNER JOIN casts c ON c.hash = r.target_hash
+                    WHERE
+                        r.timestamp >= current_timestamp - interval '30' day
+                    GROUP BY
+                        c.fid
+                ),
+                replies AS (
+                    SELECT 
+                        orig.fid,
+                        COUNT(distinct reply.id) AS reply_count
+                    FROM 
+                        casts AS orig
+                    JOIN 
+                        casts AS reply 
+                    ON 
+                        orig.hash = reply.parent_hash
+                    WHERE 
+                        orig.fid = ${user.fid}
+                    AND 
+                        reply.fid <> orig.fid
+                    AND 
+                        orig.created_at >= CURRENT_DATE - INTERVAL '30 days'
+                    GROUP BY
+                        orig.fid
+                ),
+                total_casts AS (
+                    SELECT 
+                        fid,
+                        COUNT(*) as count
+                    FROM 
+                        casts
+                    WHERE 
+                        fid = ${user.fid}
+                    AND 
+                        created_at >= CURRENT_DATE - INTERVAL '30 days'
+                    GROUP BY
+                        fid
+                )
+                
+                SELECT 
+                    ub.fid, 
+                    COALESCE(tr.reactions_received, 0) AS reactions_received,
+                    COALESCE(r.reply_count, 0) AS reply_count,
+                    COALESCE(tc.count, 0) AS count,
+                    ub.registration_date
+                FROM 
+                    user_base ub
+                LEFT JOIN 
+                    total_reactions tr ON ub.fid = tr.fid
+                LEFT JOIN 
+                    replies r ON ub.fid = r.fid
+                LEFT JOIN 
+                    total_casts tc ON ub.fid = tc.fid
+            `)
+
+            const endTime = Date.now();
+            const timeDiff = endTime - startTime;
+            const timeInSeconds = timeDiff / 1000;
+            console.log("ActiveBadgeCheck.tsx took", timeInSeconds, "seconds")
+
+            const data = response.rows
+            redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
+            return data
+        }
     }
     const activeBadgeRes = await checkActiveBadge()
     console.log({ activeBadgeRes })
