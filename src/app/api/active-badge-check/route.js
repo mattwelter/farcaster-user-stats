@@ -9,7 +9,7 @@ export async function GET(request) {
         return Response.json({ error: 'Missing fid parameter' });
     }
 
-    const fidBigInt = parseInt(fid, 10);
+    const fidBigInt = BigInt(fid);
     if (isNaN(fidBigInt)) {
         return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
     }
