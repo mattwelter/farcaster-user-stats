@@ -23,7 +23,7 @@ export default async function UserFeed(fid: any, username: any) {
       const timeInSeconds = timeDiff / 1000;
       console.log("MostLikedCasts.tsx took", timeInSeconds, "seconds")
 
-      redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
+      redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
       return data
     }
   }

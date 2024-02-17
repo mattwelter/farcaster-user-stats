@@ -77,7 +77,7 @@ export default async function HomeFeed(fid: any) {
                 console.log("Casts.tsx took", timeInSeconds, "seconds")
                 
                 const data = response.rows;
-                redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
+                redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
                 return data
             }
       }

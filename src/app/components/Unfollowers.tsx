@@ -51,7 +51,7 @@ export default async function Unfollowers(fid: any, username: any) {
           data[i].user1_username = userResponse.result ? userResponse.result.user.username : "user";
         }
       }
-      redis.set(cacheKey, JSON.stringify(data), 'EX', 3600); // 60 minutes
+      redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
       return data
     }
   }

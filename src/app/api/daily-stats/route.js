@@ -70,7 +70,7 @@ export async function GET(request) {
                 date: new Date(item.date).toLocaleDateString(), 
             }));
 
-            redis.set(cacheKey, JSON.stringify(newData), 'EX', 1800); // 30 minutes
+            redis.set(cacheKey, JSON.stringify(newData), 'EX', 7200); // 2 hours
 
             const endTime = Date.now();
             const timeInSeconds = (endTime - startTime) / 1000;

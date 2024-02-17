@@ -92,7 +92,7 @@ export async function GET(request) {
                 total_casts tc ON ub.fid = tc.fid`, [fidBigInt]);
             client.release();
             const data = response.rows;
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 1800); // 30 minutes
+            redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
 
             const endTime = Date.now();
             const timeInSeconds = (endTime - startTime) / 1000;
