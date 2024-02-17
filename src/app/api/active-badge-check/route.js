@@ -28,10 +28,10 @@ export async function GET(request) {
             const client = await pool.connect();
             const response = await pool.query(`WITH user_base AS (
                 SELECT 
-                    $1 AS fid,
+                    $1::integer AS fid,
                     COALESCE(f.created_at, CURRENT_DATE) as registration_date
                 FROM fids f
-                WHERE f.fid = $1
+                WHERE f.fid = $1::integer
             ),
             total_reactions AS (
                 SELECT
@@ -56,7 +56,7 @@ export async function GET(request) {
                 ON 
                     orig.hash = reply.parent_hash
                 WHERE 
-                    orig.fid = $1
+                    orig.fid = $1::integer
                 AND 
                     reply.fid <> orig.fid
                 AND 
@@ -71,7 +71,7 @@ export async function GET(request) {
                 FROM 
                     casts
                 WHERE 
-                    fid = $1
+                    fid = $1::integer
                 AND 
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
@@ -91,7 +91,7 @@ export async function GET(request) {
             LEFT JOIN 
                 replies r ON ub.fid = r.fid
             LEFT JOIN 
-                total_casts tc ON ub.fid = tc.fid`, [fidBigInt]);
+                total_casts tc ON ub.fid = tc.fid`, [fid]);
             client.release();
             const data = response.rows;
 
