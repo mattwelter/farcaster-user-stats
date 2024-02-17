@@ -57,12 +57,12 @@ export default async function Page({ params }: {
 
     return (
         <main className={style['top-bottom-padding']}>
-            {/* <p>I appreciate you all for using Farcaster User Stats, I love that you all love using it.<br/><br/>I'm trying to understand why you all like it.<br/><br/>Is it because it helps you with airdrop farming?<br/><br/>Are you looking for user data when betting on @perl?<br/><br/>I'll gift you 10 warps if you <a className={'white'} href="https://warpcast.com/fun">send me a message</a> telling me one thing you use FarcasterUserStats for, or what data you like looking at. Thank you!</p> */}
+            <p>Site is down. In maintenance.<br/><br/>I appreciate you all for using Farcaster User Stats, I love that you all love using it.<br/><br/>I'm trying to understand why you all like it.<br/><br/>Is it because it helps you with airdrop farming?<br/><br/>Are you looking for user data when betting on @perl?<br/><br/>I'll gift you 10 warps if you <a className={'white'} href="https://warpcast.com/fun">send me a message</a> telling me one thing you use FarcasterUserStats for, or what data you like looking at. Thank you!</p>
             {/* <p>Site is under maintenance for the weekend. Please <a className={'white'} href="https://warpcast.com/fun">follow @fun on Farcaster</a> for updates.</p>
             <br/>
             <p>Below is the error I keep receiving. If anyone knows how to fix this Postgres db connection issue, please reach out via DM. Specifically happens when the site receives more than 80 visitors online at one time. Another issue keeps happening, which is the more people there are on the site, the slower the connections take. If it gets above 50 visitors, queries will time out after 15s, which isnt good. All the queries should be under 1-2s. Please  help lol</p>
             <img src="/error.png"></img> */}
-            <div className={style['user-page-header']}>
+            {/* <div className={style['user-page-header']}>
                 <div className="width-500">
                     <section>
                         <a className="svg-back-button-wrapper" href="/">
@@ -132,7 +132,7 @@ export default async function Page({ params }: {
                         </Suspense>
                     </div>
                 </div>
-            </Body>
+            </Body> */}
         </main>
     )
 }
