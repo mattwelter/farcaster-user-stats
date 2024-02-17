@@ -71,7 +71,7 @@ export async function GET(request) {
                 FROM 
                     casts
                 WHERE 
-                    fid = ${fidBigInt}
+                    fid = $1::integer
                 AND 
                     created_at >= CURRENT_DATE - INTERVAL '30 days'
                 GROUP BY
