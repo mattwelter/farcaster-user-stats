@@ -11,13 +11,13 @@ export async function GET(request) {
 
     if (!fid) {
         console.log({ error: 'Missing fid parameter' })
-        return new Response.json({ error: 'Missing fid parameter' }, { headers });
+        return Response.json({ error: 'Missing fid parameter' }, { headers });
     }
 
     const fidBigInt = parseInt(fid, 10);
     if (isNaN(fidBigInt)) {
         console.log({ error: 'Invalid fid parameter. Must be an integer.' })
-        return new Response.json({ error: 'Invalid fid parameter. Must be an integer.' }, { headers });
+        return Response.json({ error: 'Invalid fid parameter. Must be an integer.' }, { headers });
     }
 
     try {
@@ -104,10 +104,10 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("ActiveBadgeCheck took", timeInSeconds, "seconds")
 
-            return new Response.json(data, { headers });
+            return Response.json(data, { headers });
         }
     } catch (error) {
         console.log('Error fetching active badge:', error);
-        return new Response.json({ message: 'Internal server error', error: error }, { headers });
+        return Response.json({ message: 'Internal server error', error: error }, { headers });
     }
 };

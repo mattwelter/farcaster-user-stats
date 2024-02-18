@@ -9,7 +9,7 @@ export async function GET(request) {
     headers.set('Access-Control-Allow-Origin', '*');
 
     if (!fid) {
-        return new Response.json({ error: 'Missing fid parameter' }, { headers });
+        return Response.json({ error: 'Missing fid parameter' }, { headers });
     }
 
     try {
@@ -17,7 +17,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
-            return new Response.json(JSON.parse(cachedData), { headers });
+            return Response.json(JSON.parse(cachedData), { headers });
         } else {
             const startTime = Date.now();
             const client = await pool.connect();
@@ -83,10 +83,10 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("CastSummary took", timeInSeconds, "seconds")
 
-            return new Response.json(data, { headers });
+            return Response.json(data, { headers });
         }
     } catch (error) {
         console.error('Error fetching cast summary:', error);
-        return new Response.json({ message: 'Internal server error', error: error }, { headers });
+        return Response.json({ message: 'Internal server error', error: error }, { headers });
     }
 };
