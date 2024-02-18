@@ -74,7 +74,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                     <>
                         <div>
                             <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                            <Suspense fallback={<CastsLoading />}>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                                 <Casts fid={fid} username={user.username}/>
                             </Suspense>
                         </div>
@@ -84,7 +84,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                     <>
                         <div>
                             <h3 className="mostlikedcasts-title">Recently Unfollowed By</h3>
-                            <Suspense fallback={<CastsLoading />}>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                                 <Unfollowers fid={fid} username={user.username}/>
                             </Suspense>
                         </div>
