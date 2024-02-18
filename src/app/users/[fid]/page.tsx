@@ -80,7 +80,7 @@ export default async function Page({ params }: {
                 </div>
             </div>
             
-            <Body params={params.fid} user={user} /> */}
+            <Body fid={params.fid} user={user} /> */}
         </main>
     )
 }

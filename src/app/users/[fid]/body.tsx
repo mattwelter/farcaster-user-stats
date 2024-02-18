@@ -13,7 +13,7 @@ const Casts = lazy(() => import('../../components/MostLikedCasts'));
 const Unfollowers = lazy(() => import('../../components/Unfollowers'));
 const DailyStats = lazy(() => import('../../components/DailyStats'));
 
-export default function Body({ params, user }: { params: any, user: any }) {
+export default function Body({ fid, user }: { fid: any, user: any }) {
     const [tab, setTab] = useState(1);
 
     return (
@@ -36,18 +36,18 @@ export default function Body({ params, user }: { params: any, user: any }) {
             <Suspense fallback={<div>Loading...</div>}>
                 {tab === 1 && (
                     <>
-                        <Followers fid={params.fid}/>
-                        <Cast fid={params.fid}/>
+                        <Followers fid={fid}/>
+                        <Cast fid={fid}/>
                         {/* Other components you want to render in tab 1 */}
                     </>
                 )}
-                {tab === 2 && <Activity fid={params.fid} />}
+                {tab === 2 && <Activity fid={fid} />}
                 {tab === 3 && <ActiveBadgeCheck userObject={user} />}
                 {tab === 4 && (
                     <>
-                        <Casts fid={params.fid} username={user.username}/>
-                        <Unfollowers fid={params.fid} username={user.username}/>
-                        <DailyStats fid={params.fid}/>
+                        <Casts fid={fid} username={user.username}/>
+                        <Unfollowers fid={fid} username={user.username}/>
+                        <DailyStats fid={fid}/>
                         {/* Other components you want to render in tab 4 */}
                     </>
                 )}
