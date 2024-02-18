@@ -3,67 +3,12 @@ import style from './styles/Followers.module.css'
 import TinyChart from './TinyChart'
 import redis from '../utils/redis';
 
-export default async function HomeFeed(fid: any) {
+export default async function FollowersSummary(fid: any) {
     const getData = async function(){
-        const cacheKey = `followers:${fid.fid}`;
-        let cachedData = await redis.get(cacheKey);
-    
-        if (cachedData) {
-            return JSON.parse(cachedData); // Parse the stringified data back into JSON
-        } else {
-
-            const startTime = Date.now();
-            const client = await pool.connect();
-            const response = await pool.query(`
-                WITH time_boundaries AS (
-                    SELECT generate_series(
-                        NOW() - INTERVAL '168 hours',
-                        NOW(),
-                        INTERVAL '4 hours'
-                    ) AS start_time
-                ),
-                counts AS (
-                    SELECT
-                        tb.start_time,
-                        COUNT(l.id) AS count
-                    FROM
-                        time_boundaries tb
-                        LEFT JOIN links l ON l.created_at >= tb.start_time AND l.created_at < tb.start_time + INTERVAL '4 hours'
-                        AND l.target_fid = ${fid.fid}
-                    GROUP BY
-                        tb.start_time
-                ),
-                totals AS (
-                    SELECT
-                        COUNT(*) FILTER (WHERE created_at BETWEEN NOW() - INTERVAL '7 days' AND NOW()) AS total_this_week,
-                        COUNT(*) FILTER (WHERE created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days') AS total_last_week
-                    FROM
-                        links
-                    WHERE
-                        target_fid = ${fid.fid}
-                )
-                SELECT
-                    ARRAY(SELECT count FROM counts ORDER BY start_time) AS daily_counts,
-                    total_this_week,
-                    total_last_week,
-                    CASE
-                        WHEN total_last_week = 0 THEN NULL
-                        ELSE (total_this_week - total_last_week)::float / total_last_week * 100
-                    END AS percent_change
-                FROM
-                    totals;
-            `)
-            client.release()
-
-            const endTime = Date.now();
-            const timeDiff = endTime - startTime;
-            const timeInSeconds = timeDiff / 1000;
-            console.log("Followers.tsx took", timeInSeconds, "seconds")
-            
-            const data = response.rows;
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
-            return data
-        }
+        const response = await fetch(`https://farcasteruserstats.com/api/followers?fid=${fid.fid}`);
+        if (!response.ok) { throw new Error('Failed to fetch 7 day follower summary'); }
+        let data = await response.json()
+        return data
     }
     
     const data = await getData()
