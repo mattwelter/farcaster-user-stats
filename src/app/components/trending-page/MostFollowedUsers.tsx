@@ -1,6 +1,6 @@
 import { pool } from '../../api/db'
 import MostFollowedUsersClient from './MostFollowedUsersClient'
-import style from './styles/PopularUsers.module.css'
+import style from './../styles/PopularUsers.module.css'
 import redis from '../../utils/redis';
 
 // export const dynamic = 'force-dynamic';

@@ -4,7 +4,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { searchUsername, debounceSearch } from '../../actions';
 import { redirect } from 'next/navigation'
-import style from './styles/Search.module.css';
+import style from './../styles/Search.module.css';
 
 // Go to user page by "enter" key
 async function handleSearch(formData: FormData) {

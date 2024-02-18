@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { redirect } from 'next/navigation'
 import { searchUsername } from '../../actions'
-import style from './styles/Search-TopBar.module.css'
+import style from './../styles/Search-TopBar.module.css'
 
 export default function Page() {
   const [username, setUsername] = useState<string>('')

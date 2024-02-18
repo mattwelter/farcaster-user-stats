@@ -1,4 +1,4 @@
-import style from './styles/EverydayFollows.module.css'
+import style from './../styles/EverydayFollows.module.css'
 
 export default async function HomeFeed(fid: any) {
 

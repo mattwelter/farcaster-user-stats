@@ -1,5 +1,5 @@
-import style from './styles/CastActivity.module.css'
-import Tooltip from '../utils/Tooltip';
+import style from './../styles/CastActivity.module.css'
+import Tooltip from './../utils/Tooltip';
 
 export default async function HomeFeed(fid: any) {
 

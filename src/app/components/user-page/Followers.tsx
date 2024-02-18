@@ -1,5 +1,5 @@
-import style from './styles/Followers.module.css'
-import TinyChart from '../utils/TinyChart'
+import style from './../styles/Followers.module.css'
+import TinyChart from './../utils/TinyChart'
 
 export default async function FollowersSummary(fid: any) {
     const getData = async function(){

@@ -1,4 +1,4 @@
-import style from './styles/Unfollowers.module.css'
+import style from './../styles/Unfollowers.module.css'
 
 export default async function Unfollowers(fid: any, username: any) {
 
