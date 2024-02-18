@@ -21,7 +21,7 @@ export async function GET(request) {
             const getCasts = await fetch(`https://api.neynar.com/v2/farcaster/feed/user/${fid}/popular?api_key=${process.env.NEYNAR_API_KEY}`, { method: "GET" });
             const res = await getCasts.json();
             let data = res.casts;
-            console.log({ "casts": data })
+            console.log( `${fid} casts` + JSON.stringify(data) )
 
             const endTime = Date.now();
             const timeDiff = endTime - startTime;
