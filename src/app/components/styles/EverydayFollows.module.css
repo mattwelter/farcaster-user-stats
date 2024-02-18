@@ -25,7 +25,7 @@
     background: #3f1e94;
 }
 
-.tbody tr td:nth-child(even), thead tr th {
+.tbody tr td:nth-child(even), .thead tr th {
     border-left: 1px solid white;
 }
 

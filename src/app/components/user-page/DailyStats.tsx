@@ -29,7 +29,7 @@ export default async function HomeFeed(fid: any) {
                     {data.length !== 0 ? (
                         data.map((event: any, index: any) => (
                             <tr key={index}> {/* Changed key to index to ensure uniqueness */}
-                                <td>{ `${(()=>{return new Date(event.date).getMonth()})() + 1}/${new Date(event.date).getDate()}` }</td>
+                                <td>{ `${new Date(event.date).getMonth() + 1}/${new Date(event.date).getDate()}` }</td>
                                 <td className={event.followers_count > 0 ? `${style['increase']}` : event.followers_count == 0 ? `${style['neutral']}` : `${style['decrease']}`}>{event.followers_count > 0 ? "+" : event.followers_count == 0 ? '' : "-"}{event.followers_count}</td>
                                 <td>{event.followers_running_total}</td>
                                 <td className={event.following_count > 0 ? `${style['increase']}` : event.following_count == 0 ? `${style['neutral']}` : `${style['decrease']}`}>{event.following_count > 0 ? "+" : event.following_count == 0 ? '' : "-"}{event.following_count}</td>
