@@ -3,9 +3,9 @@
 import React, { Suspense, useState, lazy } from 'react';
 import style from './UserPage.module.css'
 import tabStyle from './UserPageTabs.module.css'
-import CastsLoading from '../../components/loading/Casts-Loading'
 
 // Lazy-load components for each tab
+const CastsLoading = lazy(() => import('../../components/loading/Casts-Loading'));
 const Followers = lazy(() => import('../../components/Followers'));
 const Cast = lazy(() => import('../../components/Casts'));
 const Activity = lazy(() => import('../../components/CastActivity'));
