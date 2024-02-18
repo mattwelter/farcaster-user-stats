@@ -4,9 +4,12 @@ import redis from '../../utils/redis';
 export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
+    
+    const headers = new Headers();
+    headers.set('Access-Control-Allow-Origin', '*');
 
     if (!fid) {
-        return Response.json({ error: 'Missing fid parameter' });
+        return new Response.json({ error: 'Missing fid parameter' }, { headers });
     }
 
     try {
@@ -14,7 +17,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
-            return Response.json(JSON.parse(cachedData));
+            return new Response.json(JSON.parse(cachedData), { headers });
         } else {
             const startTime = Date.now();
             const client = await pool.connect();
@@ -76,10 +79,10 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("DailyStats took", timeInSeconds, "seconds")
 
-            return Response.json(newData);
+            return new Response.json(newData), { headers };
         }
     } catch (error) {
         console.error('Error fetching daily stats:', error);
-        return Response.json({ message: 'Internal server error', error: error });
+        return new Response.json({ message: 'Internal server error', error: error }, { headers });
     }
 };

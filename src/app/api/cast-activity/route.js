@@ -6,16 +6,19 @@ export async function GET(request) {
     const fid = searchParams.get('fid')
     const day = searchParams.get('day')
 
+    const headers = new Headers();
+    headers.set('Access-Control-Allow-Origin', '*');
+
     if (!fid) {
-        return Response.json({ error: 'Missing fid parameter' });
+        return new Response.json({ error: 'Missing fid parameter' }, { headers });
     }
     if (!day) {
-        return Response.json({ error: 'Missing day parameter' });
+        return new Response.json({ error: 'Missing day parameter' }, { headers });
     }
 
     const fidBigInt = parseInt(fid, 10);
     if (isNaN(fidBigInt)) {
-        return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
+        return new Response.json({ error: 'Invalid fid parameter. Must be an integer.' }, { headers });
     }
 
     try {
@@ -23,7 +26,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
-            return Response.json(JSON.parse(cachedData));
+            return new Response.json(JSON.parse(cachedData), { headers });
         } else {
             const startTime = Date.now();
             const client = await pool.connect();
@@ -49,10 +52,10 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("CastActivity took", timeInSeconds, "seconds")
 
-            return Response.json(data);
+            return new Response.json(data, { headers });
         }
     } catch (error) {
         console.error('Error fetching active badge:', error);
-        return Response.json({ message: 'Internal server error', error: error });
+        return new Response.json({ message: 'Internal server error', error: error }, { headers });
     }
 };
