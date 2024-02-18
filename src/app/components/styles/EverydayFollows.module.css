@@ -3,6 +3,7 @@
     border: 1px solid white;
     background-color: #502ea8;
     padding: 4px;
+    border-spacing: 0;
 }
 
 .thead {
@@ -24,6 +25,10 @@
     background: #3f1e94;
 }
 
+.tbody tr td:nth-child(even), thead tr th {
+    border-left: 1px solid white;
+}
+
 .increase {
     color: rgb(124 242 92);
 }
@@ -34,4 +39,10 @@
 
 .decrease {
     color: red;
+}
+
+@media only screen and (max-width: 600px) {
+    .tbody tr td {
+        font-size: 12px;
+    }
 }
