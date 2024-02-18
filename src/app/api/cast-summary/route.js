@@ -80,7 +80,7 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("CastSummary took", timeInSeconds, "seconds")
 
-            return Response.json(newData);
+            return Response.json(data);
         }
     } catch (error) {
         console.error('Error fetching cast summary:', error);
