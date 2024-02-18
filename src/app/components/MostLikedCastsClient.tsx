@@ -6,7 +6,7 @@ export default function Page(casts: any) {
 
   return (
       <div className={style.casts}>
-        {casts.casts.length !== 0 ? casts.casts.map((cast: any) => (
+        {casts !== undefined ? casts.casts.length !== 0 ? casts.casts.map((cast: any) => (
           <section key={cast.id} className={style.cast}>
             <div className={style.text}>
               {cast.text.split('\n').map((line: any, index: any) =>
@@ -27,6 +27,9 @@ export default function Page(casts: any) {
             <a className={style['link-to-warpcast']} href={`https://warpcast.com/${cast.author.username}/${cast.hash}`} target="_blank">View on Warpcast</a>
           </section>
           )) : <section className={style.cast}>
+              <a>Oops!</a>
+              <h3>Looks like this user doesn't cast.</h3>
+          </section> : <section className={style.cast}>
               <a>Oops!</a>
               <h3>Looks like this user doesn't cast.</h3>
           </section>}
