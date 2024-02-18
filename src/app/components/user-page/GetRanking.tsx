@@ -1,6 +1,6 @@
-import { pool } from '../api/db'
+import { pool } from '../../api/db'
 import style from './styles/GetRanking.module.css'
-import redis from '../utils/redis';
+import redis from '../../utils/redis';
 
 export default async function HomeFeed(fid: any) {
     const getData = async function(){

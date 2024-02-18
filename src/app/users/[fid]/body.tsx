@@ -6,13 +6,13 @@ import tabStyle from './UserPageTabs.module.css'
 
 // Lazy-load components for each tab
 const CastsLoading = lazy(() => import('../../components/loading/Casts-Loading'));
-const Followers = lazy(() => import('../../components/Followers'));
-const Cast = lazy(() => import('../../components/Casts'));
-const Activity = lazy(() => import('../../components/CastActivity'));
-const ActiveBadgeCheck = lazy(() => import('../../components/ActiveBadgeCheck'));
-const Casts = lazy(() => import('../../components/MostLikedCasts'));
-const Unfollowers = lazy(() => import('../../components/Unfollowers'));
-const DailyStats = lazy(() => import('../../components/DailyStats'));
+const Followers = lazy(() => import('../../components/user-page/Followers'));
+const Cast = lazy(() => import('../../components/user-page/Casts'));
+const Activity = lazy(() => import('../../components/user-page/CastActivity'));
+const ActiveBadgeCheck = lazy(() => import('../../components/user-page/ActiveBadgeCheck'));
+const Casts = lazy(() => import('../../components/user-page/MostLikedCasts'));
+const Unfollowers = lazy(() => import('../../components/user-page/Unfollowers'));
+const DailyStats = lazy(() => import('../../components/user-page/DailyStats'));
 
 export default function Body({ fid, user }: { fid: any, user: any }) {
     const [tab, setTab] = useState(1);

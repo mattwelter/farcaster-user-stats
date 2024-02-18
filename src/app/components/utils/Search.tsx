@@ -2,7 +2,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react';
-import { searchUsername, debounceSearch } from '../actions';
+import { searchUsername, debounceSearch } from '../../actions';
 import { redirect } from 'next/navigation'
 import style from './styles/Search.module.css';
 

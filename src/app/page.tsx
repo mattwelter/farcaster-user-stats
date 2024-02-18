@@ -1,9 +1,7 @@
 import Image from 'next/image'
 import Head from 'next/head'
 import style from './page.module.css'
-import Search from './components/Search'
-import PopularUsers from './components/PopularUsers'
-import PopularUsersLoading from './components/loading/PopularUsers-Loading'
+import Search from './components/utils/Search'
 import { Suspense } from 'react'
 import type { Metadata, Viewport } from 'next'
 

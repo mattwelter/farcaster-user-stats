@@ -1,7 +1,7 @@
-import { pool } from '../api/db'
+import { pool } from '../../api/db'
 import PopularUsersClient from './PopularUsersClient'
 import style from './styles/PopularUsers.module.css'
-import redis from '../utils/redis';
+import redis from '../../utils/redis';
 
 export default async function HomeFeed(fid: any) {
     const getData = async function(){

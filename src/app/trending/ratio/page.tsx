@@ -1,8 +1,8 @@
 import style from '../Trending.module.css'
 import { Suspense } from 'react'
-import PopularUsers from '../../components/PopularUsers'
+import PopularUsers from '../../components/trending-page/PopularUsers'
 import PopularUsersLoading from '../../components/loading/PopularUsers-Loading'
-import SearchTopBar from '../../components/Search-TopBar'
+import SearchTopBar from '../../components/utils/Search-TopBar'
 import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {

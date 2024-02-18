@@ -2,16 +2,7 @@ import style from './UserPage.module.css'
 import type { Metadata, ResolvingMetadata, Viewport } from 'next'
 import { Suspense } from 'react'
 import Body from './body'
-import SearchTopBar from '../../components/Search-TopBar'
-import GetRanking from '../../components/GetRanking'
-import Casts from '../../components/MostLikedCasts'
-import CastsLoading from '../../components/loading/Casts-Loading'
-import Activity from '../../components/CastActivity'
-import ActiveBadgeCheck from '../../components/ActiveBadgeCheck'
-import Followers from '../../components/Followers'
-import Cast from '../../components/Casts'
-import Unfollowers from '../../components/Unfollowers'
-import DailyStats from '../../components/DailyStats'
+import SearchTopBar from '../../components/utils/Search-TopBar'
 
 type Props = {
     params: { fid: string }
