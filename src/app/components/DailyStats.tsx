@@ -17,12 +17,12 @@ export default async function HomeFeed(fid: any) {
                 <thead className={`${style['thead']}`}>
                     <tr>
                         <th>Date</th>
-                        <th>Difference</th>
-                        <th>Followers</th>
-                        <th>Difference</th>
-                        <th>Following</th>
-                        <th>Difference</th>
-                        <th>Casts</th>
+                        {/* @ts-ignore */}
+                        <th colspan="2">Followers</th>
+                        {/* @ts-ignore */}
+                        <th colspan="2">Following</th>
+                        {/* @ts-ignore */}
+                        <th colspan="2">Casts</th>
                     </tr>
                 </thead>
                 <tbody className={`${style['tbody']}`}>
