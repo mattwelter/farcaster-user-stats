@@ -1,6 +1,7 @@
 import style from './../styles/ActiveBadgeCheck.module.css'
+import React from 'react';
 
-export default async function HomeFeed(userObject: any) {
+const ActiveBadgeCheck = async function(userObject: any) {
 
     let user = userObject.userObject
 
@@ -11,7 +12,7 @@ export default async function HomeFeed(userObject: any) {
         return data
     }
     const activeBadgeRes = await checkActiveBadge()
-    console.log({ activeBadgeRes })
+    // console.log({ activeBadgeRes })
 
     const defaultDate = new Date().toJSON()
     const registrationDate = new Date(activeBadgeRes[0].registration_date || defaultDate)
@@ -21,9 +22,6 @@ export default async function HomeFeed(userObject: any) {
     const castCount = parseInt(activeBadgeRes[0].count)
 
     const engagingCastsNumber = ((reactions != 0 ? reactions : 0) + replyCount) / parseInt(activeBadgeRes[0].count)
-
-
-
 
     const activeBadge = {
         active: user.activeStatus == "active" ? true : false,
@@ -69,3 +67,6 @@ export default async function HomeFeed(userObject: any) {
         </>
         )
 }
+
+
+export default React.memo(ActiveBadgeCheck);
