@@ -3,6 +3,7 @@
 import React, { Suspense, useState, lazy } from 'react';
 import style from './UserPage.module.css'
 import tabStyle from './UserPageTabs.module.css'
+import CastsLoading from '../../components/loading/Casts-Loading'
 
 // Lazy-load components for each tab
 const Followers = lazy(() => import('../../components/Followers'));
@@ -33,25 +34,63 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
             </div>
 
             {/* Tab Panels */}
-            <Suspense fallback={<div>Loading...</div>}>
+            <div className={`${style['section-padding']} ${"width-500"}`}>
                 {tab === 1 && (
                     <>
-                        <Followers fid={fid}/>
-                        <Cast fid={fid}/>
-                        {/* Other components you want to render in tab 1 */}
+                        <div>
+                            <h3 className="week-summary-title">7 day summary</h3>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                                <Followers fid={fid}/>
+                            </Suspense>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                                <Cast fid={fid}/>
+                            </Suspense>
+                        </div>
                     </>
                 )}
-                {tab === 2 && <Activity fid={fid} />}
-                {tab === 3 && <ActiveBadgeCheck userObject={user} />}
+                {tab === 2 && (
+                    <>
+                        <div>
+                            <h3 className="castactivity-title">Cast Activity</h3>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                                <Activity fid={fid} />
+                            </Suspense>
+                        </div>
+                    </>
+                )}
+                {tab === 3 && (
+                    <>
+                        <div>
+                            <h3 className="activestatus-title">Active Status</h3>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                                <ActiveBadgeCheck userObject={user} />
+                            </Suspense>
+                        </div>
+                    </>
+                )}
                 {tab === 4 && (
                     <>
-                        <Casts fid={fid} username={user.username}/>
-                        <Unfollowers fid={fid} username={user.username}/>
-                        <DailyStats fid={fid}/>
-                        {/* Other components you want to render in tab 4 */}
+                        <div>
+                            <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
+                            <Suspense fallback={<CastsLoading />}>
+                                <Casts fid={fid} username={user.username}/>
+                            </Suspense>
+                        </div>
+                        <div>
+                            <h3 className="mostlikedcasts-title">Recently Unfollowed By</h3>
+                            <Suspense fallback={<CastsLoading />}>
+                                <Unfollowers fid={fid} username={user.username}/>
+                            </Suspense>
+                        </div>
+                        <div>
+                            <h3 className="mostlikedcasts-title">Daily Followers</h3>
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                                <DailyStats fid={fid}/>
+                            </Suspense>
+                        </div>
                     </>
                 )}
-            </Suspense>
+            </div>
         </>
     )
 }
