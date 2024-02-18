@@ -5,11 +5,8 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
 
-    const headers = new Headers();
-    headers.set('Access-Control-Allow-Origin', '*');
-
     if (!fid) {
-        return new Response({ headers }).json({ error: 'Missing fid parameter' });
+        return Response.json({ error: 'Missing fid parameter' });
     }
 
     try {
@@ -17,7 +14,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
-            return new Response({ headers }).json(JSON.parse(cachedData));
+            return Response.json(JSON.parse(cachedData));
         } else {
             const startTime = Date.now();
 
@@ -32,10 +29,10 @@ export async function GET(request) {
             console.log("MostLikedCasts took", timeInSeconds, "seconds")
 
             redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
-            return new Response({ headers }).json(data);
+            return Response.json(data);
         }
     } catch (error) {
         console.error('Error fetching most liked casts:', error);
-        return new Response({ headers }).json({ message: 'Internal server error', error: error });
+        return Response.json({ message: 'Internal server error', error: error });
     }
 };

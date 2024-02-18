@@ -62,7 +62,7 @@ export default async function Page({ params }: {
             {/* <br/>
             <p>Below is the error I keep receiving. If anyone knows how to fix this Postgres db connection issue, please reach out via DM. Specifically happens when the site receives more than 80 visitors online at one time. Another issue keeps happening, which is the more people there are on the site, the slower the connections take. If it gets above 50 visitors, queries will time out after 15s, which isnt good. All the queries should be under 1-2s. Please  help lol</p>
             <img src="/error.png"></img> */}
-            {/* <div className={style['user-page-header']}>
+            <div className={style['user-page-header']}>
                 <div className="width-500">
                     <section>
                         <a className="svg-back-button-wrapper" href="/">
@@ -80,7 +80,7 @@ export default async function Page({ params }: {
                 </div>
             </div>
             
-            <Body fid={params.fid} user={user} /> */}
+            <Body fid={params.fid} user={user} />
         </main>
     )
 }
