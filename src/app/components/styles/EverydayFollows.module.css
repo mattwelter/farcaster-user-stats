@@ -2,7 +2,6 @@
     width: 100%;
     border: 1px solid white;
     background-color: #502ea8;
-    padding: 4px;
     border-spacing: 0;
 }
 
@@ -10,7 +9,7 @@
     text-align: left;
 }
 
-.thead tr td {
+.thead tr th {
     padding: 0px 4px;
     font-size: 14px;
 }
@@ -29,6 +28,17 @@
     border-left: 1px solid white;
 }
 
+.thead tr th:nth-child(1) {
+    border-left: none !important;
+}
+
+.thead tr th {
+    padding: 8px 4px;
+    font-size: 14px;
+    text-align: center;
+    background: #1f0059;
+}
+
 .increase {
     color: rgb(124 242 92);
 }
@@ -42,7 +52,7 @@
 }
 
 @media only screen and (max-width: 600px) {
-    .tbody tr td {
+    .tbody tr td, .thead tr th {
         font-size: 12px;
     }
 }
