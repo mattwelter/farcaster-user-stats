@@ -1,7 +1,5 @@
-import { pool } from '../api/db'
 import style from './styles/CastActivity.module.css'
 import Tooltip from './Tooltip';
-import redis from '../utils/redis';
 
 export default async function HomeFeed(fid: any) {
 

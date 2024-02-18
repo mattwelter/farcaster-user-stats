@@ -1,7 +1,5 @@
-import { pool } from '../api/db'
 import style from './styles/Followers.module.css'
 import TinyChart from './TinyChart'
-import redis from '../utils/redis';
 
 export default async function FollowersSummary(fid: any) {
     const getData = async function(){

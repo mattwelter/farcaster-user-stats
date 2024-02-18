@@ -32,7 +32,7 @@ export async function GET(request) {
                 FROM
                     time_boundaries tb
                     LEFT JOIN links l ON l.created_at >= tb.start_time AND l.created_at < tb.start_time + INTERVAL '4 hours'
-                    AND l.target_fid = $1::integer
+                    AND l.target_fid = $1
                 GROUP BY
                     tb.start_time
             ),
@@ -43,7 +43,7 @@ export async function GET(request) {
                 FROM
                     links
                 WHERE
-                    target_fid = $1::integer
+                    target_fid = $1
             )
             SELECT
                 ARRAY(SELECT count FROM counts ORDER BY start_time) AS daily_counts,

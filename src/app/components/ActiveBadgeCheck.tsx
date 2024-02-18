@@ -1,6 +1,4 @@
-import { pool } from '../api/db'
 import style from './styles/ActiveBadgeCheck.module.css'
-import redis from '../utils/redis';
 
 export default async function HomeFeed(userObject: any) {
 

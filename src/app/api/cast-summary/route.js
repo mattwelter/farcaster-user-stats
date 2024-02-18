@@ -70,7 +70,7 @@ export async function GET(request) {
                     ELSE (SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '7 days' AND NOW() THEN 1 ELSE 0 END) - SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END))::float / SUM(CASE WHEN created_at BETWEEN NOW() - INTERVAL '14 days' AND NOW() - INTERVAL '7 days' THEN 1 ELSE 0 END) * 100
                 END AS percent_change
             FROM casts
-            WHERE fid = $1::integer`, [fid]);
+            WHERE fid = $1`, [fid]);
             client.release()
             const data = response.rows;
 
