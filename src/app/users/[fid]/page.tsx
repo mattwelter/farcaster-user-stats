@@ -50,10 +50,10 @@ export default async function Page({ params }: {
     params: { fid: string }
 }) {
 
-    // const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}&viewerFid=3`, { method: "GET" });
-    // const userResponse = await getUser.json();
-    // let user = userResponse.result.user;
-    // console.log({ user })
+    const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}&viewerFid=3`, { method: "GET" });
+    const userResponse = await getUser.json();
+    let user = userResponse.result.user;
+    console.log({ user })
 
     return (
         <main className={style['top-bottom-padding']}>
@@ -80,59 +80,7 @@ export default async function Page({ params }: {
                 </div>
             </div>
             
-            <Body>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
-                    <div>
-                        <h3 className="week-summary-title">7 day summary</h3>
-                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                            <Followers fid={params.fid}/>
-                        </Suspense>
-                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                            <Cast fid={params.fid}/>
-                        </Suspense>
-                    </div>
-                </div>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
-                    <div>
-                        <h3 className="castactivity-title">Cast Activity</h3>
-                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                            <Activity fid={params.fid} />
-                        </Suspense>
-                    </div>
-                </div>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
-                    <div>
-                        <h3 className="activestatus-title">Active Status</h3>
-                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                            <ActiveBadgeCheck userObject={user} />
-                        </Suspense>
-                    </div>
-                </div>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
-                    <div>
-                        <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                        <Suspense fallback={<CastsLoading />}>
-                            <Casts fid={params.fid} username={user.username}/>
-                        </Suspense>
-                    </div>
-                </div>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
-                    <div>
-                        <h3 className="mostlikedcasts-title">Recently Unfollowed By</h3>
-                        <Suspense fallback={<CastsLoading />}>
-                            <Unfollowers fid={params.fid} username={user.username}/>
-                        </Suspense>
-                    </div>
-                </div>
-                <div className={`${style['section-padding']} ${"width-500"}`}>
-                    <div>
-                        <h3 className="mostlikedcasts-title">Daily Followers</h3>
-                        <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                            <DailyStats fid={params.fid}/>
-                        </Suspense>
-                    </div>
-                </div>
-            </Body> */}
+            <Body params={params.fid} user={user} /> */}
         </main>
     )
 }

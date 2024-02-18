@@ -1,15 +1,19 @@
 "use client"
 
+import React, { Suspense, useState, lazy } from 'react';
 import style from './UserPage.module.css'
 import tabStyle from './UserPageTabs.module.css'
-import { Suspense, useState } from 'react'
 
-export default function Body({
-    children
-} : {
-    children: React.ReactNode
-}) {
+// Lazy-load components for each tab
+const Followers = lazy(() => import('../../components/Followers'));
+const Cast = lazy(() => import('../../components/Casts'));
+const Activity = lazy(() => import('../../components/CastActivity'));
+const ActiveBadgeCheck = lazy(() => import('../../components/ActiveBadgeCheck'));
+const Casts = lazy(() => import('../../components/MostLikedCasts'));
+const Unfollowers = lazy(() => import('../../components/Unfollowers'));
+const DailyStats = lazy(() => import('../../components/DailyStats'));
 
+export default function Body({ params, user }: { params: any, user: any }) {
     const [tab, setTab] = useState(1);
 
     return (
@@ -28,20 +32,26 @@ export default function Body({
                 </div>
             </div>
 
-            {/* @ts-ignore */}
-            { tab == 1 ? children[0] : <></> }
-            {/* @ts-ignore */}
-            { tab == 1 ? children[1] : <></> }
-            {/* @ts-ignore */}
-            { tab == 2 ? children[2] : <></> }
-            {/* @ts-ignore */}
-            { tab == 3 ? children[3] : <></> }
-            {/* @ts-ignore */}
-            { tab == 4 ? children[4] : <></> }
-            {/* @ts-ignore */}
-            { tab == 1 ? children[5] : <></> }
-            {/* @ts-ignore */}
-            { tab == 1 ? children[6] : <></> }
+            {/* Tab Panels */}
+            <Suspense fallback={<div>Loading...</div>}>
+                {tab === 1 && (
+                    <>
+                        <Followers fid={params.fid}/>
+                        <Cast fid={params.fid}/>
+                        {/* Other components you want to render in tab 1 */}
+                    </>
+                )}
+                {tab === 2 && <Activity fid={params.fid} />}
+                {tab === 3 && <ActiveBadgeCheck userObject={user} />}
+                {tab === 4 && (
+                    <>
+                        <Casts fid={params.fid} username={user.username}/>
+                        <Unfollowers fid={params.fid} username={user.username}/>
+                        <DailyStats fid={params.fid}/>
+                        {/* Other components you want to render in tab 4 */}
+                    </>
+                )}
+            </Suspense>
         </>
     )
 }
