@@ -47,7 +47,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                 )}
                 {tab === 2 && (
                     <>
-                        <div>
+                        {/* <div>
                             <h3 className="week-summary-title">7 day summary</h3>
                             <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                                 <Followers fid={fid}/>
@@ -55,7 +55,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                             <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
                                 <Cast fid={fid}/>
                             </Suspense>
-                        </div>
+                        </div> */}
                         <div>
                             <h3 className="castactivity-title">Cast Activity</h3>
                             <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>

@@ -19,10 +19,10 @@ export default async function HomeFeed(fid: any) {
                         <th>Date</th>
                         <th>Difference</th>
                         <th>Followers</th>
-                        {/* <th>Difference</th>
+                        <th>Difference</th>
                         <th>Following</th>
                         <th>Difference</th>
-                        <th>Casts</th> */}
+                        <th>Casts</th>
                     </tr>
                 </thead>
                 <tbody className={`${style['tbody']}`}>
@@ -32,10 +32,10 @@ export default async function HomeFeed(fid: any) {
                                 <td>{ event.date }</td>
                                 <td className={event.followers_count > 0 ? `${style['increase']}` : event.followers_count == 0 ? `${style['neutral']}` : `${style['decrease']}`}>{event.followers_count > 0 ? "+" : event.followers_count == 0 ? '' : "-"}{event.followers_count}</td>
                                 <td>{event.followers_running_total}</td>
-                                {/* <td className={event.following_count > 0 ? `${style['increase']}` : event.following_count == 0 ? `${style['neutral']}` : `${style['decrease']}`}>{event.following_count > 0 ? "+" : event.following_count == 0 ? '' : "-"}{event.following_count}</td>
+                                <td className={event.following_count > 0 ? `${style['increase']}` : event.following_count == 0 ? `${style['neutral']}` : `${style['decrease']}`}>{event.following_count > 0 ? "+" : event.following_count == 0 ? '' : "-"}{event.following_count}</td>
                                 <td>{event.following_running_total}</td>
                                 <td className={event.cast_count > 0 ? `${style['increase']}` : event.cast_count == 0 ? `${style['neutral']}` : `${style['decrease']}`}>{event.cast_count > 0 ? "+" : event.cast_count == 0 ? '' : "-"}{event.cast_count}</td>
-                                <td>{event.casts_running_total}</td> */}
+                                <td>{event.casts_running_total}</td>
                             </tr>
                         ))
                     ) : (
