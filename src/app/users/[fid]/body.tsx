@@ -10,7 +10,7 @@ const Followers = lazy(() => import('../../components/Followers'));
 const Cast = lazy(() => import('../../components/Casts'));
 const Activity = lazy(() => import('../../components/CastActivity'));
 const ActiveBadgeCheck = lazy(() => import('../../components/ActiveBadgeCheck'));
-const Casts = lazy(() => import('../../components/MostLikedCasts'));
+const Casts = lazy(() => import('../../components/MostLikedCastsClient'));
 const Unfollowers = lazy(() => import('../../components/Unfollowers'));
 const DailyStats = lazy(() => import('../../components/DailyStats'));
 

@@ -2,7 +2,15 @@
 
 import style from './styles/MostLikedCasts.module.css'
 
-export default function Page(casts: any) {
+export default async function Page(fid: any, username: any) {
+
+  async function getTotalLikedCasts() {
+    const response = await fetch(`https://farcasteruserstats.com/api/most-liked-casts?fid=${fid.fid}`);
+    if (!response.ok) { throw new Error('Failed to fetch most liked casts summary'); }
+    let data = await response.json()
+    return data
+  }
+  const casts = await getTotalLikedCasts()
 
   return (
       <div className={style.casts}>
