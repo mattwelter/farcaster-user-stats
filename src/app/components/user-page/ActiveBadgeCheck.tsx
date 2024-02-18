@@ -5,7 +5,7 @@ export default async function HomeFeed(userObject: any) {
     let user = userObject.userObject
 
     const checkActiveBadge = async function() {
-        const response = await fetch(`https://farcasteruserstats.com/api/active-badge-check?fid=${user.fid}`);
+        const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${user.fid}`);
         if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
         let data = await response.json()
         return data

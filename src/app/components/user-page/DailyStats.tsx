@@ -3,7 +3,7 @@ import style from './../styles/EverydayFollows.module.css'
 export default async function HomeFeed(fid: any) {
 
     const getData = async function() {
-        const response = await fetch(`https://farcasteruserstats.com/api/daily-stats?fid=${fid.fid}`);
+        const response = await fetch(`https://farcasteruserstats.com/api/users/daily-stats?fid=${fid.fid}`);
         if (!response.ok) { throw new Error('Failed to fetch daily stats'); }
         let data = await response.json()
         return data

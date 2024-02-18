@@ -1,5 +1,5 @@
-import { pool } from '../db';
-import redis from '../../utils/redis';
+import { pool } from '../../db';
+import redis from '../../../utils/redis';
 import { DateTime } from "luxon";
 
 export async function GET(request) {

@@ -3,7 +3,7 @@ import TinyChart from './../utils/TinyChart'
 
 export default async function CastSummary(fid: any) {
     const getData = async function(){
-        const response = await fetch(`https://farcasteruserstats.com/api/cast-summary?fid=${fid.fid}`);
+        const response = await fetch(`https://farcasteruserstats.com/api/users/cast-summary?fid=${fid.fid}`);
         if (!response.ok) { throw new Error('Failed to fetch 7 day cast summary'); }
         let data = await response.json()
         return data

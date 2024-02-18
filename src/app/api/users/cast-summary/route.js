@@ -1,5 +1,5 @@
-import { pool } from '../db';
-import redis from '../../utils/redis';
+import { pool } from '../../db';
+import redis from '../../../utils/redis';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url)
