@@ -3,7 +3,7 @@ import style from './styles/Unfollowers.module.css'
 export default async function Unfollowers(fid: any, username: any) {
 
   async function getUnfollows() {
-    const response = await fetch(`https://www.farcasteruserstats.com/api/unfollowers?fid=${fid.fid}`);
+    const response = await fetch(`https://farcasteruserstats.com/api/unfollowers?fid=${fid.fid}`);
     if (!response.ok) { throw new Error('Failed to fetch unfollowers'); }
     let data = await response.json()
     return data

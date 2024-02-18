@@ -9,7 +9,7 @@ export async function GET(request) {
     headers.set('Access-Control-Allow-Origin', '*');
 
     if (!fid) {
-        return new Response.json({ error: 'Missing fid parameter' }, { headers });
+        return new Response({ headers }).json({ error: 'Missing fid parameter' });
     }
 
     try {
@@ -17,7 +17,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
-            return new Response.json(JSON.parse(cachedData), { headers });
+            return new Response({ headers }).json(JSON.parse(cachedData));
         } else {
             const startTime = Date.now();
             const client = await pool.connect();
@@ -67,10 +67,10 @@ export async function GET(request) {
             const timeInSeconds = (endTime - startTime) / 1000;
             console.log("FollowerSummary took", timeInSeconds, "seconds")
 
-            return new Response.json(data, { headers });
+            return new Response({ headers }).json(data);
         }
     } catch (error) {
         console.error('Error fetching 7 day follower summary:', error);
-        return new Response.json({ message: 'Internal server error', error: error }, { headers });
+        return new Response({ headers }).json({ message: 'Internal server error', error: error });
     }
 };
