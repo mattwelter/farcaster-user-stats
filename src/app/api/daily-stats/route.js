@@ -14,6 +14,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
+            console.log("USING CACHE - DailyStats - ID", fid)
             return Response.json(JSON.parse(cachedData));
         } else {
             const startTime = Date.now();
@@ -74,6 +75,7 @@ export async function GET(request) {
 
             const endTime = Date.now();
             const timeInSeconds = (endTime - startTime) / 1000;
+            console.log("NEW CONNECTION - CastSummary - ID", fid)
             console.log("DailyStats took", timeInSeconds, "seconds")
 
             return Response.json(newData);

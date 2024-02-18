@@ -2,7 +2,6 @@ import { pool } from '../db'; // Adjust the import path as needed
 import redis from '../../utils/redis';
 
 export async function GET(request) {
-    console.log("I AM IN I AM HERE HERE HERE")
     const { searchParams } = new URL(request.url)
     const fid = searchParams.get('fid')
 
@@ -22,6 +21,7 @@ export async function GET(request) {
         let cachedData = await redis.get(cacheKey);
     
         if (cachedData) {
+            console.log("USING CACHE - ActiveBadgeCheck - ID", fid)
             return Response.json(JSON.parse(cachedData));
         } else {
             const startTime = Date.now();
@@ -99,6 +99,7 @@ export async function GET(request) {
 
             const endTime = Date.now();
             const timeInSeconds = (endTime - startTime) / 1000;
+            console.log("NEW CONNECTION - ActiveBadgeCheck - ID", fid)
             console.log("ActiveBadgeCheck took", timeInSeconds, "seconds")
 
             return Response.json(data);
