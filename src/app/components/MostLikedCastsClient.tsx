@@ -6,7 +6,7 @@ export default function Page(casts: any) {
 
   return (
       <div className={style.casts}>
-        {casts !== undefined ? casts.casts.length !== 0 ? casts.casts.map((cast: any) => (
+        {casts.casts !== undefined ? casts.casts.length !== 0 ? casts.casts.map((cast: any) => (
           <section key={cast.id} className={style.cast}>
             <div className={style.text}>
               {cast.text.split('\n').map((line: any, index: any) =>
