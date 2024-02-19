@@ -10,9 +10,8 @@ interface StatsItem {
     // Add other properties as needed
 }
 
-
 // Assuming 'fid' is a prop for the HomeFeed component
-const HomeFeed = ({ fid }: { fid: any }) => {
+export default function DailyStats(fid: any){
     const [stats, setStats] = useState<StatsItem[] | null>(null);
     const [loading, setLoading] = useState(true); // Initialize loading state to true
 
@@ -76,5 +75,3 @@ const HomeFeed = ({ fid }: { fid: any }) => {
         </>
     );
 };
-
-export default HomeFeed;
