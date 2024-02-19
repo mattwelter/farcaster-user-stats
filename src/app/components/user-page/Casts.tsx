@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState, useEffect } from 'react';
 import style from './../styles/Followers.module.css';
 import TinyChart from './../utils/TinyChart';
@@ -10,7 +12,7 @@ interface CastSummary {
 
 export default function CastSummary(fid: any ) {
     const [data, setData] = useState<CastSummary[] | null>(null);
-    const [loading, setLoading] = useState(true); // Initialize loading state
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getData = async () => {
