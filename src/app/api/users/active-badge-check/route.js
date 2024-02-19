@@ -7,12 +7,12 @@ export async function GET(request) {
 
     if (!fid) {
         console.log({ error: 'Missing fid parameter' })
-        return Response.json({ error: 'Missing fid parameter' });
+        return Response.json({ error: 'Missing fid parameter', fid_parameter: fid });
     }
 
     const fidBigInt = parseInt(fid, 10);
     if (isNaN(fidBigInt)) {
-        console.log({ error: 'Invalid fid parameter. Must be an integer.' })
+        console.log({ error: 'Invalid fid parameter. Must be an integer.', fid: fid, fidBigInt: fidBigInt })
         return Response.json({ error: 'Invalid fid parameter. Must be an integer.' });
     }
 
