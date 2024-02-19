@@ -39,7 +39,9 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                     <>
                         <div>
                             <h3 className="activestatus-title">Active Status</h3>
-                            <ActiveBadgeCheck userObject={user} />
+                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
+                                <ActiveBadgeCheck userObject={user} />
+                            </Suspense>
                         </div>
                     </>
                 )}
