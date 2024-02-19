@@ -87,6 +87,7 @@ export default function ActiveBadgeCheck(userObject: any) {
     }
 
     if (!activeBadge) {
+        console.log({ "NEW NEW NEW NEW NEW activeBadge": activeBadge })
         return <div>Data not available</div>;
     }
 
