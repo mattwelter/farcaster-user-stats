@@ -35,8 +35,9 @@ export default function ActiveBadgeCheck(userObject: any) {
             setLoading(true);
             try {
                 const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${userObject.fid}`);
-                if (!response.ok) throw new Error('Failed to fetch daily stats');
+                if (!response.ok) throw new Error('Failed to fetch active badge requirements');
                 const activeBadgeRes = await response.json();
+                console.log({ activeBadgeRes })
     
                 if (activeBadgeRes.length === 0 || !activeBadgeRes[0]) {
                     throw new Error('No data returned from the API');
@@ -73,7 +74,10 @@ export default function ActiveBadgeCheck(userObject: any) {
                 setActiveBadge(activeBadgeData);
             } catch (error) {
                 console.log("Error fetching data: ", error);
-                // Optionally, handle the error state in the UI
+                const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${userObject.fid}`);
+                if (!response.ok) throw new Error('Failed to fetch active badge requirements');
+                const activeBadgeRes = await response.json();
+                console.log({ activeBadgeRes })
             } finally {
                 setLoading(false);
             }
