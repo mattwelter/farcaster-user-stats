@@ -34,7 +34,7 @@ export default function ActiveBadgeCheck(userObject: any) {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${userObject.fid}`);
+                const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${user.fid}`);
                 if (!response.ok) throw new Error('Failed to fetch active badge requirements');
                 const activeBadgeRes = await response.json();
                 console.log({ activeBadgeRes })
@@ -74,7 +74,7 @@ export default function ActiveBadgeCheck(userObject: any) {
                 setActiveBadge(activeBadgeData);
             } catch (error) {
                 console.log("Error fetching data: ", error);
-                const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${userObject.fid}`);
+                const response = await fetch(`https://farcasteruserstats.com/api/users/active-badge-check?fid=${user.fid}`);
                 if (!response.ok) throw new Error('Failed to fetch active badge requirements');
                 const activeBadgeRes = await response.json();
                 console.log({ activeBadgeRes })
