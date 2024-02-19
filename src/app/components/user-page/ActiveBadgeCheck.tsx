@@ -1,7 +1,6 @@
 import style from './../styles/ActiveBadgeCheck.module.css'
-import React from 'react';
 
-const ActiveBadgeCheck = async function(userObject: any) {
+export default async function ActiveBadgeCheck(userObject: any) {
 
     let user = userObject.userObject
 
@@ -67,6 +66,3 @@ const ActiveBadgeCheck = async function(userObject: any) {
         </>
         )
 }
-
-
-export default React.memo(ActiveBadgeCheck);
