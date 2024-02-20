@@ -56,15 +56,11 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                         </div> */}
                         <div>
                             <h3 className="castactivity-title">Cast Activity</h3>
-                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                                <Activity fid={fid} />
-                            </Suspense>
+                            <Activity fid={fid} />
                         </div>
                         <div>
                             <h3 className="mostlikedcasts-title">Daily Stats</h3>
-                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                                <DailyStats fid={fid}/>
-                            </Suspense>
+                            <DailyStats fid={fid}/>
                         </div>
                     </>
                 )}
@@ -72,9 +68,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                     <>
                         <div>
                             <h3 className="mostlikedcasts-title">Most Liked Casts (all time)</h3>
-                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                                <Casts fid={fid}/>
-                            </Suspense>
+                            <Casts fid={fid}/>
                         </div>
                     </>
                 )}
@@ -82,9 +76,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                     <>
                         <div>
                             <h3 className="mostlikedcasts-title">Recently Unfollowed By</h3>
-                            <Suspense fallback={<a className={`${style['rank-loading']}`}>Loading...</a>}>
-                                <Unfollowers fid={fid} username={user.username}/>
-                            </Suspense>
+                            <Unfollowers fid={fid} username={user.username}/>
                         </div>
                     </>
                 )}

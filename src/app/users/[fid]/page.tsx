@@ -67,6 +67,8 @@ export default async function Page({ params }: {
                         <img className="profile-pic" src={user.pfp.url ? user.pfp.url : "/avatar.png"} height="48px" width="48px" />
                         <h1>{ user ? user.displayName : params.fid }</h1>
                         <h2>{ user ? "@" + user.username : params.fid }</h2>
+                        <p>{ user ? `${user.followerCount}` : 0 } <a className={`${style['follow-sub-title']}`}>followers</a></p>
+                        <p>{ user ? `${user.followingCount}` : 0 } <a className={`${style['follow-sub-title']}`}>following</a></p>
                     </div>
                 </div>
             </div>
