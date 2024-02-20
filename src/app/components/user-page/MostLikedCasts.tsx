@@ -51,7 +51,7 @@ export default function MostLikedCasts({ fid, username }: { fid: any; username: 
     return (
         <>
             <div className={style.casts}>
-              {casts !== undefined ? casts.length !== 0 ? casts.map((cast: any) => (
+              {casts !== undefined ? casts.length !== 0 ? casts.map((cast: Cast) => (
                 <section key={cast.id} className={style.cast}>
                   <div className={style.text}>
                     {cast.text.split('\n').map((line: any, index: any) =>
