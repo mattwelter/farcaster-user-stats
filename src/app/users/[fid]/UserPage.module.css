@@ -53,6 +53,11 @@
     margin-right: 8px;
 }
 
+.follow-section p {
+    display: inline-block;
+    padding-right: 16px;
+}
+
 /* Loading Styles */
 
 .rank-loading {
