@@ -21,7 +21,7 @@ export async function GET(request) {
             const getCasts = await fetch(`https://api.neynar.com/v2/farcaster/feed/user/${fid}/popular?api_key=${process.env.NEYNAR_API_KEY}`, { method: "GET" });
             const res = await getCasts.json();
             let data = res.casts;
-            console.log( `${fid} casts` + JSON.stringify(data) )
+            console.log( `${fid} casts ` + JSON.stringify(data) )
 
             const endTime = Date.now();
             const timeDiff = endTime - startTime;
@@ -30,8 +30,8 @@ export async function GET(request) {
             console.log({"res": res, "responseCasts": data})
             console.log("MostLikedCasts took", timeInSeconds, "seconds")
 
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 14400); // 24 hours
-            return Response.json(data);
+            redis.set(cacheKey, (!!data ? JSON.stringify(data) : undefined), 'EX', 14400); // 24 hours
+            return Response.json(data ?? undefined);
         }
     } catch (error) {
         console.error('Error fetching most liked casts:', error);
