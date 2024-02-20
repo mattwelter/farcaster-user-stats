@@ -24,7 +24,7 @@ interface Cast {
 }
 
 
-export default function MostLikedCasts({ fid, username }: { fid: any; username: any }){
+export default function MostLikedCasts( fid: any ){
     const [casts, setCasts] = useState<Cast[]>([]);
     const [loading, setLoading] = useState(true);
 
