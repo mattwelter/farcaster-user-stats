@@ -27,6 +27,7 @@ export async function GET(request) {
             const timeDiff = endTime - startTime;
             const timeInSeconds = timeDiff / 1000;
             console.log("NEW CONNECTION - MostLikedCasts - ID", fid)
+            console.log({"res": res, "responseCasts": data})
             console.log("MostLikedCasts took", timeInSeconds, "seconds")
 
             redis.set(cacheKey, JSON.stringify(data), 'EX', 14400); // 24 hours
