@@ -1,9 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import style from './../styles/MostLikedCasts.module.css'
 
+
+interface Embed {
+  url?: string; 
+}
+
+interface Reaction {
+  likes: any[];
+}
+
+interface Author {
+  username: string; 
+}
+
+interface Cast {
+  id: string | number;
+  text: string;
+  embeds: Embed[];
+  reactions: Reaction;
+  author: Author;
+  hash: string;
+}
+
+
 export default function MostLikedCasts({ fid, username }: { fid: any; username: any }){
-    const [casts, setCasts] = useState<any[]>([]); // Initialize casts state
-    const [loading, setLoading] = useState(true); // Initialize loading state
+    const [casts, setCasts] = useState<Cast[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getTotalLikedCasts() {
