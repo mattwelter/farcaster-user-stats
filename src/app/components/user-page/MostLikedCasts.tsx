@@ -24,14 +24,14 @@ interface Cast {
 }
 
 
-export default function MostLikedCasts( fid: any ){
+export default function MostLikedCasts( fid: any){
     const [casts, setCasts] = useState<Cast[]>([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function getTotalLikedCasts() {
             try {
-                const response = await fetch(`https://farcasteruserstats.com/api/users/most-liked-casts?fid=${fid}`);
+                const response = await fetch(`https://farcasteruserstats.com/api/users/most-liked-casts?fid=${fid.fid}`);
                 if (!response.ok) { throw new Error('Failed to fetch most liked casts summary'); }
                 let data = await response.json();
                 setCasts(data);
