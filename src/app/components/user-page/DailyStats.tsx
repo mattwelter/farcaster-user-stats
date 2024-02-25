@@ -18,7 +18,7 @@ export default function DailyStats(fid: any){
     useEffect(() => {
         const getData = async () => {
             try {
-                const response = await fetch(`https://api.farcasteruserstats.com/users/daily-stats?fid=${fid.fid}`);
+                const response = await fetch(`https://api.farcasteruserstats.com/users/dailystats?fid=${fid.fid}`);
                 if (!response.ok) throw new Error('Failed to fetch daily stats');
                 const jsonData = await response.json();
                 setStats(jsonData); // Set the data from the API response
