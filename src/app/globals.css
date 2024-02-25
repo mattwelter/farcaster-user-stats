@@ -66,6 +66,15 @@ main {
     display: inline-block;
 }
 
+.userFeedHeader h2 a {
+    color: #B7B4BE;
+    text-decoration: none;
+}
+
+.userFeedHeader h2 a:hover {
+    text-decoration: underline;
+}
+
 .userFeedHeader .profile-pic {
     border-radius: 500px;
 }

@@ -47,7 +47,7 @@ export default async function HomeFeed(fid: any) {
             console.log("MostFollowedUsers.tsx took", timeInSeconds, "seconds")
 
             const data = response.rows;
-            redis.set(cacheKey, JSON.stringify(data), 'EX', 7200); // 2 hours
+            redis.set(cacheKey, JSON.stringify(data), 'EX', 86400); // 24 hours
             return data
         }
     }
