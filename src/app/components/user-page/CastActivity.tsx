@@ -24,7 +24,7 @@ export default function CastActivity( fid: any ){
 
         const getData = async () => {
             try {
-                const response = await fetch(`https://farcasteruserstats.com/api/users/cast-activity?fid=${fid.fid}&day=${day}`);
+                const response = await fetch(`https://api.farcasteruserstats.com.com/users/cast-activity?fid=${fid.fid}&day=${day}`);
                 if (!response.ok) throw new Error('Failed to fetch daily stats');
                 const jsonData = await response.json();
                 setData(jsonData); // Set data
