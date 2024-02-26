@@ -13,7 +13,7 @@ export default function Page(data: any) {
         setLoadedItems((prevItems) => prevItems + ITEMS_PER_CLICK);
     };
 
-    const currentData = data.slice(0, loadedItems);
+    const currentData = data.data.slice(0, loadedItems);
 
 
     return (
