@@ -1,6 +1,7 @@
 import { Inter } from 'next/font/google'
 import './globals.css'
 import type { Metadata } from 'next'
+import Head from 'next/head'
 import PlausibleProvider from 'next-plausible'
 
 export const metadata: Metadata = {
@@ -31,6 +32,9 @@ export default function RootLayout({
     <>
       <html lang="en" className={inter.className}>
         <PlausibleProvider domain="farcasteruserstats.com">
+          <Head>
+            <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.tagged-events.js"></script>
+          </Head>
           <body>
             {/* <p className={'warning'}>Please support and <a target="_blank" href="https://prop.house/0xdc86e4b4f5280747d1038a0ed5aa701b125f7e82">vote here</a> for FarcasterUserStats.com for Purple's retro funding. Ends Feb 21st</p> */}
             {children}

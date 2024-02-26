@@ -1,9 +1,35 @@
 'use client';
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import style from './../styles/PopularUsers.module.css'
 
 export default function Page(data: any) {
+    const [unfollows, setData] = useState();
+    const [loading, setLoading] = useState<boolean>(true);
+
+    useEffect(() => {
+        const getUnfollows = async () => {
+        try {
+            const response = await fetch(`https://api.farcasteruserstats.com/leaderboards/100mostfollowed`);
+            if (!response.ok) {
+            throw new Error('Failed to fetch 100 Most Followed');
+            }
+            const data = await response.json();
+            setData(data);
+        } catch (error) {
+            console.error("Error fetching unfollows:", error);
+            // Optionally, handle the error state here
+        } finally {
+            setLoading(false);
+        }
+        };
+
+        getUnfollows();
+    }, []);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     const ITEMS_PER_CLICK = 10;
 
@@ -13,7 +39,7 @@ export default function Page(data: any) {
         setLoadedItems((prevItems) => prevItems + ITEMS_PER_CLICK);
     };
 
-    const currentData = data.data.slice(0, loadedItems);
+    const currentData = data.slice(0, loadedItems);
 
 
     return (
