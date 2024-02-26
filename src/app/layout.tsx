@@ -31,10 +31,7 @@ export default function RootLayout({
   return (
     <>
       <html lang="en" className={inter.className}>
-        <PlausibleProvider domain="farcasteruserstats.com">
-          <Head>
-            <script defer data-domain="yourdomain.com" src="https://plausible.io/js/script.tagged-events.js"></script>
-          </Head>
+        <PlausibleProvider domain="farcasteruserstats.com" taggedEvents={true}>
           <body>
             {/* <p className={'warning'}>Please support and <a target="_blank" href="https://prop.house/0xdc86e4b4f5280747d1038a0ed5aa701b125f7e82">vote here</a> for FarcasterUserStats.com for Purple's retro funding. Ends Feb 21st</p> */}
             {children}
