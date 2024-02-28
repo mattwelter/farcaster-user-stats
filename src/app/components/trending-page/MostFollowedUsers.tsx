@@ -58,7 +58,7 @@ export default async function HomeFeed(fid: any) {
     <>
         <div className={style['popular-users-wrapper']}>
             <section>
-                <h2>Most Followed</h2>
+                <h2>100 Most Followed</h2>
                 <a className={style['header-subtitle']}>Top 100 users with the most followers. <i>Updated seconds ago.</i></a>
             </section>
             <MostFollowedUsersClient data={data} />

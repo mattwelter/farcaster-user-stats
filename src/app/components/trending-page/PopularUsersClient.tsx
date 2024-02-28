@@ -5,15 +5,7 @@ import style from './../styles/PopularUsers.module.css'
 
 export default function Page(data: any) {
 
-    const ITEMS_PER_CLICK = 10;
-
-    const [loadedItems, setLoadedItems] = useState(ITEMS_PER_CLICK);
-
-    const loadMore = () => {
-        setLoadedItems((prevItems) => prevItems + ITEMS_PER_CLICK);
-    };
-
-    const currentData = data.data.slice(0, loadedItems);
+    const currentData = data.data
 
 
     return (
@@ -24,17 +16,20 @@ export default function Page(data: any) {
                     <thead>
                         <tr>
                             <th>
+                                #
+                            </th>
+                            <th>
                                 User
                             </th>
                             <th>
-                                Total Engagement
+                                Engagement
                             </th>
                             {/* <th>
                                 Casts
                             </th> */}
-                            <th>
+                            {/* <th>
                                 Likes/Cast ratio
-                            </th>
+                            </th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -42,26 +37,26 @@ export default function Page(data: any) {
                         ? currentData.map((event: any, index: any) => (
                             <tr key={event.fid} className={style['table-item']}>
                                 <td>
-                                    {index+1}. @<a href={`/users/${event.fid}`}>{ event.username }</a>
+                                    {index+1}
                                 </td>
                                 <td>
-                                    { event.reactions_received }
+                                    @<a href={`/users/${event.fid}`}>{ event.username }</a>
+                                </td>
+                                <td>
+                                    { Number(event.reactions_received).toLocaleString() }
                                 </td>
                                 {/* <td>
                                     { event.total_casts }
                                 </td> */}
-                                <td>
+                                {/* <td>
                                     { event.reaction_cast_ratio.toFixed(2) }
-                                </td>
+                                </td> */}
                             </tr>
                             ))
                         : <tr><td>Nothing here...</td></tr>
                         }
                     </tbody>
                 </table>
-                {loadedItems < data.data.length ? (
-                    <button onClick={loadMore}>Load more users</button>
-                ) : <a className={style['all-users-have-been-loaded-text']}>All 100 users have loaded</a>}
             </div>
         </div>
     </>

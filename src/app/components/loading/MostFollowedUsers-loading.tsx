@@ -12,7 +12,37 @@ export default async function HomeFeed() {
         6,
         7,
         8,
-        9
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
     ]
   return (
     <>
@@ -27,28 +57,28 @@ export default async function HomeFeed() {
                         <thead>
                             <tr>
                                 <th>
-                                    &nbsp;
+                                    #
                                 </th>
                                 <th>
-                                    &nbsp;
+                                    Username
                                 </th>
                                 <th>
-                                    &nbsp;
+                                    Followers
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentData.length !== 0
                             ? currentData.map((event: any, index: any) => (
-                                <tr className={style['table-item']}>
+                                <tr key={event.fid} className={style['table-item']}>
                                     <td>
-                                        {index+1}. Loading user...
+                                        { event.rank }
                                     </td>
                                     <td>
-                                        &nbsp;
+                                        
                                     </td>
                                     <td>
-                                        &nbsp;
+                                        { event.follower_count }
                                     </td>
                                 </tr>
                                 ))

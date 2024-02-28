@@ -1,18 +1,18 @@
 import style from '../Trending.module.css'
 import { Suspense } from 'react'
-import PopularUsers from '../../components/trending-page/PopularUsers'
-import PopularUsersLoading from '../../components/loading/PopularUsers-Loading'
+import PopularUsers from '../../components/trending-page/MostFollowedUsers'
+import MostFollowedUsersLoading from '../../components/loading/MostFollowedUsers-loading'
 import SearchTopBar from '../../components/utils/Search-TopBar'
 import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
-    title: `Farcaster User Stats - Trending`,
+    title: `Farcaster User Stats - Most Followers`,
     description: 'The #1 source to see your Farcaster profile stats',
     manifest: '/manifest.json',
     icons: { apple: '/farcaster-user-stats-logo.png' },
     themeColor: '#3F1E94',
     openGraph: {
-      title: 'Farcaster User Stats - Trending',
+      title: 'Farcaster User Stats - Most Followers',
       description: 'The #1 source to see your Farcaster profile stats',
       images: ['/og_image.png']
     }
@@ -38,25 +38,20 @@ export default async function Page() {
                             <SearchTopBar />
                         </Suspense>
                     </section>
-
-                    {/* <div className="header-padding userFeedHeader">
-                        <h1>Trending</h1>
-                    </div> */}
-
                 </div>
             </div>
             {/* <p>Trending page is under maintenance for the weekend</p> */}
-            <div className={`${'navigation'} ${style['on-leaderboard-page']}`}>
+            {/* <div className={`${'navigation'} ${style['on-leaderboard-page']}`}>
                 <nav>
                     <ul>
                         <li><a href="/trending/ratio">Trending</a></li>
                         <li><a href="/trending/followers">Most Followed</a></li>
-                        <li><a target="_blanl" href="https://hatecast.xyz">Most Hated</a></li>
+                        <li><a target="_blank" href="https://hatecast.xyz">Most Hated</a></li>
                     </ul>
                 </nav>
-            </div>
+            </div> */}
 
-            <Suspense fallback={<PopularUsersLoading />}>
+            <Suspense fallback={<MostFollowedUsersLoading />}>
                 <PopularUsers />
             </Suspense>
         </main>

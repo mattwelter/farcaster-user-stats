@@ -5,16 +5,7 @@ import style from './../styles/PopularUsers.module.css'
 
 export default function Page(data: any) {
 
-    const ITEMS_PER_CLICK = 10;
-
-    const [loadedItems, setLoadedItems] = useState(ITEMS_PER_CLICK);
-
-    const loadMore = () => {
-        setLoadedItems((prevItems) => prevItems + ITEMS_PER_CLICK);
-    };
-
-    const currentData = data.data.slice(0, loadedItems);
-
+    const currentData = data.data
 
     return (
     <>
@@ -24,13 +15,13 @@ export default function Page(data: any) {
                     <thead>
                         <tr>
                             <th>
-                                Rank
+                                #
                             </th>
                             <th>
                                 Username
                             </th>
                             <th>
-                                Follower Count
+                                Followers
                             </th>
                         </tr>
                     </thead>
@@ -53,9 +44,6 @@ export default function Page(data: any) {
                         }
                     </tbody>
                 </table>
-                {loadedItems < data.data.length ? (
-                    <button onClick={loadMore}>Load more users</button>
-                ) : <a className={style['all-users-have-been-loaded-text']}>All 100 users have loaded</a>}
             </div>
         </div>
     </>
