@@ -16,7 +16,7 @@ export default function Unfollowers( fid: any ){
   useEffect(() => {
     const getUnfollows = async () => {
       try {
-        const response = await fetch(`https://farcasteruserstats.com/api/users/unfollowers?fid=${fid.fid}`);
+        const response = await fetch(`http://54.176.177.65:8080/api/users/unfollowers?fid=${fid.fid}`);
         if (!response.ok) {
           throw new Error('Failed to fetch unfollowers');
         }
