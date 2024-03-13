@@ -3,7 +3,7 @@ import TinyChart from './../utils/TinyChart'
 
 export default async function FollowersSummary(fid: any) {
     const getData = async function(){
-        const response = await fetch(`http://54.176.177.65:8080/users/followers?fid=${fid.fid}`);
+        const response = await fetch(`https://api.farcasteruserstats.com/users/followers?fid=${fid.fid}`);
         if (!response.ok) { throw new Error('Failed to fetch 7 day follower summary'); }
         let data = await response.json()
         return data

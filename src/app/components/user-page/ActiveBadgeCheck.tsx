@@ -34,7 +34,7 @@ export default function ActiveBadgeCheck(userObject: any) {
         const fetchData = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`http://54.176.177.65:8080/users/active-badge-check?fid=${user.fid}`);
+                const response = await fetch(`https://api.farcasteruserstats.com/users/active-badge-check?fid=${user.fid}`);
                 if (!response.ok) throw new Error('Failed to fetch active badge requirements');
                 const activeBadgeRes = await response.json();
                 console.log({ activeBadgeRes })
