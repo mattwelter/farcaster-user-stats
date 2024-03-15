@@ -41,9 +41,9 @@ export default async function Page({ params }: {
     params: { fid: string }
 }) {
 
-    if(params.fid == "354260"){
-        return <>Please stop spamming the site, thank you</>
-    }
+    // if(params.fid == "354260"){
+    //     return <>Please stop spamming the site, thank you</>
+    // }
 
     const getUser = await fetch(`https://api.neynar.com/v1/farcaster/user/?api_key=${process.env.NEYNAR_API_KEY}&fid=${params.fid}&viewerFid=3`, { method: "GET" });
     const userResponse = await getUser.json();
