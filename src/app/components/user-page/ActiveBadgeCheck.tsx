@@ -34,7 +34,7 @@ export default function ActiveBadgeCheck(userObject: any) {
     if(user.activeStatus == "active"){
         return (<>
             <div className={`${style['badge-check-wrapper']} ${style['active-bg-wrapper']}`}>
-                <div className={`${style['active-bg']}`}>
+                <div className={`${style['badge-check']} ${style['active-bg']}`}>
                     <ul>
                         <li><a>✅ &nbsp;User has connected Ethereum address</a></li>
                         <li><a>✅ &nbsp;User has display name</a></li>
