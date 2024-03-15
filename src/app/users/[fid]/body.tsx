@@ -13,6 +13,7 @@ const ActiveBadgeCheck = lazy(() => import('../../components/user-page/ActiveBad
 const Casts = lazy(() => import('../../components/user-page/MostLikedCasts'));
 const Unfollowers = lazy(() => import('../../components/user-page/Unfollowers'));
 const DailyStats = lazy(() => import('../../components/user-page/DailyStats'));
+const DailyLikes = lazy(() => import('../../components/user-page/7DayLikes'));
 
 export default function Body({ fid, user }: { fid: any, user: any }) {
     const [tab, setTab] = useState(1);
@@ -61,6 +62,10 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                         <div>
                             <h3 className="mostlikedcasts-title">Daily Stats</h3>
                             <DailyStats fid={fid}/>
+                        </div>
+                        <div>
+                            <h3 className="mostlikedcasts-title">7 Day Like Summary</h3>
+                            <DailyLikes fid={fid}/>
                         </div>
                     </>
                 )}
