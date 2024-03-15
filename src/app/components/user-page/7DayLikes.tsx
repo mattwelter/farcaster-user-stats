@@ -42,7 +42,7 @@ export default function DailyLikes(fid: any){
                 <thead className={style['thead']}>
                     <tr>
                         <th>Date</th>
-                        <th>Followers</th>
+                        <th>Likes</th>
                     </tr>
                 </thead>
                 <tbody className={style['tbody']}>
