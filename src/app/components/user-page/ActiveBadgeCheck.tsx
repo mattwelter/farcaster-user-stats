@@ -29,27 +29,28 @@ export default function ActiveBadgeCheck(userObject: any) {
     const [loading, setLoading] = useState(false);
 
     let user = userObject.userObject
+    console.log({ user })
 
-    if(user.result.user.activeStatus == "active"){
-        setLoading(false);
-        return (<>
-            <div className={`${style['badge-check-wrapper']} ${style['active-bg-wrapper']}`}>
-                <div className={`${style['active-bg']}`}>
-                    <ul>
-                        <li><a>✅ &nbsp;User has connected Ethereum address</a></li>
-                        <li><a>✅ &nbsp;User has display name</a></li>
-                        <li><a>✅ &nbsp;User has a bio</a></li>
-                        <li><a>✅ &nbsp;User has a profile picture</a></li>
-                        <li><a>✅ &nbsp;User has more than 400 followers</a></li>
-                        <li><a>✅ &nbsp;Account older than 7 days</a></li>
-                        <li><a>✅ &nbsp;User received 1 or more likes in past 30 days</a></li>
-                        <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li>
-                        <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li>
-                    </ul>
-                </div>
-            </div>
-        </>)
-    } else {
+    // if(user.result.user.activeStatus == "active"){
+    //     setLoading(false);
+    //     return (<>
+    //         <div className={`${style['badge-check-wrapper']} ${style['active-bg-wrapper']}`}>
+    //             <div className={`${style['active-bg']}`}>
+    //                 <ul>
+    //                     <li><a>✅ &nbsp;User has connected Ethereum address</a></li>
+    //                     <li><a>✅ &nbsp;User has display name</a></li>
+    //                     <li><a>✅ &nbsp;User has a bio</a></li>
+    //                     <li><a>✅ &nbsp;User has a profile picture</a></li>
+    //                     <li><a>✅ &nbsp;User has more than 400 followers</a></li>
+    //                     <li><a>✅ &nbsp;Account older than 7 days</a></li>
+    //                     <li><a>✅ &nbsp;User received 1 or more likes in past 30 days</a></li>
+    //                     <li><a>✅ &nbsp;User received 1 or more replies in past 30 days</a></li>
+    //                     <li><a>✅ &nbsp;User has more engagement than total casts in past 30 days</a></li>
+    //                 </ul>
+    //             </div>
+    //         </div>
+    //     </>)
+    // } else {
         useEffect(() => {
             const fetchData = async () => {
                 setLoading(true);
@@ -100,7 +101,7 @@ export default function ActiveBadgeCheck(userObject: any) {
         
             fetchData();
         }, [userObject]);
-    }
+    // }
 
     if (loading) {
         return <div>Loading...</div>
