@@ -49,7 +49,7 @@ export default function DailyStats(fid: any){
                         {/* @ts-ignore */}
                         <th colSpan="2">Following</th>
                         {/* @ts-ignore */}
-                        <th colSpan="2">Casts</th>
+                        {/* <th colSpan="2">Casts</th> */}
                     </tr>
                 </thead>
                 <tbody className={style['tbody']}>
@@ -61,8 +61,8 @@ export default function DailyStats(fid: any){
                                 <td>{event.followers_running_total}</td>
                                 <td className={event.following_count > 0 ? style['increase'] : event.following_count === 0 ? style['neutral'] : style['decrease']}>{event.following_count > 0 ? "+" : event.following_count === 0 ? '' : "-"}{event.following_count}</td>
                                 <td>{event.following_running_total}</td>
-                                <td className={event.cast_count > 0 ? style['increase'] : event.cast_count === 0 ? style['neutral'] : style['decrease']}>{event.cast_count > 0 ? "+" : event.cast_count === 0 ? '' : "-"}{event.cast_count}</td>
-                                <td>{event.casts_running_total}</td>
+                                {/* <td className={event.cast_count > 0 ? style['increase'] : event.cast_count === 0 ? style['neutral'] : style['decrease']}>{event.cast_count > 0 ? "+" : event.cast_count === 0 ? '' : "-"}{event.cast_count}</td>
+                                <td>{event.casts_running_total}</td> */}
                             </tr>
                         ))
                     ) : (

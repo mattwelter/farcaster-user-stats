@@ -42,7 +42,10 @@ export default function DailyLikes(fid: any){
                 <thead className={style['thead']}>
                     <tr>
                         <th>Date</th>
-                        <th>Likes</th>
+                        {/* @ts-ignore */}
+                        <th colSpan="2">Casts</th>
+                        {/* @ts-ignore */}
+                        <th colSpan="2">Likes</th>
                     </tr>
                 </thead>
                 <tbody className={style['tbody']}>
@@ -50,7 +53,10 @@ export default function DailyLikes(fid: any){
                         stats.map((event: any, index: number) => (
                             <tr key={index}>
                                 <td>{`${new Date(event.day).getMonth() + 1}/${new Date(event.day).getDate()}`}</td>
-                                <td>{event.likes}</td>
+                                <td className={event.cast_count > 0 ? style['increase'] : event.cast_count === 0 ? style['neutral'] : style['decrease']}>{event.cast_count > 0 ? "+" : event.cast_count === 0 ? '' : "-"}{event.cast_count}</td>
+                                <td>{event.casts_running_total}</td>
+                                <td className={event.likes_count > 0 ? style['increase'] : event.likes_count === 0 ? style['neutral'] : style['decrease']}>{event.likes_count > 0 ? "+" : event.likes_count === 0 ? '' : "-"}{event.likes_count}</td>
+                                <td>{event.likes_running_total}</td>
                             </tr>
                         ))
                     ) : (
