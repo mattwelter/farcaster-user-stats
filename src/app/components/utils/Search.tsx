@@ -1,49 +1,50 @@
-// /src/app/components/Search.tsx
 'use client'
 
 import { useState, useEffect, useRef } from 'react';
 import { searchUsername, debounceSearch } from '../../actions';
-import { redirect } from 'next/navigation'
+import { redirect } from 'next/navigation';
 import style from './../styles/Search.module.css';
 
 // Go to user page by "enter" key
-async function handleSearch(formData: FormData) {
-  console.log({formData})
-  const res = await searchUsername(formData)
+async function handleSearch(event: React.FormEvent<HTMLFormElement>, username: string) {
+  event.preventDefault(); // Prevent the form from submitting in the traditional way
+  console.log({ username });
+  const formData = new FormData();
+  formData.append('username', username);
+  const res = await searchUsername(formData);
 
   if (!res.result) {
-    return alert('No user found')
-  } else if (res.code == "NotFound") {
-    return alert('No user found')
+    alert('No user found');
+  } else if (res.code === "NotFound") {
+    alert('No user found');
+  } else {
+    redirect(`/users/${res.result.user.fid}`);
   }
-
-  return redirect(`/users/${res.result.user.fid}`)
 }
 
 // Custom hook for debouncing
-function useDebounce(callback: any, delay: any) {
-  // Using a closure to hold the timer id across renders
-  let timer: any;
+function useDebounce(callback: Function, delay: number) {
+  const timer = useRef<ReturnType<typeof setTimeout>>();
 
   useEffect(() => {
     // Clean up the timer on unmount
     return () => {
-      if (timer) {
-        clearTimeout(timer);
+      if (timer.current) {
+        clearTimeout(timer.current);
       }
     };
-  }, [delay]); // Only recreate the cleanup if 'delay' changes
+  }, [delay]);
 
-  return (...args: any[]) => {
-    // Clear the timer if it exists
-    if (timer) {
-      clearTimeout(timer);
+  const debouncedCallback = (...args: any[]) => {
+    if (timer.current) {
+      clearTimeout(timer.current);
     }
-    // Set a new timer
-    timer = setTimeout(() => {
+    timer.current = setTimeout(() => {
       callback(...args);
     }, delay);
   };
+
+  return debouncedCallback;
 }
 
 export default function Page() {
@@ -51,45 +52,47 @@ export default function Page() {
   const [searchResults, setSearchResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleDebouncedSearch = useDebounce(async (username: any) => {
-    if (!username) {
+  const handleDebouncedSearch = useDebounce(async (searchTerm: string) => {
+    if (!searchTerm) {
       setSearchResults([]);
       setIsLoading(false);
       return;
     }
 
     setIsLoading(true);
-    const res = await debounceSearch(username);
+    const res = await debounceSearch(searchTerm);
     if (res.result && res.result.users) {
       setSearchResults(res.result.users);
     } else {
       setSearchResults([]);
     }
     setIsLoading(false);
-  }, 750);
+  }, 400); // Adjusted to 250ms as you specified
 
   useEffect(() => {
-    handleDebouncedSearch(username);
-  }, [username]);
+    if (username) {
+      handleDebouncedSearch(username);
+    }
+  }, [username]); // Dependency array ensures this effect runs only when username changes
 
   return (
     <div className={style.search}>
-       <form action={handleSearch}>
+       <form onSubmit={(e) => handleSearch(e, username)}>
         <input
-        id="username"
-        name="username"
-        placeholder="Search by username"
-        autoComplete="off"
-        onChange={(e) => setUsername(e.target.value)}
+          id="username"
+          name="username"
+          placeholder="Search by username"
+          autoComplete="off"
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <button type="submit" disabled={!username}>
-        Search
+          Search
         </button>
       </form>
       <div className={style.results}>
         {isLoading ? (
-          <p>Loading...</p>
+          <p>Searching for @{username}...</p>
         ) : searchResults.length === 0 && username ? (
           <p>No results found for '{username}'</p>
         ) : (
