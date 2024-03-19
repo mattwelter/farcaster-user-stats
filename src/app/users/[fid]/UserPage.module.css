@@ -53,9 +53,20 @@
     margin-right: 8px;
 }
 
+/* Following/Followers Section */
+
+.follow-section {
+
+}
+
 .follow-section p {
     display: inline-block;
     padding-right: 16px;
+    font-weight: 500;
+}
+
+.follow-sub-title {
+    font-weight: 400;
 }
 
 /* Loading Styles */
@@ -84,5 +95,9 @@
 
     .section-padding {
         padding: 0px 16px;
+    }
+
+    .user-page-header {
+        padding-bottom: 0px !important;
     }
 }
