@@ -86,7 +86,7 @@
     .navigation::after {
         margin-left: calc(100vw - 72px);
         background: rgb(27,26,31);
-        background: linear-gradient(90deg, rgba(27,26,31,0) 0%, rgba(37,34,52,0.6601234243697479) 53%, rgba(37,34,52,1) 100%);
+        background: linear-gradient(90deg, rgba(27,26,31,0) 0%, rgba(27,26,31,50) 53%, rgba(27,26,31,1) 100%);
     }
 
     .navigation .selected-tab {
