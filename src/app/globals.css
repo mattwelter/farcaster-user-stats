@@ -199,9 +199,9 @@ main {
 
 
 @media only screen and (max-width: 600px) {
-    html {
+    /* html {
         background-color: #252234;
-    }
+    } */
 
     body {
       /* padding: 0px 8px; */
