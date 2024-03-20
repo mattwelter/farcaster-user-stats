@@ -34,11 +34,9 @@ export default function DailyStats(fid: any){
         return <div>Loading...</div>; // Display a loading message or spinner
     }
 
-    const points = data ? (data[0].total_points != null ? Number((data[0].total_points / 60).toFixed(2)) * 100 : 0) : 0
-    console.log({points})
     return (
         <>
-            {data && data.length !== 0 ? (
+            {data && data.length !== 0 && data[0].total_points != null ? (
                 <div>
                     <h2>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "100%" : (Number((data[0].total_points / 60).toFixed(2)) * 100) + "%") : "0%")}</h2>   
                     <a>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "Excellent Reputation" :
