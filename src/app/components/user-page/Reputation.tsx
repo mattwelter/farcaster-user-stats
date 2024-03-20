@@ -43,9 +43,8 @@ export default function DailyStats(fid: any){
                     <h2>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "100%" : (Number((data[0].total_points / 60).toFixed(2)) * 100) + "%") : "0%")}</h2>   
                     <a>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "Excellent Reputation" :
                         (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 75 ? "Great Reputation"
-                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 50 ? "Good Reputation"
-                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 25 ? "Neutral Reputation"
-                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 0 ? "Poor Reputation" : "No Reputation")
+                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 25 ? "Good Reputation"
+                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 0 ? "Low Reputation" : "No Reputation")
                         : "0%")}</a>
                 </div>
             ) : (
