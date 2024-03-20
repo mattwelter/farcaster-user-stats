@@ -14,6 +14,7 @@ const Casts = lazy(() => import('../../components/user-page/MostLikedCasts'));
 const Unfollowers = lazy(() => import('../../components/user-page/Unfollowers'));
 const DailyStats = lazy(() => import('../../components/user-page/DailyStats'));
 const DailyLikes = lazy(() => import('../../components/user-page/7DayLikes'));
+const Reputation = lazy(() => import('../../components/user-page/Reputation'));
 
 export default function Body({ fid, user }: { fid: any, user: any }) {
     const [tab, setTab] = useState(1);
@@ -38,6 +39,10 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 {tab === 1 && (
                     <>
+                        <div>
+                            <h3 className="activestatus-title">Reputation</h3>
+                            <Reputation fid={fid} />
+                        </div>
                         <div>
                             <h3 className="activestatus-title">Active Status</h3>
                             <ActiveBadgeCheck userObject={user} />
