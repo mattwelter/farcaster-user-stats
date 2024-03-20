@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useState, useEffect } from 'react';
+import style from './../styles/Reputation.module.css'
 
 interface ReputationItem {
     target_fid: number;
@@ -33,24 +34,25 @@ export default function DailyStats(fid: any){
         return <div>Loading...</div>; // Display a loading message or spinner
     }
 
-    // Render your component's UI
+    const points = data ? (data[0].total_points != null ? Number((data[0].total_points / 60).toFixed(2)) * 100 : 0) : 0
+    console.log({points})
     return (
         <>
             {data && data.length !== 0 ? (
-                <>
-                    <h2>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "100%" : (data[0].total_points / 60).toFixed(2) + "%") : "0%")}</h2>   
+                <div>
+                    <h2>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "100%" : (Number((data[0].total_points / 60).toFixed(2)) * 100) + "%") : "0%")}</h2>   
                     <a>{(data[0].total_points != null ? (data[0].total_points / 60 >= 1 ? "Excellent Reputation" :
-                        Number((data[0].total_points / 60).toFixed(2)) >= 75 ? "Great Reputation"
-                        : Number((data[0].total_points / 60).toFixed(2)) >= 50 ? "Good Reputation"
-                        : Number((data[0].total_points / 60).toFixed(2)) >= 25 ? "Neutral Reputation"
-                        : Number((data[0].total_points / 60).toFixed(2)) >= 0 ? "Poor Reputation" : "No Reputation")
+                        (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 75 ? "Great Reputation"
+                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 50 ? "Good Reputation"
+                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 25 ? "Neutral Reputation"
+                        : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 0 ? "Poor Reputation" : "No Reputation")
                         : "0%")}</a>
-                </>
+                </div>
             ) : (
-                <>
-                    <h2>0%</h2>
+                <div className={`${style['container']}`}>
+                    <h2 className={`${style['score']}`}>0%</h2>
                     <a>No Reputation</a>
-                </>
+                </div>
             )}
         </>
     );

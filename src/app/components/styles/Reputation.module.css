@@ -1,0 +1,37 @@
+.container {
+
+}
+
+.score {
+    background-color: #333;
+    color: white;
+    padding: 8px 12px;
+    width: fit-content;
+    border-radius: 8px;
+    border: 2px solid white;
+}
+
+.excellent {
+    background-color: #005c34;
+    border: 2px solid lime;
+}
+
+.great {
+    background-color: #1f5c00;
+    border: 2px solid rgb(145, 255, 0);
+}
+
+.good {
+    background-color: #5c5600;
+    border: 2px solid rgb(255, 247, 0);
+}
+
+.neutral {
+    background-color: #5c3300;
+    border: 2px solid rgb(255, 145, 0);
+}
+
+.poor {
+    background-color: #5c0000;
+    border: 2px solid rgb(255, 0, 0);
+}
