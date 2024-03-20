@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { searchUsername, debounceSearch } from '../../actions';
-import { redirect } from 'next/navigation';
+import { redirect } from 'next/navigation'
 import style from './../styles/Search.module.css';
 
 // Go to user page by "enter" key
@@ -18,7 +18,7 @@ async function handleSearch(event: React.FormEvent<HTMLFormElement>, username: s
   } else if (res.code === "NotFound") {
     alert('No user found');
   } else {
-    redirect(`/users/${res.result.user.fid}`);
+    return redirect(`/users/${res.result.user.fid}`)
   }
 }
 
