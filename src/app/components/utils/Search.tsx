@@ -6,20 +6,17 @@ import { redirect } from 'next/navigation'
 import style from './../styles/Search.module.css';
 
 // Go to user page by "enter" key
-async function handleSearch(event: React.FormEvent<HTMLFormElement>, username: string) {
-  event.preventDefault(); // Prevent the form from submitting in the traditional way
-  console.log({ username });
-  const formData = new FormData();
-  formData.append('username', username);
-  const res = await searchUsername(formData);
+async function handleSearch(formData: FormData) {
+  console.log({formData})
+  const res = await searchUsername(formData)
 
   if (!res.result) {
-    alert('No user found');
-  } else if (res.code === "NotFound") {
-    alert('No user found');
-  } else {
-    return redirect(`/users/${res.result.user.fid}`)
+    return alert('No user found')
+  } else if (res.code == "NotFound") {
+    return alert('No user found')
   }
+
+  return redirect(`/users/${res.result.user.fid}`)
 }
 
 // Custom hook for debouncing
@@ -77,7 +74,7 @@ export default function Page() {
 
   return (
     <div className={style.search}>
-       <form onSubmit={(e) => handleSearch(e, username)}>
+       <form action={handleSearch}>
         <input
           id="username"
           name="username"
