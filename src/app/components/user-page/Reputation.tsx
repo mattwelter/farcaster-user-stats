@@ -6,6 +6,7 @@ import style from './../styles/Reputation.module.css'
 interface ReputationItem {
     target_fid: number;
     total_points: number;
+    contributors: string;
 }
 
 export default function DailyStats(fid: any){
@@ -34,6 +35,15 @@ export default function DailyStats(fid: any){
         return <div>Loading...</div>; // Display a loading message or spinner
     }
 
+    let users = []
+    if(data && data.length !==0 && data[0].contributors){
+        var contributers = data[0].contributors.replaceAll(" ", "").split(",")
+        for(let i=0; i<contributers.length; i++){
+            users.push(contributers[i])
+        }
+    }
+    console.log({users})
+
     return (
         <>
             {data && data.length !== 0 && data[0].total_points != null ? (
@@ -44,6 +54,13 @@ export default function DailyStats(fid: any){
                         : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 25 ? "Good Reputation"
                         : (Number((data[0].total_points / 60).toFixed(2)) * 100) >= 0 ? "Low Reputation" : "No Reputation")
                         : "0%")}</a>
+                    {/* <ul>
+                        {
+                            users.map((user: any, index: number) => (
+                                <li><a>{user}</a></li>
+                            ))
+                        }
+                    </ul> */}
                 </div>
             ) : (
                 <div className={`${style['container']}`}>

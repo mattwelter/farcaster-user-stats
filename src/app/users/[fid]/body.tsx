@@ -39,10 +39,10 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
             <div className={`${style['section-padding']} ${"width-500"}`}>
                 {tab === 1 && (
                     <>
-                        <div>
-                            <h3 className="activestatus-title">Reputation</h3>
+                        {/* <div>
+                            <h3 className="activestatus-title">Reputable Follows</h3>
                             <Reputation fid={fid} />
-                        </div>
+                        </div> */}
                         <div>
                             <h3 className="activestatus-title">Active Status</h3>
                             <ActiveBadgeCheck userObject={user} />
@@ -69,7 +69,7 @@ export default function Body({ fid, user }: { fid: any, user: any }) {
                             <DailyStats fid={fid}/>
                         </div>
                         <div>
-                            <h3 className="mostlikedcasts-title">7 Day Like Summary</h3>
+                            <h3 className="mostlikedcasts-title">Daily Likes</h3>
                             <DailyLikes fid={fid}/>
                         </div>
                     </>
