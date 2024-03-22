@@ -40,7 +40,7 @@ export default function Home() {
           <Suspense fallback={<p>Loading search...</p>}>
             <Search />
           </Suspense>
-          <div className={'navigation'}>
+          {/* <div className={'navigation'}>
             <nav>
               <ul>
                 <li><a href="/leaderboards/engagement">Trending</a></li>
@@ -48,7 +48,7 @@ export default function Home() {
                 <li><a target="_blank" href="https://hatecast.xyz">Most Hated</a></li>
               </ul>
             </nav>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>
