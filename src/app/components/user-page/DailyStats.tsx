@@ -37,6 +37,7 @@ export default function DailyStats(fid: any){
                 }));
     
                 // Set data for visual
+                jsonData = jsonData.reverse()
                 setStats(jsonData);
             } catch (error) {
                 console.error("Error fetching data: ", error);
